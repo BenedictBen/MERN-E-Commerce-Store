@@ -6,6 +6,7 @@ export const categories = [
     "Fashion",
     "Mother & Kids",
     "Sports & Entertainment",
+    "Beauty & Health"
   ];
   
   export const brands = [
