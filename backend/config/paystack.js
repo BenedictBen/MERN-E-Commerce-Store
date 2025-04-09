@@ -1,3 +1,5 @@
+
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -21,7 +23,6 @@ class Paystack {
         },
       };
 
-      // If the method is POST, include the body in the request
       if (method === "POST" && body) {
         fetchOptions.body = JSON.stringify(body);
       }
@@ -30,16 +31,13 @@ class Paystack {
 
       if (!response.ok) {
         const error = await response.json();
-
-        response.status(response.status);
-        throw new Error(error.message);
+        throw new Error(error.message || 'Paystack request failed');
       }
 
-      const data = await response.json();
-
-      return data;
+      return await response.json();
     } catch (error) {
-      throw new Error(error.message);
+      console.error('Paystack API error:', error);
+      throw error;
     }
   };
 
@@ -48,6 +46,14 @@ class Paystack {
       endPoint: "/transaction/initialize",
       method: "POST",
       body,
+    });
+  };
+
+  // ADD THIS NEW METHOD
+  verifyTransaction = async (reference) => {
+    return await this.makePaystackRequest({
+      endPoint: `/transaction/verify/${encodeURIComponent(reference)}`,
+      method: "GET",
     });
   };
 }

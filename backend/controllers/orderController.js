@@ -1,8 +1,37 @@
 import paystack from "../config/paystack.js";
 import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
+import asyncHandler from "../middlewares/asyncHandler.js";
 
-// Utility Function
+// Define trackOrder without exporting inline
+const trackOrder = asyncHandler(async (req, res) => {
+  const { orderId, billingEmail } = req.body;
+
+  // Find the order by its ID
+  const order = await Order.findById(orderId);
+  if (!order) {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+
+  // Optional: if billingEmail is provided, verify it against the order's paymentResult.email_address
+  if (billingEmail && order.paymentResult && order.paymentResult.email_address) {
+    if (order.paymentResult.email_address.toLowerCase() !== billingEmail.toLowerCase()) {
+      res.status(401);
+      throw new Error("Billing email does not match");
+    }
+  }
+
+  // Return the tracking details
+  res.json({
+    trackingNumber: order.trackingNumber || "N/A",
+    shippingStatus: order.shippingStatus || "N/A",
+    carrier: order.carrier || "N/A",
+    estimatedDelivery: order.estimatedDelivery || null,
+    updatedAt: order.updatedAt,
+  });
+});
+
 function calcPrices(orderItems) {
   const itemsPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.qty,
@@ -158,6 +187,7 @@ const findOrderById = async (req, res) => {
   }
 };
 
+
 const markOrderAsPaid = async ({
   amount,
   status,
@@ -168,29 +198,40 @@ const markOrderAsPaid = async ({
   try {
     const order = await Order.findOne({ paystackReference });
 
-    if (order.paidAt) return;
-
-    if (
-      status !== "success" ||
-      paidAt === null ||
-      amount / 100 !== order.totalPrice
-    ) {
-      throw new Error(`Order is not paid`);
-    }
-
-    if (order) {
-      order.isPaid = true;
-      order.paidAt = paidAt;
-      order.paystackTransactionId = paystackTransactionId;
-
-      await order.save();
-    } else {
+    if (!order) {
       throw new Error("Order not found");
     }
+
+    if (order.paidAt) {
+      console.log('Order already marked as paid');
+      return;
+    }
+
+    // Convert amount from kobo to currency
+    const amountInCurrency = amount / 100;
+
+    if (status !== 'success' || amountInCurrency !== order.totalPrice) {
+      throw new Error(`Payment verification failed. Amount or status mismatch`);
+    }
+
+    order.isPaid = true;
+    order.paidAt = paidAt || new Date();
+    order.paymentResult = {
+      id: paystackTransactionId,
+      status,
+      update_time: paidAt || new Date(),
+      email_address: order.user.email, // Assuming user is populated
+      reference: paystackReference
+    };
+
+    await order.save();
+    return order;
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error marking order as paid:', error);
+    throw error;
   }
 };
+
 
 const payOrder = async (req, res) => {
   try {
@@ -235,6 +276,51 @@ const payOrder = async (req, res) => {
   }
 };
 
+
+const verifyPayment = asyncHandler(async (req, res) => {
+  try {
+    const { reference, order_id } = req.query;
+
+    if (!reference || !order_id) {
+      res.status(400);
+      throw new Error("Reference and order ID are required");
+    }
+
+    // Verify transaction with Paystack
+    const verification = await paystack.verifyTransaction(reference);
+
+    // Additional verification checks
+    if (!verification.status || verification.data.status !== 'success') {
+      res.status(400);
+      throw new Error(verification.message || "Payment verification failed");
+    }
+
+    // Mark order as paid
+    await markOrderAsPaid({
+      amount: verification.data.amount,
+      status: verification.data.status,
+      paid_at: verification.data.paid_at,
+      reference: verification.data.reference,
+      id: verification.data.id
+    });
+
+    // Get updated order
+    const order = await Order.findById(order_id).populate('user', 'name email');
+
+    res.json({
+      success: true,
+      order,
+      paymentData: verification.data
+    });
+  } catch (error) {
+    console.error('Payment verification error:', error);
+    res.status(500).json({ 
+      error: error.message,
+      success: false
+    });
+  }
+});
+
 const markOrderAsDelivered = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -264,5 +350,7 @@ export {
   findOrderById,
   markOrderAsPaid,
   payOrder,
+  verifyPayment,
   markOrderAsDelivered,
+  trackOrder,
 };

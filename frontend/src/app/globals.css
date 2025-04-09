@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* Optionally, set height to 100% */
+  height: 100%;
+}
+
+:root {
+  --background: #ffffff;
+  --navbarBg: #1b1a41;
+  --searchButtonBg: #6e2eff;
+  --foreground: #171717;
+}
+
+/* @theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+} */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+select, select option {
+  color: black !important;
+}
+
+/* Ensure elements are visible during PDF generation */
+#pdf-print-container,
+#pdf-print-container * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Fix for potential layout issues */
+#pdf-print-container {
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}

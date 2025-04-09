@@ -76,7 +76,14 @@ const orderSchema = mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
+     // New Tracking Fields:
+     trackingNumber: { type: String },
+     shippingStatus: { type: String, default: "Processing" },
+     carrier: { type: String },
+     estimatedDelivery: { type: Date },
   },
+
+   
   {
     timestamps: true,
   }

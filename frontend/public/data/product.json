@@ -1,0 +1,2479 @@
+{
+    "products": [
+      
+      {
+        "id": 1,
+        "slug": "11-inch-tablet-pro-2020-space-gray",
+        "name": "11-inch Tablet Pro 2020 Space Gray",
+        "category": { 
+          "main": "Electronics",
+          "sub": "Tablets",
+          "tags": ["Apple", "Pro", "Portable"]
+        },
+        "price": 449.00,
+        "oldPrice": 529.00,
+        "sub-title": "iPad Pro",
+        "sub-description": "Your next computer is not a computer.",
+        "description": "The iPad Pro is a magical piece of glass. It has pro cameras that can transform reality. You can use it with touch, pencil, keyboard and now trackpad. With the A12Z Bionic chip, iPad Pro outpaces most PC laptops today. Liquid Retina display features ProMotion, True Tone, and industry‑leading colour accuracy.",
+        "more info": [
+          "11-inch Liquid Retina display with ProMotion, True Tone and industry‑leading colour accuracy",
+          "A12Z Bionic chip with 8 Core Graphics for fast performance",
+          "128GB built-in storage capacity",
+          "Wi-Fi 6 connectivity with Face ID authentication",
+          "Dual camera system: 10MP Ultra Wide + 12MP Wide cameras",
+          "LiDAR Scanner for advanced augmented reality experiences",
+          "4K video recording capability",
+          "Five studio-quality microphones and four speaker audio system",
+          "Apple Pencil (2nd generation) compatibility",
+          "Magic Keyboard and Smart Keyboard Folio support"
+        ],
+        "images": [
+          {
+            "url": "/shop/Electronic/tablet/tablet0.webp",
+            "alt": "iPad Pro front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/Electronic/tablet/tablet00.webp",
+            "alt": "iPad Pro back view",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/Electronic/tablet/tablet000.webp",
+            "alt": "iPad Pro back view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            {
+              "name": "Space Gray",
+              "code": "#424245",
+              "stock": 15,
+              "images": ["/shop/Electronic/tablet/tablet1.webp"]
+            },
+            {
+              "name": "Silver",
+              "code": "#f1f1f1",
+              "stock": 10,
+              "images": ["/shop/Electronic/tablet/tablet2.webp"]
+            },
+            {
+                "name": "black",
+                "code": "#f1f1f1",
+                "stock": 8,
+                "images": ["/shop/Electronic/tablet/tablet3.webp"]
+              }
+          ],
+          "storage": [
+            {
+              "value": "128GB",
+              "priceAdjustment": 0.00
+            },
+            {
+              "value": "256GB",
+              "priceAdjustment": 150.00
+            },
+            {
+              "value": "512GB",
+              "priceAdjustment": 300.00
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "display": "11-inch Liquid Retina",
+            "processor": "A12Z Bionic chip",
+            "storage": "128GB",
+            "cameras": {
+              "rear": ["12MP Wide", "10MP Ultra Wide"],
+              "front": "7MP TrueDepth"
+            },
+            "battery": "Up to 10 hours of surfing the web on Wi-Fi"
+          },
+          "features": [
+            "Face ID technology",
+            "USB-C connector",
+            "ProMotion technology",
+            "LiDAR Scanner",
+            "Trackpad support"
+          ],
+          "manufacturer": {
+            "name": "Apple Inc.",
+            "website": "https://apple.com",
+            "warranty": "1 year limited"
+          }
+        },
+        "ratings": {
+          "average": 4.9,
+          "count": 142,
+          "distribution": {
+            "5": 120,
+            "4": 18,
+            "3": 3,
+            "2": 1,
+            "1": 0
+          }
+        },
+        "inventory": {
+          "stock": 25,
+          "sku": "IPADPRO11-2020-128",
+          "restockDate": "2023-12-15",
+          "location": "Warehouse B"
+        },
+        "shipping": {
+          "weight": 0.5,
+          "dimensions": "24.8 x 17.8 x 0.6 cm",
+          "freeShipping": true
+        },
+        "similarProducts": [
+        {
+          "id": 3,
+          "name": "18W USB-C Power Adapter",
+          "slug": "18w-usb-c-power-adapter",
+          "link": "/products/18w-usb-c-power-adapter",
+          "category": "Electronics",
+          "price": 20.00,
+          "image": "/shop/Electronic/type-c/type-c0.webp",
+          "rating": 4.5
+        },
+        {
+          "id": 7,
+          "name": "4-Door French Door Refrigerator with 21.5” Smart Touch Screen",
+          "slug": "4-door-french-refrigerator-21-5-touchscreen",
+          "link": "/products/4-door-french-refrigerator-21-5-touchscreen",
+          "category": "Electronics",
+          "price": 3899.99,
+          "image": "/shop/home&garden/fridge/fridge0.webp",
+          "rating": 4.8
+        }
+      ],
+        "metadata": {
+          "createdAt": "2023-03-15",
+          "updatedAt": "2023-11-01",
+          "staffPick": true
+        }
+      },     
+      {
+        "id": 2,
+        "slug": "12 Piece Dinner Set, Ivory Charcoal & Terracotta",
+        "name": "12 Piece Dinner Set, Ivory Charcoal & Terracotta",
+        "category": {
+          "main": "Home & Garden",
+          "sub": "Home",
+          "tags": ["Home", "Garden"]
+        },
+        "price": 130.00,
+        "oldPrice": 150.00,
+        "sub-title": "Artisan Crafted Elegance",
+        "sub-description": "Modern sophistication meets rustic charm",
+        "description": "This 12-piece dinner set combines three timeless earth tones in a harmonious blend of Ivory, Charcoal, and Terracotta. Crafted from premium stoneware composite, each piece features hand-brushed textures and a matte glaze finish that resists fingerprints while maintaining exceptional durability. The set is microwave-safe, oven-friendly up to 220°C, and dishwasher-safe for everyday convenience.",
+        "more info": [
+    "Contains: 4 Dinner Plates (27cm), 4 Salad Plates (20cm), 4 Soup Bowls (500ml)",
+    "Material: High-fired stoneware composite (lead-free & cadmium-free)",
+    "Color Palette: Ivory base with Charcoal accents & Terracotta detailing",
+    "Stackable design for compact storage",
+    "Oven-safe up to 220°C / 428°F",
+    "Dishwasher and microwave safe",
+    "Resistant to chipping and thermal shock",
+    "Hand-wash recommended to preserve finish",
+    "Weight: Dinner Plate - 450g, Bowl - 320g",
+    "Food-safe glaze certified by FDA standards",
+    "Nesting design saves 40% cabinet space",
+    "Presented in eco-friendly gift packaging"
+  ],
+        "images": [
+          {
+            "url": "/shop/home&garden/dinnerset/dinnerset0.webp",
+            "alt": "dinnerset",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/home&garden/dinnerset/dinnerset00.webp",
+            "alt": "dinnerset",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/home&garden/dinnerset/dinnerset000.webp",
+            "alt": "dinnerset",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            {
+                "name": "Graphite",
+                "code": "#2D2926",
+                "stock": 20,
+                "images": ["/shop/home&garden/dinnerset/dinnerset0.webp"]
+              },
+            {
+              "name": "Graphite",
+              "code": "#2D2926",
+              "stock": 20,
+              "images": ["/shop/home&garden/dinnerset/dinnerset00.webp"]
+            },
+            {
+              "name": "Beige",
+              "code": "#F5F5DC",
+              "stock": 15,
+              "images": ["/shop/home&garden/dinnerset/dinnerset000.webp"]
+            }
+          ]
+        
+        },
+        
+        "ratings": {
+          "average": 4.7,
+          "count": 89,
+          "distribution": {
+            "5": 65,
+            "4": 20,
+            "3": 3,
+            "2": 1,
+            "1": 0
+          }
+        },
+        "inventory": {
+          "stock": 18,
+          "sku": "Terracotta",
+          "restockDate": "2023-12-10",
+          "location": "Warehouse C"
+        },
+        "shipping": {
+          "weight": 0.6,
+          "dimensions": "25.4 x 16.5 x 0.6 cm",
+          "freeShipping": false
+        },
+        "similarProducts": [
+        {
+          "id": 6,
+          "name": "50s Retro Style Blender with 6-Cup Tritan Jar",
+          "slug": "50s-retro-blender-6cup-tritan",
+          "link": "/products/50s-retro-blender-6cup-tritan",
+          "category": "Home & Garden",
+          "price": 89.99,
+          "image": "/shop/home&garden/blender/blender0.webp",
+          "rating": 4.6
+        },
+        {
+          "id": 7,
+          "name": "4-Door French Door Refrigerator with 21.5” Smart Touch Screen",
+          "slug": "4-door-french-refrigerator-21-5-touchscreen",
+          "link": "/products/4-door-french-refrigerator-21-5-touchscreen",
+          "category": "Home & Garden",
+          "price": 3899.99,
+          "image": "/shop/home&garden/fridge/fridge0.webp",
+          "rating": 4.8
+        }
+      ],
+        "metadata": {
+          "createdAt": "2023-06-01",
+          "updatedAt": "2023-11-05",
+          "staffPick": true
+        }
+      },   
+      {
+        "id": 3,
+        "slug": "18w-usb-c-power-adapter",
+        "name": "18W USB-C Power Adapter",
+        "category": {
+          "main": "Electronics",
+          "sub": "Accessories",
+          "tags": ["Fast Charging", "USB-PD", "Compact"]
+        },
+        "price": 20.00,
+        "oldPrice": 25.00,
+        "sub-title": "Rapid Charging Solution",
+        "sub-description": "Small size, big power delivery",
+        "description": "Compact 18W USB-C Power Delivery charger designed for fast, efficient charging of smartphones and small devices. Features foldable prongs for travel and intelligent power distribution.",
+        "more info": [
+          "USB Power Delivery (USB-PD) 3.0 compatible",
+          "Output: 5V/3A, 9V/2A, 12V/1.5A (18W Max)",
+          "Works with iPhone 8-15 series, Samsung Galaxy devices",
+          "Compact dimensions: 1.8 x 1.8 x 1.1 inches",
+          "Foldable AC plug for portability",
+          "Built-in surge protection",
+          "UL/CE/FCC certified safety",
+          "Universal 100-240V input voltage",
+          "LED charging indicator",
+          "Does NOT include USB-C cable"
+        ],
+        "images": [
+          {
+            "url": "/shop/Electronic/type-c/type-c0.webp",
+            "alt": "18W USB-C charger front view with folded prongs",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/Electronic/type-c/type-c-00.webp",
+            "alt": "Charger size comparison with credit card",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/Electronic/type-c/type-c-000.webp",
+            "alt": "Charger size comparison with credit card",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "plug-types": [
+            {
+              "name": "US Plug",
+              "code": "US",
+              "stock": 25,
+              "images": ["/shop/Electronic/type-c/type-c0.webp"]
+            },
+            {
+              "name": "EU Plug",
+              "code": "EU",
+              "stock": 15,
+              "images": ["/shop/Electronic/type-c/type-c-00.webp"]
+            },
+            {
+                "name": "AF Plug",
+                "code": "AF",
+                "stock": 15,
+                "images": ["/shop/Electronic/type-c/type-c-000.webp"]
+              }
+          ]
+        },
+        "details": {
+          "specs": {
+            "input": "AC 100-240V, 50/60Hz",
+            "output": "5V=3A / 9V=2A / 12V=1.5A",
+            "efficiency": "≥85% typical",
+            "weight": "57g",
+            "safety-certifications": ["UL", "CE", "FCC", "RoHS"]
+          },
+          "features": [
+            "Auto-detects connected device",
+            "Over-voltage protection",
+            "Temperature control",
+            "Compact travel design"
+          ],
+          "manufacturer": {
+            "name": "ChargeTech",
+            "website": "https://chargetech.com",
+            "warranty": "2-year limited"
+          }
+        },
+        "ratings": {
+          "average": 4.5,
+          "count": 212,
+          "distribution": {
+            "5": 160,
+            "4": 40,
+            "3": 8,
+            "2": 3,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 45,
+          "sku": "CT-18W-USBC",
+          "restockDate": "2023-12-05",
+          "location": "Warehouse D"
+        },
+        "shipping": {
+          "weight": 0.06,
+          "dimensions": "4.5 x 4.5 x 2.8 cm",
+          "freeShipping": true
+        },
+        "similarProducts": [
+        {
+          "id": 1,
+          "name": "11-inch Tablet Pro 2020 Space Gray",
+          "slug": "11-inch-tablet-pro-2020-space-gray",
+          "link": "/products/11-inch-tablet-pro-2020-space-gray",
+          "category": "Electronics",
+          "price": 449.00,
+          "image": "/shop/Electronic/tablet/tablet0.webp",
+          "rating": 4.9
+        },
+        {
+          "id": 4,
+          "name": "1TB Gaming Console – Wireless Game Pad – Black",
+          "slug": "1tb-gaming-console-wireless-game-pad-black",
+          "link": "/products/1tb-gaming-console-wireless-game-pad-black",
+          "category": "Electronics",
+          "price": 300.00,
+          "image": "/shop/Electronic/gaming/gaming0.webp",
+          "rating": 4.8
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2023-03-10",
+          "updatedAt": "2023-11-15",
+          "staffPick": true
+        }
+      },
+
+      {
+        "id": 4,
+        "slug": "1tb-gaming-console-wireless-game-pad-black",
+        "name": "1TB Gaming Console – Wireless Game Pad – Black",
+        "category": {
+          "main": "Toys & Games",
+          "sub": "Pretend Play",
+          "tags": ["4K Gaming", "SSD", "Wireless Controller", "Next-Gen"]
+        },
+        "price": 300.00,
+        "oldPrice": 320.00,
+        "sub-title": "Next-Gen Gaming Powerhouse",
+        "sub-description": "4K Ultra HD Gaming with Lightning-Fast Load Times",
+        "description": "Experience true next-generation gaming with this 1TB SSD-powered console. Features ray tracing support, 120Hz refresh rate, and seamless backward compatibility. Includes a premium wireless controller with haptic feedback and adaptive triggers.",
+        "more info": [
+          "Custom 8-core AMD Zen 2 processor",
+          "RDNA 2 GPU architecture with 12 TFLOPS",
+          "1TB NVMe SSD storage (expandable)",
+          "4K UHD Blu-ray drive",
+          "Supports 120Hz refresh rate at 4K resolution",
+          "Wi-Fi 6 & Bluetooth 5.1 connectivity",
+          "3D spatial audio support",
+          "Includes wireless controller (USB-C charging)",
+          "Backward compatible with previous generation games",
+          "Energy efficient - 0.5W standby power"
+        ],
+        "images": [
+          {
+            "url": "/shop/Electronic/gaming/gaming0.webp",
+            "alt": "Black gaming console with glowing LED accents",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/Electronic/gaming/gaming00.webp",
+            "alt": "Wireless gamepad with ergonomic design",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/Electronic/gaming/gaming000.webp",
+            "alt": "Rear panel showing HDMI, USB and expansion ports",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "bundles": [
+            {
+              "name": "Console Only",
+              "code": "BASE",
+              "stock": 50,
+              "priceAdjustment": 0.00
+            },
+            {
+              "name": "Premium Bundle",
+              "code": "PREMIUM",
+              "stock": 25,
+              "priceAdjustment": 100.00,
+              "includes": [
+                "Extra Controller",
+                "3-Month Game Pass",
+                "Vertical Stand"
+              ]
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "processor": "Custom AMD Zen 2 (8-core)",
+            "gpu": "AMD RDNA 2 (12 TFLOPS)",
+            "memory": "16GB GDDR6",
+            "storage": "1TB PCIe 4.0 NVMe SSD",
+            "optical-drive": "4K UHD Blu-ray",
+            "ports": [
+              "HDMI 2.1",
+              "3x USB 3.2 Gen 2",
+              "1x USB-C",
+              "Ethernet"
+            ]
+          },
+          "features": [
+            "Hardware-accelerated ray tracing",
+            "Smart Delivery technology",
+            "Quick Resume multiple games",
+            "Variable Rate Shading"
+          ],
+          "manufacturer": {
+            "name": "NextGen Gaming Systems",
+            "website": "https://nextgengaming.com",
+            "warranty": "1-year limited + 90-day controller warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.8,
+          "count": 892,
+          "distribution": {
+            "5": 750,
+            "4": 120,
+            "3": 18,
+            "2": 3,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 85,
+          "sku": "NG-CONSOLE-1TB-BLK",
+          "restockDate": "2023-12-15",
+          "location": "Warehouse G"
+        },
+        "shipping": {
+          "weight": 4.5,
+          "dimensions": "39.0 x 26.0 x 10.4 cm",
+          "freeShipping": false
+        },
+        "similarProducts": [
+        {
+          "id": 12,
+          "name": "Game Controller Console USB Wired connection Gamepad",
+          "slug": "game-controller-console-usb-wired-connection-gamepad",
+          "link": "/products/game-controller-console-usb-wired-connection-gamepad",
+          "category": "Toys & Games",
+          "price": 39.99,
+          "image": "/shop/toys&games/gamepad/gamepad0.webp",
+          "rating": 4.6
+        },
+        {
+          "id": 17,
+          "name": "Technic Bugatti Chiron 42083 Building Set",
+          "slug": "technic-bugatti-chiron-42083-building-set",
+          "link": "/products/technic-bugatti-chiron-42083-building-set",
+          "category": "Toys & Games",
+          "price": 399.99,
+          "image": "/shop/toys&games/bugatti/bugatti0.webp",
+          "rating": 4.9
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2023-09-01",
+          "updatedAt": "2023-11-20",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 5,
+        "slug": "stretch-cotton-poplin-t-shirt-baby-boy",
+        "name": "Stretch Cotton & Poplin T-shirt - Baby Boy",
+        "category": {
+          "main": "Fashion",
+          "sub": "Baby Clothing",
+          "tags": ["Organic Cotton", "Newborn Essentials", "Breathable Fabric"]
+        },
+        "price": 15.99,
+        "oldPrice": 19.99,
+        "sub-title": "Ultra-Soft Baby Essential",
+        "sub-description": "Gentle on delicate skin, perfect for everyday wear",
+        "description": "Made from premium 95% organic cotton and 5% spandex blend, this stretchy t-shirt features flatlock seams to prevent irritation. The poplin trim adds durability while maintaining softness. Designed with envelope shoulders for easy dressing.",
+        "more info": [
+          "OEKO-TEX certified safe fabric",
+          "Machine washable at 40°C",
+          "Available sizes: NB, 0-3M, 3-6M, 6-12M",
+          "Double-stitched seams for longevity",
+          "Stretch neckline for comfortable dressing",
+          "Tagless label design",
+          "Hypoallergenic dyes used",
+          "Pre-shrunk fabric",
+          "1-pack and 3-pack options",
+          "Available in 6 pastel colors"
+        ],
+        "images": [
+          {
+            "url": "/shop/fashion/cottin-shirt/cottin-shirt0.webp",
+            "alt": "Front view of baby cotton t-shirt on hanger",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/fashion/cottin-shirt/cottin-shirt00.webp",
+            "alt": "Close-up of fabric texture and stitching",
+            "isPrimary": false
+          },
+          {
+           "url": "/shop/fashion/cottin-shirt/cottin-shirt000.webp",
+            "alt": "Size chart comparison for newborn sizes",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "sizes": [
+            {
+              "name": "Newborn (NB)",
+              "code": "NB",
+              "stock": 45,
+              "weight-range": "3-5 kg"
+            },
+            {
+              "name": "0-3 Months",
+              "code": "0-3M",
+              "stock": 60,
+              "weight-range": "4-6 kg"
+            },
+            {
+              "name": "3-6 Months",
+              "code": "3-6M",
+              "stock": 55,
+              "weight-range": "6-8 kg"
+            }
+          ],
+          "colors": [
+            {
+              "name": "Sky gray",
+              "code": "#87CEEB",
+              "stock": 30,
+              "images": ["/shop/fashion/cottin-shirt/cottin-shirt0.webp"]
+            },
+            {
+              "name": "Soft black",
+              "code": "#FFB6C1",
+              "stock": 25,
+              "images": ["/shop/fashion/cottin-shirt/cottin-shirt00.webp"]
+            },
+            {
+                "name": "Soft cream",
+                "code": "#FFB6C1",
+                "stock": 25,
+                "images": ["/shop/fashion/cottin-shirt/cottin-shirt000.webp"]
+              }
+          ]
+        },
+        "details": {
+          "specs": {
+            "material": "95% Organic Cotton, 5% Spandex",
+            "fabric-weight": "140 GSM",
+            "care-instructions": "Machine wash cold, tumble dry low",
+            "certifications": ["OEKO-TEX Standard 100", "GOTS Certified"]
+          },
+          "features": [
+            "Skin-friendly flatlock seams",
+            "Expandable neckline",
+            "Breathable cotton-poplin blend",
+            "Tagless labeling"
+          ],
+          "manufacturer": {
+            "name": "Little Comforts",
+            "website": "https://littlecomforts.com",
+            "warranty": "90-day quality guarantee"
+          }
+        },
+        "ratings": {
+          "average": 4.7,
+          "count": 345,
+          "distribution": {
+            "5": 260,
+            "4": 70,
+            "3": 12,
+            "2": 2,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 140,
+          "sku": "LC-BTEE-ORG",
+          "restockDate": "2023-12-01",
+          "location": "Warehouse N"
+        },
+        "shipping": {
+          "weight": 0.08,
+          "dimensions": "15 x 10 x 1 cm",
+          "freeShipping": true
+        },
+        "similarProducts": [
+        {
+          "id": 13,
+          "name": "Brushed Leather Classic Derby Shoes",
+          "slug": "brushed-leather-classic-derby-shoes",
+          "link": "/products/brushed-leather-classic-derby-shoes",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/shoe/shoe0.webp",
+          "rating": 4.8
+        },
+        {
+          "id": 14,
+          "name": "Logo Embellished Camera Bag (Brick Orange)",
+          "slug": "logo-embellished-camera-bag-brick-orange",
+          "link": "/products/logo-embellished-camera-bag-brick-orange",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/camera-bag/camera-bag0.webp",
+          "rating": 4.7
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2023-08-15",
+          "updatedAt": "2023-11-18",
+          "staffPick": true
+        }
+      },
+
+      {
+        "id": 6,
+        "slug": "50s-retro-blender-6cup-tritan",
+        "name": "50s Retro Style Blender with 6-Cup Tritan Jar",
+        "category": {
+          "main": "Home & Garden",
+          "sub": "Appliances",
+          "tags": ["Retro Design", "BPA-Free", "Stainless Steel Blades"]
+        },
+        "price": 89.99,
+        "oldPrice": 109.99,
+        "sub-title": "Vintage Charm, Modern Performance",
+        "sub-description": "1950s styling meets contemporary blending power",
+        "description": "This retro-style blender features a 600-watt copper motor with 3-speed controls and pulse function. The 6-cup BPA-free Tritan jar withstands hot liquids up to 100°C. Chrome-plated base with authentic 50s design accents complements modern kitchens.",
+        "more info": [
+          "600W peak power motor",
+          "6-cup (1.5L) Tritan copolyester jar",
+          "Stainless steel 4-point blade system",
+          "3-speed settings + pulse function",
+          "Removable jar for easy cleaning",
+          "Overheat protection system",
+          "Non-slip rubberized base",
+          "Vintage-style analog controls",
+          "Includes recipe book & measuring cup",
+          "1-year motor warranty"
+        ],
+        "images": [
+          {
+            "url": "/shop/home&garden/blender/blender0.webp",
+            "alt": "Retro blender front view with chrome accents",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/home&garden/blender/blender00.webp",
+            "alt": "Close-up of Tritan jar and blade assembly",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/home&garden/blender/blender000.webp",
+            "alt": "Vintage-style analog speed dial",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            {
+              "name": "Fire Engine Red",
+              "code": "#CC0000",
+              "stock": 35,
+              "images": ["/shop/home&garden/blender/blender000.webp"]
+            },
+            {
+              "name": "Cream Ivory",
+              "code": "#FFFDD0",
+              "stock": 25,
+              "images": ["/shop/home&garden/blender/blender0.webp"]
+            },
+            {
+              "name": "Mint Green",
+              "code": "#98FF98",
+              "stock": 20,
+              "images": ["/shop/home&garden/blender/blender00.webp"]
+            }
+          ],
+          "accessories": [
+            {
+              "name": "Travel Jars Kit",
+              "code": "TJAR",
+              "priceAdjustment": 29.99
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "motor": "600W copper-wound",
+            "jar-capacity": "1.5L (6 cups)",
+            "blade-material": "304 stainless steel",
+            "voltage": "120V 60Hz",
+            "wattage": "600W peak / 350W continuous",
+            "speed-settings": "3 speeds + pulse",
+            "certifications": ["ETL Listed", "FDA Compliant"]
+          },
+          "features": [
+            "Anti-slip suction base",
+            "Cord storage compartment",
+            "Dishwasher-safe parts",
+            "Overcurrent protection"
+          ],
+          "manufacturer": {
+            "name": "RetroKitchen Co.",
+            "website": "https://retrokitchen.com",
+            "warranty": "2-year limited warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.6,
+          "count": 428,
+          "distribution": {
+            "5": 320,
+            "4": 85,
+            "3": 18,
+            "2": 4,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 75,
+          "sku": "RK-BLENDER-RETRO",
+          "restockDate": "2023-12-10",
+          "location": "Warehouse K"
+        },
+        "shipping": {
+          "weight": 3.5,
+          "dimensions": "28 x 28 x 43 cm",
+          "freeShipping": true
+        },
+       "similarProducts": [
+        {
+          "id": 2,
+          "name": "12 Piece Dinner Set, Ivory Charcoal & Terracotta",
+          "slug": "12-piece-dinner-set-ivory-charcoal-terracotta",
+          "link": "/products/12-piece-dinner-set-ivory-charcoal-terracotta",
+          "category": "Home & Garden",
+          "price": 130.00,
+          "image": "/shop/home&garden/dinnerset/dinnerset0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 7,
+          "name": "4-Door French Door Refrigerator with 21.5” Smart Touch Screen",
+          "slug": "4-door-french-refrigerator-21-5-touchscreen",
+          "link": "/products/4-door-french-refrigerator-21-5-touchscreen",
+          "category": "Home & Garden",
+          "price": 3899.99,
+          "image": "/shop/home&garden/fridge/fridge0.webp",
+          "rating": 4.8
+        }
+      ],
+        "metadata": {
+          "createdAt": "2023-07-01",
+          "updatedAt": "2023-11-25",
+          "staffPick": true
+        }
+      },
+
+      {
+        "id": 7,
+        "slug": "4-door-french-refrigerator-21-5-touchscreen",
+        "name": "4-Door French Door Refrigerator with 21.5” Smart Touch Screen",
+        "category": {
+          "main": "Home & Garden",
+          "sub": "Appliances",
+          "tags": ["Smart Home", "Energy Star", "Stainless Steel", "Wi-Fi Enabled"]
+        },
+        "price": 3899.99,
+        "oldPrice": 4299.99,
+        "sub-title": "Ultimate Smart Kitchen Hub",
+        "sub-description": "23.8 cu.ft capacity with voice-controlled features",
+        "description": "This premium French door refrigerator features a 21.5” HD touchscreen running KitchenOS 3.0. With dual ice makers, smart temperature zones, and built-in cameras for inventory management. Energy Star certified with PreciseCool™ triple cooling system.",
+        "more info": [
+          "21.5” Full HD Interactive Touch Display",
+          "23.8 cu.ft total capacity (670L)",
+          "SmartCam interior monitoring system",
+          "Dual IceMakers (cubed & crushed)",
+          "Wi-Fi 6 and Alexa/Google Assistant built-in",
+          "4 temperature zones (+ pantry compartment)",
+          "InstaView™ glass panel (knock twice to see inside)",
+          "Craft Ice™ sphere maker (optional)",
+          "AutoFill water pitcher with filtration",
+          "Energy Star® Most Efficient 2023"
+        ],
+        "images": [
+          {
+            "url": "/shop/home&garden/fridge/fridge0.webp",
+            "alt": "Stainless steel French door refrigerator with touchscreen",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/home&garden/fridge/fridge00.webp",
+            "alt": "Interior view showing dual cooling zones and LED lighting",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/home&garden/fridge/fridge000.webp",
+            "alt": "Close-up of 21.5” touchscreen interface",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "finishes": [
+            {
+              "name": "Stainless Steel",
+              "code": "SS",
+              "stock": 15,
+              "priceAdjustment": 0.00,
+              "images": ["/shop/home&garden/fridge/fridge0.webp"]
+            },
+            {
+              "name": "Black Stainless",
+              "code": "BSS",
+              "stock": 10,
+              "priceAdjustment": 299.00,
+              "images": ["/shop/home&garden/fridge/fridge00.webp"]
+            },
+            {
+              "name": "Custom Panel Ready",
+              "code": "CPR",
+              "stock": 5,
+              "priceAdjustment": 599.00,
+              "images": ["/shop/home&garden/fridge/fridge000.webp"]
+            }
+          ],
+          "configurations": [
+            {
+              "name": "With Craft Ice Maker",
+              "code": "CIM",
+              "priceAdjustment": 499.00,
+              "images": ["/shop/home&garden/blender/blender000.webp"]
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "capacity": "23.8 cu.ft (670L)",
+            "dimensions": "70.5\" H x 35.75\" W x 34.5\" D",
+            "annual-energy-use": "608 kWh",
+            "voltage": "120V 60Hz",
+            "water-filter": "RF28FHL0B1 (lasts 6 months)",
+            "tech": [
+              "Wi-Fi 6 (802.11ax)",
+              "Bluetooth 5.3",
+              "NFC pairing",
+              "SmartThings integration"
+            ]
+          },
+          "features": [
+            "Door-in-Door® design",
+            "Convertible FlexZone compartment",
+            "SpaceMax™ insulation technology",
+            "HygieneFresh+™ air filtration"
+          ],
+          "manufacturer": {
+            "name": "SmartKitchen Innovations",
+            "website": "https://smartkitchen.com",
+            "warranty": "5-year sealed system, 1-year full"
+          }
+        },
+        "ratings": {
+          "average": 4.8,
+          "count": 189,
+          "distribution": {
+            "5": 150,
+            "4": 32,
+            "3": 5,
+            "2": 1,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 22,
+          "sku": "SKI-FRENCH-238",
+          "restockDate": "2023-12-15",
+          "location": "Warehouse M"
+        },
+        "shipping": {
+          "weight": 318.0,
+          "dimensions": "179 x 91 x 88 cm",
+          "freeShipping": false,
+          "whiteGlove": true
+        },
+       "similarProducts": [
+        {
+          "id": 2,
+          "name": "12 Piece Dinner Set, Ivory Charcoal & Terracotta",
+          "slug": "12-piece-dinner-set-ivory-charcoal-terracotta",
+          "link": "/products/12-piece-dinner-set-ivory-charcoal-terracotta",
+          "category": "Home & Garden",
+          "price": 130.00,
+          "image": "/shop/home&garden/dinnerset/dinnerset0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 6,
+          "name": "50s Retro Style Blender with 6-Cup Tritan Jar",
+          "slug": "50s-retro-blender-6cup-tritan",
+          "link": "/products/50s-retro-blender-6cup-tritan",
+          "category": "Home & Garden",
+          "price": 89.99,
+          "image": "/shop/home&garden/blender/blender0.webp",
+          "rating": 4.6
+        }
+      ],
+        "metadata": {
+          "createdAt": "2023-06-01",
+          "updatedAt": "2023-11-28",
+          "staffPick": true
+        }
+      },
+
+      {
+        "id": 8,
+        "slug": "4-in-1-convertible-car-seat",
+        "name": "4-in-1 Convertible Car Seat - Grow with Me",
+        "category": {
+          "main": "Mother & Kids",
+          "sub": "Car Seats",
+          "tags": ["Safety Certified", "Adjustable", "Infant to Toddler"]
+        },
+        "price": 299.99,
+        "oldPrice": 349.99,
+        "sub-title": "From Infant to Big Kid",
+        "sub-description": "Birth to 10 years in one safe seat",
+        "description": "This all-in-one car seat transitions through 4 modes: rear-facing (4-40 lbs), forward-facing (22-65 lbs), highback booster (40-100 lbs), and backless booster (60-120 lbs). Features anti-rebound bar and steel-reinforced frame with energy-absorbing foam.",
+        "more info": [
+          "4 modes: rear-facing, forward-facing, highback & backless booster",
+          "5-point harness with magnetic buckle",
+          "Machine-washable cushion covers",
+          "10-position headrest adjustment",
+          "Side-impact protection with EPS foam",
+          "UPF 50+ sun canopy included",
+          "FAA approved for aircraft use",
+          "Easy-install LATCH system",
+          "Meets FMVSS 213 standards",
+          "Fits children 4-120 lbs"
+        ],
+        "images": [
+          {
+            "url": "/shop/mother&kids/car-seat/car-seat0.webp",
+            "alt": "Car seat in rear-facing mode with canopy",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/mother&kids/car-seat/car-seat00.webp",
+
+            "alt": "Side view showing impact protection",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/mother&kids/car-seat/car-seat000.webp",
+
+            "alt": "LATCH installation demonstration",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            {
+              "name": "Midnight Black",
+              "code": "#000000",
+              "stock": 25,
+              "images": ["/shop/mother&kids/car-seat/car-seat000.webp"]
+            },
+            {
+              "name": "Sky Blue",
+              "code": "#87CEEB",
+              "stock": 20,
+              "images": ["/shop/mother&kids/car-seat/car-seat00.webp"]
+            },
+            {
+              "name": "Blush Pink",
+              "code": "#FFB6C1",
+              "stock": 18,
+              "images": ["/shop/mother&kids/car-seat/car-seat0.webp"]
+            }
+          ],
+          "bundles": [
+            {
+              "name": "Travel Bundle",
+              "code": "TRAVEL",
+              "priceAdjustment": 49.99,
+              "includes": [
+                "Car seat protector mat",
+                "Mirror for rear-facing view",
+                "Travel bag"
+              ]
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "weight-limits": {
+              "rear-facing": "4-40 lbs",
+              "forward-facing": "22-65 lbs",
+              "booster": "40-120 lbs"
+            },
+            "dimensions": "27.5\" H x 19.5\" W x 22\" D",
+            "seat-weight": "21.3 lbs",
+            "certifications": [
+              "FMVSS 213",
+              "JPMA Certified",
+              "FAA Approved"
+            ],
+            "installation": ["LATCH", "Seat Belt"]
+          },
+          "features": [
+            "Quick-adjust no-rethread harness",
+            "Machine-washable inserts",
+            "Cup holder included",
+            "Breathable mesh fabric"
+          ],
+          "manufacturer": {
+            "name": "SafeRide Systems",
+            "website": "https://saferide.com",
+            "warranty": "7-year limited"
+          }
+        },
+        "ratings": {
+          "average": 4.7,
+          "count": 568,
+          "distribution": {
+            "5": 420,
+            "4": 120,
+            "3": 20,
+            "2": 5,
+            "1": 3
+          }
+        },
+        "inventory": {
+          "stock": 45,
+          "sku": "SRS-4IN1-CARSEAT",
+          "restockDate": "2023-12-05",
+          "location": "Warehouse C"
+        },
+        "shipping": {
+          "weight": 10.1,
+          "dimensions": "70 x 50 x 56 cm",
+          "freeShipping": true
+        },
+        "similarProducts": [
+        {
+          "id": 9,
+          "name": "Antique Darlington Cot Bed",
+          "slug": "antique-darlington-cot-bed",
+          "link": "/products/antique-darlington-cot-bed",
+          "category": "Mother & Kids",
+          "price": 299.99,
+          "image": "/shop/mother&kids/cot-bed/cot-bed0.webp",
+          "rating": 4.8
+        },
+        {
+          "id": 15,
+          "name": "Mothercare Bunny Swaddle Baby Towel",
+          "slug": "mothercare-bunny-swaddle-baby-towel",
+          "link": "/products/mothercare-bunny-swaddle-baby-towel",
+          "category": "Mother & Kids",
+          "price": 29.99,
+          "image": "/shop/mother&kids/baby-towel/baby-towel0.webp",
+          "rating": 4.8
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2023-05-15",
+          "updatedAt": "2023-11-30",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 9,
+        "slug": "antique-darlington-cot-bed",
+        "name": "Antique Darlington Cot Bed",
+        "category": {
+          "main": "Mother & Kids",
+          "sub": "Car Seats",
+          "tags": ["Safety Certified", "Adjustable", "Infant to Toddler"]
+        },
+        "price": 299.99,
+        "oldPrice": 349.99,
+        "sub-title": "Timeless Nursery Essential",
+        "sub-description": "Victorian design meets modern safety standards",
+        "description": "Handcrafted solid oak cot bed featuring classic turned spindles and curved ends. Converts from crib (120x60cm) to toddler bed (140x70cm) to daybed. Includes 3 mattress height positions and JPMA-certified safety features.",
+        "more info": [
+          "Convertible 3-in-1 design: crib, toddler bed, daybed",
+          "Solid oak construction with non-toxic finish",
+          "Adjustable mattress base (3 height positions)",
+          "Meets ASTM F1169 & CPSC safety standards",
+         "60 x 30 standard crib mattress size",
+          "Fixed side rail with teething protection",
+          "Includes conversion kit for toddler bed",
+          "1.5cm slat spacing for safety",
+          "Weight limit: 50 lbs (22.7 kg)",
+          "Assembly required (tools included)"
+        ],
+        "images": [
+          {
+            "url": "/shop/mother&kids/cot-bed/cot-bed0.webp",
+            "alt": "Front view of antique-style cot with spindle design",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/mother&kids/cot-bed/cot-bed00.webp",
+            "alt": "Converted toddler bed configuration",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/mother&kids/cot-bed/cot-bed000.webp",
+            "alt": "Close-up of carved oak details",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "finishes": [
+            {
+              "name": "Natural Oak",
+              "code": "#D4A56A",
+              "stock": 15,
+              "images": ["/shop/mother&kids/cot-bed/cot-bed000.webp"]
+            },
+            {
+              "name": "White Wash",
+              "code": "#F5F5F5",
+              "stock": 12,
+              "images": ["/shop/mother&kids/cot-bed/cot-bed00.webp"]
+            },
+            {
+              "name": "Walnut Stain",
+              "code": "#382E1D",
+              "stock": 8,
+              "images": ["/shop/mother&kids/cot-bed/cot-bed0.webp"]
+            }
+          ],
+          "bundles": [
+            {
+              "name": "Nursery Bundle",
+              "code": "NURSERY",
+              "priceAdjustment": 149.99,
+              "includes": [
+                "Organic Cotton Mattress",
+                "Waterproof Mattress Protector",
+                "Matching Dresser"
+              ]
+            }
+          ]
+        },
+        "details": {
+          "specs": {
+            "dimensions": "140cm L x 70cm W x 90cm H",
+            "material": "Solid European Oak",
+            "weight-capacity": "50 lbs (22.7 kg)",
+            "certifications": ["ASTM F1169", "CPSC", "JPMA"],
+            "mattress-size": "60\" x 30\" (Standard Crib)"
+          },
+          "features": [
+            "Removable teething rails",
+            "Tool-free height adjustment",
+            "Undercrib storage drawer",
+            "Non-toxic water-based finish"
+          ],
+          "manufacturer": {
+            "name": "Heritage Nursery Co.",
+            "website": "https://heritagenursery.com",
+            "warranty": "5-year structural warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.8,
+          "count": 234,
+          "distribution": {
+            "5": 190,
+            "4": 35,
+            "3": 7,
+            "2": 1,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 32,
+          "sku": "HNC-DARLINGTON-OAK",
+          "restockDate": "2023-12-10",
+          "location": "Warehouse N"
+        },
+        "shipping": {
+          "weight": 38.5,
+          "dimensions": "150 x 80 x 25 cm",
+          "freeShipping": false,
+          "whiteGlove": true
+        },
+        "similarProducts": [
+        {
+          "id": 8,
+          "name": "4-in-1 Convertible Car Seat - Grow with Me",
+          "slug": "4-in-1-convertible-car-seat",
+          "link": "/products/4-in-1-convertible-car-seat",
+          "category": "Mother & Kids",
+          "price": 299.99,
+          "image": "/shop/mother&kids/car-seat/car-seat0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 15,
+          "name": "Mothercare Bunny Swaddle Baby Towel",
+          "slug": "mothercare-bunny-swaddle-baby-towel",
+          "link": "/products/mothercare-bunny-swaddle-baby-towel",
+          "category": "Mother & Kids",
+          "price": 29.99,
+          "image": "/shop/mother&kids/baby-towel/baby-towel0.webp",
+          "rating": 4.8
+        }
+      ],
+        "metadata": {
+          "createdAt": "2023-04-20",
+          "updatedAt": "2023-12-01",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 10,
+        "slug": "wilson-evolution-official-game-basketball",
+        "name": "Wilson Evolution Official Game Basketball",
+        "category": {
+          "main": "Sports & Entertainment",
+          "sub": "Basketballs",
+          "tags": ["Official Size", "Indoor Game", "High Grip"]
+        },
+        "price": 79.99,
+        "oldPrice": 99.99,
+        "sub-title": "Premium Indoor Basketball",
+        "sub-description": "High-quality composite leather for superior control and feel",
+        "description": "Wilson Evolution Official Game Basketball is the preferred choice for competitive indoor play, featuring advanced moisture-wicking grip and durability.",
+        "more info": [
+          "NFHS Approved for official game play",
+          "Cushion Core Technology for soft feel",
+          "Composite leather cover with enhanced grip",
+          "Optimized air retention for consistent bounce",
+          "Official size 7 (29.5 inches)"
+        ],
+        "images": [
+          {
+            "url": "/shop/sports&entertainment/basketball/basketball0.webp",
+            "alt": "Wilson Evolution Basketball front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/sports&entertainment/basketball/basketball00.webp",
+
+            "alt": "Wilson Evolution Basketball side view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "sizes": [
+            { "name": "Official Size 7", "stock": 25 },
+            { "name": "Intermediate Size 6", "stock": 18 }
+          ],
+          "colors": [
+            { "name": "Orange", "code": "#FFA500", "stock": 20 },
+            { "name": "Brown", "code": "#8B4513", "stock": 15 }
+          ]
+        },
+        "details": {
+          "specs": {
+            "material": "Microfiber Composite Leather",
+            "weight": "22 oz",
+            "circumference": "29.5 inches",
+            "certifications": ["NFHS Approved", "Indoor Use Only"]
+          },
+          "features": [
+            "Superior grip and moisture control",
+            "Durable composite leather cover",
+            "Soft touch and consistent bounce"
+          ],
+          "manufacturer": {
+            "name": "Wilson Sporting Goods",
+            "website": "https://wilson.com",
+            "warranty": "1-year manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.9,
+          "count": 520,
+          "distribution": {
+            "5": 450,
+            "4": 50,
+            "3": 15,
+            "2": 3,
+            "1": 2
+          }
+        },
+        "inventory": {
+          "stock": 35,
+          "sku": "WILSON-EVOLUTION-7",
+          "restockDate": "2024-06-15",
+          "location": "Warehouse A"
+        },
+        "shipping": {
+          "weight": 1.5,
+          "dimensions": "30 x 30 x 30 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 11,
+          "name": "NFL _The Duke_ Replica Composite Football, Official Size",
+          "slug": "nfl-the-duke-replica-composite-football-official-size",
+          "link": "/products/nfl-the-duke-replica-composite-football-official-size",
+          "category": "Sports & Entertainment",
+          "price": 79.99,
+          "image": "/shop/sports&entertainment/nfl/nfl0.webp",
+          "rating": 4.9
+        },
+        {
+          "id": 18,
+          "name": "Grip Boost Tour Hyper Touch Men’s Golf Glove 2.0",
+          "slug": "grip-boost-tour-hyper-touch-golf-glove-2",
+          "link": "/products/grip-boost-tour-hyper-touch-golf-glove-2",
+          "category": "Sports & Entertainment",
+          "price": 24.99,
+          "image": "/shop/sports&entertainment/gloves/gloves0.webp",
+          "rating": 4.7
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-01-05",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 11,
+        "slug": "NFL _The Duke_ Replica Composite Football, Official Size",
+        "name": "NFL _The Duke_ Replica Composite Football, Official Size",
+        "category": {
+          "main": "Sports & Entertainment",
+          "sub": "Basketballs",
+          "tags": ["Official Size", "Indoor Game", "High Grip"]
+        },
+        "price": 79.99,
+        "oldPrice": 99.99,
+        "sub-title": "Premium Indoor Basketball",
+        "sub-description": "High-quality composite leather for superior control and feel",
+        "description": "Wilson Evolution Official Game Basketball is the preferred choice for competitive indoor play, featuring advanced moisture-wicking grip and durability.",
+        "more info": [
+          "NFHS Approved for official game play",
+          "Cushion Core Technology for soft feel",
+          "Composite leather cover with enhanced grip",
+          "Optimized air retention for consistent bounce",
+          "Official size 7 (29.5 inches)"
+        ],
+        "images": [
+          {
+            "url": "/shop/sports&entertainment/nfl/nfl0.webp",
+            "alt": "Wilson Evolution Basketball front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/sports&entertainment/nfl/nfl00.webp",
+            "alt": "Wilson Evolution Basketball side view",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/sports&entertainment/nfl/nfl000.webp",
+            "alt": "Wilson Evolution Basketball texture close-up",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "sizes": [
+            { "name": "Official Size 7", "stock": 25 },
+            { "name": "Intermediate Size 6", "stock": 18 }
+          ],
+          "colors": [
+            { "name": "Orange", "code": "#FFA500", "stock": 20 },
+            { "name": "Brown", "code": "#8B4513", "stock": 15 }
+          ]
+        },
+        "details": {
+          "specs": {
+            "material": "Microfiber Composite Leather",
+            "weight": "22 oz",
+            "circumference": "29.5 inches",
+            "certifications": ["NFHS Approved", "Indoor Use Only"]
+          },
+          "features": [
+            "Superior grip and moisture control",
+            "Durable composite leather cover",
+            "Soft touch and consistent bounce"
+          ],
+          "manufacturer": {
+            "name": "Wilson Sporting Goods",
+            "website": "https://wilson.com",
+            "warranty": "1-year manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.9,
+          "count": 520,
+          "distribution": {
+            "5": 450,
+            "4": 50,
+            "3": 15,
+            "2": 3,
+            "1": 2
+          }
+        },
+        "inventory": {
+          "stock": 35,
+          "sku": "WILSON-EVOLUTION-7",
+          "restockDate": "2024-06-15",
+          "location": "Warehouse A"
+        },
+        "shipping": {
+          "weight": 1.5,
+          "dimensions": "30 x 30 x 30 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 10,
+          "name": "Wilson Evolution Official Game Basketball",
+          "slug": "wilson-evolution-official-game-basketball",
+          "link": "/products/wilson-evolution-official-game-basketball",
+          "category": "Sports & Entertainment",
+          "price": 79.99,
+          "image": "/shop/sports&entertainment/basketball/basketball0.webp",
+          "rating": 4.9
+        },
+        {
+          "id": 18,
+          "name": "Grip Boost Tour Hyper Touch Men’s Golf Glove 2.0",
+          "slug": "grip-boost-tour-hyper-touch-golf-glove-2",
+          "link": "/products/grip-boost-tour-hyper-touch-golf-glove-2",
+          "category": "Sports & Entertainment",
+          "price": 24.99,
+          "image": "/shop/sports&entertainment/gloves/gloves0.webp",
+          "rating": 4.7
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-01-05",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 12,
+        "slug": "game-controller-console-usb-wired-connection-gamepad",
+        "name": "Game Controller Console USB Wired connection Gamepad",
+        "category": {
+          "main": "Toys & Games",
+          "sub": "Gaming Accessories",
+          "tags": ["USB Wired", "Ergonomic Design", "Multi-Platform Support"]
+        },
+        "price": 39.99,
+        "oldPrice": 49.99,
+        "sub-title": "Precision Wired Gamepad",
+        "sub-description": "Ergonomic USB wired game controller for a seamless gaming experience.",
+        "description": "Enhance your gaming experience with the Game Controller Console USB Wired Gamepad. Featuring an ergonomic design, responsive buttons, and wide compatibility, this controller is perfect for PC, PlayStation, and other supported gaming devices.",
+        "more info": [
+          "Plug-and-play USB connection",
+          "Ergonomic grip for comfortable gaming",
+          "Responsive analog sticks and trigger buttons",
+          "Compatible with Windows, PlayStation, and more",
+          "Durable build for long-lasting performance"
+        ],
+       "images": [
+  {
+    "url": "/shop/toys&games/gamepad/gamepad0.webp",
+    "alt": "Game Controller front view",
+    "isPrimary": true
+  },
+  {
+    "url": "/shop/toys&games/gamepad/gamepad00.webp",
+    "alt": "Game Controller side view",
+    "isPrimary": false
+  },
+  {
+    "url": "/shop/toys&games/gamepad/gamepad000.webp",
+    "alt": "Game Controller buttons close-up",
+    "isPrimary": false
+  }
+]
+      ,
+        "variants": {
+          "colors": [
+            { "name": "Black", "code": "#000000", "stock": 30 },
+            { "name": "Blue", "code": "#0000FF", "stock": 20 }
+          ]
+        },
+        "details": {
+          "specs": {
+            "connection": "USB Wired",
+            "compatibility": ["Windows", "PlayStation", "Steam"],
+            "features": ["Vibration Feedback", "Turbo Mode", "Ergonomic Design"],
+            "cableLength": "2.5 meters"
+          },
+          "features": [
+            "Smooth and responsive controls",
+            "High-quality button layout",
+            "Plug-and-play functionality",
+            "Durable design for extended gaming sessions"
+          ],
+          "manufacturer": {
+            "name": "GameTech",
+            "website": "https://gametech.com",
+            "warranty": "6-month manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.6,
+          "count": 320,
+          "distribution": {
+            "5": 250,
+            "4": 45,
+            "3": 15,
+            "2": 7,
+            "1": 3
+          }
+        },
+        "inventory": {
+          "stock": 50,
+          "sku": "GAMETECH-WIRED-GAMEPAD",
+          "restockDate": "2024-07-01",
+          "location": "Warehouse B"
+        },
+        "shipping": {
+          "weight": 0.8,
+          "dimensions": "18 x 12 x 6 cm",
+          "freeShipping": true,
+          "expressDelivery": false
+        },
+       "similarProducts": [
+        {
+          "id": 4,
+          "name": "1TB Gaming Console – Wireless Game Pad – Black",
+          "slug": "1tb-gaming-console-wireless-game-pad-black",
+          "link": "/products/1tb-gaming-console-wireless-game-pad-black",
+          "category": "Toys & Games",
+          "price": 300.00,
+          "image": "/shop/Electronic/gaming/gaming0.webp",
+          "rating": 4.8
+        },
+        {
+          "id": 16,
+          "name": "O-Rift S PC-Powered VR Gaming Headset",
+          "slug": "o-rift-s-pc-powered-vr-gaming-headset",
+          "link": "/products/o-rift-s-pc-powered-vr-gaming-headset",
+          "category": "Toys & Games",
+          "price": 399.99,
+          "image": "/shop/toys&games/vr/vr0.webp",
+          "rating": 4.6
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-01-05",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 13,
+        "slug": "brushed-leather-classic-derby-shoes",
+        "name": "Brushed Leather Classic Derby Shoes",
+        "category": {
+          "main": "Fashion",
+          "sub": "Footwear",
+          "tags": ["Classic Design", "Leather", "Elegant"]
+        },
+        "price": 129.99,
+        "oldPrice": 149.99,
+        "sub-title": "Timeless Leather Derby Shoes",
+        "sub-description": "Elegant and durable brushed leather Derby shoes for formal and casual wear.",
+        "description": "Step up your style with the Brushed Leather Classic Derby Shoes. Crafted from premium leather with a sleek finish, these shoes offer both comfort and sophistication. Ideal for formal occasions and everyday elegance.",
+        "more info": [
+          "Premium brushed leather material",
+          "Durable rubber sole for excellent traction",
+          "Elegant lace-up design",
+          "Comfortable insole for all-day wear",
+          "Perfect for business and formal occasions"
+        ],
+        "images": [
+          {
+            "url": "/shop/fashion/shoe/shoe0.webp",
+            "alt": "Brushed Leather Derby Shoes front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/fashion/shoe/shoe00.webp",
+            "alt": "Brushed Leather Derby Shoes side view",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/fashion/shoe/shoe000.webp",
+            "alt": "Brushed Leather Derby Shoes sole view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "Black", "code": "#000000", "stock": 15 },
+            { "name": "Brown", "code": "#8B4513", "stock": 10 }
+          ],
+          "sizes": ["40", "41", "42", "43", "44"]
+        },
+        "details": {
+          "specs": {
+            "material": "Genuine Brushed Leather",
+            "sole": "Rubber",
+            "closure": "Lace-up",
+            "fit": "True to size"
+          },
+          "features": [
+            "High-quality craftsmanship",
+            "Elegant and timeless design",
+            "Perfect for business and formal wear"
+          ],
+          "manufacturer": {
+            "name": "Elite Footwear",
+            "website": "https://elitefootwear.com",
+            "warranty": "12-month manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.8,
+          "count": 215,
+          "distribution": {
+            "5": 180,
+            "4": 25,
+            "3": 7,
+            "2": 2,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 25,
+          "sku": "ELITE-DERBY-CLASSIC",
+          "restockDate": "2024-07-15",
+          "location": "Warehouse A"
+        },
+        "shipping": {
+          "weight": 1.2,
+          "dimensions": "30 x 15 x 10 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 5,
+          "name": "Stretch Cotton & Poplin T-shirt - Baby Boy",
+          "slug": "stretch-cotton-poplin-t-shirt-baby-boy",
+          "link": "/products/stretch-cotton-poplin-t-shirt-baby-boy",
+          "category": "Fashion",
+          "price": 15.99,
+          "image": "/shop/fashion/cottin-shirt/cottin-shirt0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 14,
+          "name": "Logo Embellished Camera Bag (Brick Orange)",
+          "slug": "logo-embellished-camera-bag-brick-orange",
+          "link": "/products/logo-embellished-camera-bag-brick-orange",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/camera-bag/camera-bag0.webp",
+          "rating": 4.7
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-01-05",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 14,
+        "slug": "logo-embellished-camera-bag-brick-orange",
+        "name": "Logo Embellished Camera Bag (Brick Orange)",
+        "category": {
+          "main": "Fashion",
+          "sub": "Accessories",
+          "tags": ["Classic Design", "Leather", "Elegant"]
+        },
+        "price": 129.99,
+        "oldPrice": 149.99,
+        "sub-title": "Elegant Leather Camera Bag",
+        "sub-description": "Stylish and practical leather camera bag with an embellished logo.",
+        "description": "Carry your camera in style with the Logo Embellished Camera Bag. Crafted from high-quality leather, this bag offers a sleek design and durable protection for your camera and accessories. Perfect for photographers on the go.",
+        "more info": [
+          "Premium leather construction",
+          "Adjustable shoulder strap for comfort",
+          "Secure zip closure to keep items safe",
+          "Multiple compartments for accessories",
+          "Stylish logo embellishment"
+        ],
+        "images": [
+          {
+            "url": "/shop/fashion/camera-bag/camera-bag0.webp",
+            "alt": "Logo Embellished Camera Bag front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/fashion/camera-bag/camera-bag00.webp",
+            "alt": "Logo Embellished Camera Bag side view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "Brick Orange", "code": "#CC5500", "stock": 20 },
+            { "name": "Black", "code": "#000000", "stock": 15 }
+          ],
+          "sizes": ["Small", "Medium", "Large"]
+        },
+        "details": {
+          "specs": {
+            "material": "Genuine Leather",
+            "closure": "Zipper",
+            "strap": "Adjustable Shoulder Strap",
+            "dimensions": "25 x 18 x 10 cm"
+          },
+          "features": [
+            "Elegant and durable design",
+            "Spacious compartments for camera and accessories",
+            "Secure zip closure for protection"
+          ],
+          "manufacturer": {
+            "name": "Elite Bags Co.",
+            "website": "https://elitebags.com",
+            "warranty": "12-month manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.7,
+          "count": 198,
+          "distribution": {
+            "5": 150,
+            "4": 35,
+            "3": 10,
+            "2": 2,
+            "1": 1
+          }
+        },
+        "inventory": {
+          "stock": 35,
+          "sku": "ELITE-CAMERA-BAG-BRICK",
+          "restockDate": "2024-07-20",
+          "location": "Warehouse A"
+        },
+        "shipping": {
+          "weight": 1.1,
+          "dimensions": "30 x 20 x 12 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 5,
+          "name": "Stretch Cotton & Poplin T-shirt - Baby Boy",
+          "slug": "stretch-cotton-poplin-t-shirt-baby-boy",
+          "link": "/products/stretch-cotton-poplin-t-shirt-baby-boy",
+          "category": "Fashion",
+          "price": 15.99,
+          "image": "/shop/fashion/cottin-shirt/cottin-shirt0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 13,
+          "name": "Brushed Leather Classic Derby Shoes",
+          "slug": "brushed-leather-classic-derby-shoes",
+          "link": "/products/brushed-leather-classic-derby-shoes",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/shoe/shoe0.webp",
+          "rating": 4.8
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-01-05",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 15,
+        "slug": "mothercare-bunny-swaddle-baby-towel",
+        "name": "Mothercare Bunny Swaddle Baby Towel",
+        "category": {
+          "main": "Mother & Kids",
+          "sub": "Accessories",
+          "tags": ["Soft", "Baby Care", "Comfortable"]
+        },
+        "price": 29.99,
+        "oldPrice": 39.99,
+        "sub-title": "Soft and Cozy Baby Swaddle Towel",
+        "sub-description": "A plush and absorbent baby towel designed for warmth and comfort.",
+        "description": "Wrap your little one in comfort with the Mothercare Bunny Swaddle Baby Towel. Made from ultra-soft, absorbent fabric, this towel is perfect for keeping your baby warm and dry after bath time. The adorable bunny design adds a cute touch to baby care essentials.",
+        "more info": [
+          "Made from ultra-soft cotton",
+          "Highly absorbent and quick-drying",
+          "Gentle on baby's skin",
+          "Adorable bunny ear hood design",
+          "Ideal for newborns and infants"
+        ],
+        "images": [
+          {
+            "url": "/shop/mother&kids/baby-towel/baby-towel0.webp",
+            "alt": "Mothercare Bunny Swaddle Baby Towel front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/mother&kids/baby-towel/baby-towel00.webp",
+            "alt": "Mothercare Bunny Swaddle Baby Towel close-up view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "White", "code": "#FFFFFF", "stock": 30 },
+            { "name": "Baby Blue", "code": "#ADD8E6", "stock": 20 },
+            { "name": "Soft Pink", "code": "#FFC0CB", "stock": 25 }
+          ],
+          "sizes": ["One Size"]
+        },
+        "details": {
+          "specs": {
+            "material": "100% Cotton",
+            "dimensions": "90 x 90 cm",
+            "washable": "Machine washable"
+          },
+          "features": [
+            "Soft and breathable fabric",
+            "Hooded design for extra warmth",
+            "Hypoallergenic and gentle on baby skin"
+          ],
+          "manufacturer": {
+            "name": "Mothercare",
+            "website": "https://mothercare.com",
+            "warranty": "6-month manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.8,
+          "count": 320,
+          "distribution": {
+            "5": 260,
+            "4": 45,
+            "3": 10,
+            "2": 3,
+            "1": 2
+          }
+        },
+        "inventory": {
+          "stock": 75,
+          "sku": "MOTHERCARE-BUNNY-TOWEL",
+          "restockDate": "2024-07-25",
+          "location": "Warehouse B"
+        },
+        "shipping": {
+          "weight": 0.5,
+          "dimensions": "25 x 25 x 5 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+       "similarProducts": [
+        {
+          "id": 8,
+          "name": "4-in-1 Convertible Car Seat - Grow with Me",
+          "slug": "4-in-1-convertible-car-seat",
+          "link": "/products/4-in-1-convertible-car-seat",
+          "category": "Mother & Kids",
+          "price": 299.99,
+          "image": "/shop/mother&kids/car-seat/car-seat0.webp",
+          "rating": 4.7
+        },
+        {
+          "id": 9,
+          "name": "Antique Darlington Cot Bed",
+          "slug": "antique-darlington-cot-bed",
+          "link": "/products/antique-darlington-cot-bed",
+          "category": "Mother & Kids",
+          "price": 299.99,
+          "image": "/shop/mother&kids/cot-bed/cot-bed0.webp",
+          "rating": 4.8
+        }
+      ],
+        "metadata": {
+          "createdAt": "2024-02-10",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 16,
+        "slug": "o-rift-s-pc-powered-vr-gaming-headset",
+        "name": "O-Rift S PC-Powered VR Gaming Headset",
+        "category": {
+          "main": "Toys & Games",
+          "sub": "Pretend Play",
+          "tags": ["VR", "Immersive", "High Performance"]
+        },
+        "price": 399.99,
+        "oldPrice": 449.99,
+        "sub-title": "Next-Gen Virtual Reality Experience",
+        "sub-description": "High-performance PC-powered VR headset with advanced optics and tracking.",
+        "description": "Experience the next level of virtual reality with the O-Rift S PC-Powered VR Gaming Headset. Featuring enhanced optics, inside-out tracking, and a comfortable fit, this headset delivers stunning visuals and an immersive gaming experience like never before.",
+        "more info": [
+          "Improved optics for sharper visuals and reduced glare",
+          "Inside-out tracking eliminates the need for external sensors",
+          "Adjustable head strap for enhanced comfort",
+          "Ergonomic controllers with precise hand tracking",
+          "Compatible with a wide range of PC VR games"
+        ],
+        "images": [
+          {
+            "url": "/shop/toys&games/vr/vr0.webp",
+            "alt": "O-Rift S PC-Powered VR Gaming Headset front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/toys&games/vr/vr00.webp",
+            "alt": "O-Rift S PC-Powered VR Gaming Headset side view",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/toys&games/vr/vr000.webp",
+            "alt": "O-Rift S PC-Powered VR Gaming Headset side view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "Black", "code": "#000000", "stock": 50 }
+          ],
+          "sizes": ["One Size"]
+        },
+        "details": {
+          "specs": {
+            "display": "2560 x 1440 LCD",
+            "refreshRate": "80Hz",
+            "tracking": "Inside-out tracking with 6 degrees of freedom",
+            "connectivity": "USB 3.0, DisplayPort 1.2",
+            "audio": "Integrated speakers with 3D spatial audio"
+          },
+          "features": [
+            "No external sensors required",
+            "Ergonomic fit for extended play sessions",
+            "Wide compatibility with VR-ready PCs",
+            "Adjustable head strap for maximum comfort"
+          ],
+          "manufacturer": {
+            "name": "Oculus",
+            "website": "https://www.oculus.com",
+            "warranty": "1-year manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.6,
+          "count": 410,
+          "distribution": {
+            "5": 300,
+            "4": 80,
+            "3": 20,
+            "2": 5,
+            "1": 5
+          }
+        },
+        "inventory": {
+          "stock": 50,
+          "sku": "OCULUS-RIFT-S",
+          "restockDate": "2024-07-30",
+          "location": "Warehouse C"
+        },
+        "shipping": {
+          "weight": 1.2,
+          "dimensions": "35 x 25 x 15 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+          {
+            "id": 4,
+            "name": "1TB Gaming Console – Wireless Game Pad – Black",
+            "slug": "1tb-gaming-console-wireless-game-pad-black",
+            "link": "/products/1tb-gaming-console-wireless-game-pad-black",
+            "category": "Toys & Games",
+            "price": 300.00,
+            "image": "/shop/Electronic/gaming/gaming0.webp",
+            "rating": 4.8
+          },
+          {
+            "id": 12,
+            "name": "Game Controller Console USB Wired connection Gamepad",
+            "slug": "game-controller-console-usb-wired-connection-gamepad",
+            "link": "/products/game-controller-console-usb-wired-connection-gamepad",
+            "category": "Toys & Games",
+            "price": 39.99,
+            "image": "/shop/toys&games/gamepad/gamepad0.webp",
+            "rating": 4.6
+          }
+        ]
+        ,
+        "metadata": {
+          "createdAt": "2024-02-10",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+
+      {
+        "id": 17,
+        "slug": "technic-bugatti-chiron-42083-building-set",
+        "name": "Technic Bugatti Chiron 42083 Building Set",
+        "category": {
+          "main": "Toys & Games",
+          "sub": "Cars, Drones & RC",
+          "tags": ["Lego", "Building Set", "Luxury Car", "Model Cars"]
+        },
+        "price": 399.99,
+        "oldPrice": 449.99,
+        "sub-title": "Ultimate LEGO Technic Bugatti Chiron Experience",
+        "sub-description": "A detailed 1:8 scale replica of the iconic Bugatti Chiron, featuring a W16 engine and moving parts.",
+        "description": "The LEGO Technic Bugatti Chiron 42083 is an advanced building set designed for car enthusiasts and collectors. This 3,599-piece model features a detailed W16 engine, a functional gearbox, and an aerodynamic body. Perfect for display or interactive play, this set is a must-have for fans of luxury sports cars and engineering.",
+        "more info": [
+          "3,599-piece LEGO Technic set for ages 16+",
+          "1:8 scale model of the Bugatti Chiron",
+          "Functional W16 engine with moving pistons",
+          "8-speed gearbox with paddle shifters",
+          "Racing-style cockpit with detailed dashboard",
+          "Working suspension and steering system",
+          "Bugatti logo and signature color scheme"
+        ],
+        "images": [
+          {
+            "url": "/shop/toys&games/bugatti/bugatti0.webp",
+            "alt": "LEGO Technic Bugatti Chiron front view",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/toys&games/bugatti/bugatti00.webp",
+            "alt": "LEGO Technic Bugatti Chiron side view",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/toys&games/bugatti/bugatti000.webp",
+            "alt": "LEGO Technic Bugatti Chiron rear view",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "Blue", "code": "#0057A8", "stock": 40 }
+          ],
+          "sizes": ["One Size"]
+        },
+        "details": {
+          "specs": {
+            "pieceCount": 3599,
+            "scale": "1:8",
+            "dimensions": "22 x 56 x 25 cm",
+            "weight": "4.5 kg",
+            "recommendedAge": "16+",
+            "materials": "Plastic"
+          },
+          "features": [
+            "Authentic Bugatti Chiron details",
+            "Highly detailed cockpit with gear shift paddles",
+            "Functioning rear wing that raises and lowers",
+            "Removable body shell for viewing internal mechanics",
+            "Compatible with other LEGO Technic models"
+          ],
+          "manufacturer": {
+            "name": "LEGO",
+            "website": "https://www.lego.com",
+            "warranty": "2-year manufacturer warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.9,
+          "count": 1250 ,
+          "distribution": {
+            "5": 1100,
+            "4": 100,
+            "3": 30,
+            "2": 10,
+            "1": 10
+          }
+        },
+        "inventory": {
+          "stock": 40,
+          "sku": "LEGO-42083",
+          "restockDate": "2024-08-15",
+          "location": "Warehouse A"
+        },
+        "shipping": {
+          "weight": 4.5,
+          "dimensions": "22 x 56 x 25 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 4,
+          "name": "1TB Gaming Console – Wireless Game Pad – Black",
+          "slug": "1tb-gaming-console-wireless-game-pad-black",
+          "link": "/products/1tb-gaming-console-wireless-game-pad-black",
+          "category": "Electronics",
+          "price": 300.00,
+          "image": "/shop/Electronic/gaming/gaming0.webp",
+          "rating": 4.8
+        },
+        {
+          "id": 12,
+          "name": "Game Controller Console USB Wired connection Gamepad",
+          "slug": "game-controller-console-usb-wired-connection-gamepad",
+          "link": "/products/game-controller-console-usb-wired-connection-gamepad",
+          "category": "Toys & Games",
+          "price": 39.99,
+          "image": "/shop/toys&games/gamepad/gamepad0.webp",
+          "rating": 4.6
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-02-10",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+ 
+      {
+        "id": 18,
+        "slug": "grip-boost-tour-hyper-touch-golf-glove-2",
+        "name": "Grip Boost Tour Hyper Touch Men’s Golf Glove 2.0",
+        "category": {
+          "main": "Sports & Entertainment",
+          "sub": "Golf Equipment",
+          "tags": ["Golf", "Performance", "Sports Gear", "Grip Technology"]
+        },
+        "price": 24.99,
+        "oldPrice": 29.99,
+        "sub-title": "Premium Tour-Grade Golf Glove",
+        "sub-description": "Advanced moisture-wicking grip with reinforced durability",
+        "description": "Engineered for serious golfers, the Hyper Touch 2.0 glove features Cabretta leather construction, perforated breathability zones, and FlexMesh knuckles for unmatched club control and all-weather performance.",
+        "more info": [
+          "Premium Cabretta leather palm",
+          "VentCool mesh backhand panel",
+          "Adjustable Velcro closure system",
+          "Reinforced thumb & stress-point stitching",
+          "All-weather grip performance",
+          "Available in multiple sizes"
+        ],
+        "images": [
+          {
+            "url": "/shop/sports&entertainment/gloves/gloves0.webp",
+            "alt": "Grip Boost glove front view showing leather palm",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/sports&entertainment/gloves/gloves00.webp",
+            "alt": "Glove back showing breathable mesh panel",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/sports&entertainment/gloves/gloves000.webp",
+            "alt": "Close-up of textured grip pattern",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "White", "code": "#FFFFFF", "stock": 40 },
+            { "name": "Black", "code": "#000000", "stock": 30 },
+            { "name": "Gray", "code": "#808080", "stock": 25 }
+          ],
+          "sizes": ["S", "M", "L", "XL"]
+        },
+        "details": {
+          "specs": {
+            "material": "Cabretta Leather/Mesh",
+            "closure": "Adjustable Velcro",
+            "fit": "Tour Slim",
+            "weatherRating": "All-conditions",
+            "handOrientation": "Right/Left Available"
+          },
+          "features": [
+            "Perforated breathability zones",
+            "Flexible PowerWeb support",
+            "Double-stitched stress points",
+            "Anti-slip silicone grip pattern",
+            "Quick-dry moisture management"
+          ],
+          "manufacturer": {
+            "name": "Grip Boost",
+            "website": "https://www.gripboost.com",
+            "warranty": "60-day performance guarantee"
+          }
+        },
+        "ratings": {
+          "average": 4.7,
+          "count": 890,
+          "distribution": {
+            "5": 650,
+            "4": 180,
+            "3": 40,
+            "2": 10,
+            "1": 10
+          }
+        },
+        "inventory": {
+          "stock": 95,
+          "sku": "GB-GLOVE-2RT",
+          "restockDate": "2024-08-15",
+          "location": "Warehouse D"
+        },
+        "shipping": {
+          "weight": 0.15,
+          "dimensions": "20 × 15 × 2 cm",
+          "freeShipping": true,
+          "expressDelivery": false
+        },
+        "similarProducts": [
+        {
+          "id": 10,
+          "name": "Wilson Evolution Official Game Basketball",
+          "slug": "wilson-evolution-official-game-basketball",
+          "link": "/products/wilson-evolution-official-game-basketball",
+          "category": "Sports & Entertainment",
+          "price": 79.99,
+          "image": "/shop/sports&entertainment/basketball/basketball0.webp",
+          "rating": 4.9
+        },
+        {
+          "id": 11,
+          "name": "NFL _The Duke_ Replica Composite Football, Official Size",
+          "slug": "nfl-the-duke-replica-composite-football-official-size",
+          "link": "/products/nfl-the-duke-replica-composite-football-official-size",
+          "category": "Sports & Entertainment",
+          "price": 79.99,
+          "image": "/shop/sports&entertainment/nfl/nfl0.webp",
+          "rating": 4.9
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-02-10",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      },
+      {
+        "id": 20,
+        "slug": "adilette-slides-originals",
+        "name": "Adilette Slides Originals",
+        "category": {
+          "main": "Fashion",
+          "sub": "Footwear",
+          "tags": ["Athleisure", "Comfort", "Pool Slides", "Summer Essentials"]
+        },
+        "price": 45.99,
+        "oldPrice": 55.99,
+        "sub-title": "CloudFoam Comfort Slides",
+        "sub-description": "Lightweight cushioning with quick-dry technology",
+        "description": "The iconic Adilette Slides feature a contoured footbed and water-ready design. Made with soft, responsive CloudFoam midsole and durable traction pattern for perfect pool-to-locker room comfort.",
+        "more info": [
+          "Quick-dry synthetic upper",
+          "CloudFoam memory-tech footbed",
+          "Textured traction outsole",
+          "Easy-entry slide design",
+          "Available in 6 classic colors",
+          "Wipe clean with damp cloth"
+        ],
+        "images": [
+          {
+            "url": "/shop/fashion/sandal/sandal0.webp",
+            "alt": "Adilette Slides front view showing contoured design",
+            "isPrimary": true
+          },
+          {
+            "url": "/shop/fashion/sandal/sandal00.webp",
+            "alt": "Side profile highlighting CloudFoam midsole",
+            "isPrimary": false
+          },
+          {
+            "url": "/shop/fashion/sandal/sandal000.webp",
+            "alt": "Close-up of textured traction pattern",
+            "isPrimary": false
+          }
+        ],
+        "variants": {
+          "colors": [
+            { "name": "Core Black", "code": "#000000", "stock": 120 },
+            { "name": "Crystal White", "code": "#FFFFFF", "stock": 90 },
+            { "name": "Team Navy", "code": "#000080", "stock": 75 }
+          ],
+          "sizes": ["6", "7", "8", "9", "10", "11", "12"]
+        },
+        "details": {
+          "specs": {
+            "upperMaterial": "Synthetic",
+            "midsole": "CloudFoam",
+            "outsole": "Rubber",
+            "weight": "220g (per slide)",
+            "closure": "Slip-on"
+          },
+          "features": [
+            "Anti-odor technology",
+            "Water-resistant construction",
+            "Podiatry-approved arch support",
+            "Durable toe bumper",
+            "Machine washable"
+          ],
+          "manufacturer": {
+            "name": "Adidas",
+            "website": "https://www.adidas.com",
+            "warranty": "6-month material warranty"
+          }
+        },
+        "ratings": {
+          "average": 4.5,
+          "count": 980,
+          "distribution": {
+            "5": 700,
+            "4": 200,
+            "3": 60,
+            "2": 15,
+            "1": 5
+          }
+        },
+        "inventory": {
+          "stock": 285,
+          "sku": "ADIDAS-SLIDES-2024",
+          "restockDate": "2024-08-01",
+          "location": "Warehouse F"
+        },
+        "shipping": {
+          "weight": 0.5,
+          "dimensions": "30 × 15 × 10 cm",
+          "freeShipping": true,
+          "expressDelivery": true
+        },
+        "similarProducts": [
+        {
+          "id": 13,
+          "name": "Brushed Leather Classic Derby Shoes",
+          "slug": "brushed-leather-classic-derby-shoes",
+          "link": "/products/brushed-leather-classic-derby-shoes",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/shoe/shoe0.webp",
+          "rating": 4.8
+        },
+        {
+          "id": 14,
+          "name": "Logo Embellished Camera Bag (Brick Orange)",
+          "slug": "logo-embellished-camera-bag-brick-orange",
+          "link": "/products/logo-embellished-camera-bag-brick-orange",
+          "category": "Fashion",
+          "price": 129.99,
+          "image": "/shop/fashion/camera-bag/camera-bag0.webp",
+          "rating": 4.7
+        }
+      ]
+        ,
+        "metadata": {
+          "createdAt": "2024-02-10",
+          "updatedAt": "2024-05-10",
+          "staffPick": true
+        }
+      }    
+    ]
+    
+  }
+
+

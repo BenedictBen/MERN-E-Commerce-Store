@@ -6,6 +6,7 @@ import {
   removeCategory,
   listCategory,
   readCategory,
+  getCategoryProducts,
 } from "../controllers/categoryController.js";
 
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
@@ -18,5 +19,7 @@ router
 
 router.route("/categories").get(listCategory);
 router.route("/:id").get(readCategory);
+
+router.route("/:id/products").get(authenticate, getCategoryProducts); // Add this new route
 
 export default router;
