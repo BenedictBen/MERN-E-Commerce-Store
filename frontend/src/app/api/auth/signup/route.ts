@@ -11,98 +11,162 @@ function extractJwt(cookieHeader: string) {
   return null;
 }
 
+// export async function POST(request: Request) {
+//   try {
+//     const reqBody = await request.json();
+//     console.log('reqBody', reqBody);
+
+//     const signup = `${process.env.NEXT_PUBLIC_API_URL}/api/users`;
+
+//     try {
+//       const res = await fetch(signup, {
+//         method: 'POST',
+//         body: JSON.stringify(reqBody),
+//         credentials: 'include',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       });
+
+//       console.log(res);
+
+//       const data = await res.json();
+
+//       if (data) {
+//         // Accessing all headers
+//         const headers = res.headers;
+//         console.log('Response Headers:', headers);
+
+//         // Getting the 'set-cookie' header
+//         const cookieHeader = headers.get('set-cookie');
+
+//         if (cookieHeader) {
+//           const jwt = extractJwt(cookieHeader);
+
+//           if (jwt) {
+//             const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30d
+
+//             const cookieStore = await cookies();
+
+//             cookieStore.set('jwt', jwt, {
+//               expires,
+//               httpOnly: true,
+//               secure: true,
+//               sameSite: 'lax',
+//               path: '/', // Ensure the cookie is available site-wide
+//             });
+
+//             console.log('JWT Token:', jwt);
+
+//             return new Response(
+//               JSON.stringify({
+//                 success: true,
+//                 message: 'Login successful',
+//                 user: {
+//                   _id: data._id,
+//                   username: data.username,
+//                   email: data.email,
+//                   isAdmin: data.isAdmin,
+//                 },
+//               }),
+//               {
+//                 status: 200,
+//                 headers: { 'Content-Type': 'application/json' },
+//               }
+//             );
+//           } else {
+//             console.error('JWT not found in the cookie header');
+//             return new Response(
+//               JSON.stringify({ message: 'JWT not found in response' }),
+//               { status: 401 }
+//             );
+//           }
+//         } else {
+//           console.error('Cookie header not found');
+//           return new Response(
+//             JSON.stringify({ message: 'Cookie header not found' }),
+//             { status: 401 }
+//           );
+//         }
+//       }
+//     } catch (error) {
+//       console.log('Signup failed:', error);
+//       return new Response(
+//         JSON.stringify({ message: 'Signup failed', error: (error as Error).message }),
+//         { status: 500 }
+//       );
+//     }
+//   } catch (error) {
+//     return new Response(`Server error: ${(error as Error).message}`, {
+//       status: 400,
+//     });
+//   }
+
+//   return new Response('Success!', {
+//     status: 200,
+//   });
+// }
 export async function POST(request: Request) {
   try {
     const reqBody = await request.json();
-    console.log('reqBody', reqBody);
 
-    const login = `${process.env.NEXT_PUBLIC_API_URL}/api/users/auth`;
-
-    try {
-      const res = await fetch(login, {
-        method: 'POST',
-        body: JSON.stringify(reqBody),
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      console.log(res);
-
-      const data = await res.json();
-
-      if (data) {
-        // Accessing all headers
-        const headers = res.headers;
-        console.log('Response Headers:', headers);
-
-        // Getting the 'set-cookie' header
-        const cookieHeader = headers.get('set-cookie');
-
-        if (cookieHeader) {
-          const jwt = extractJwt(cookieHeader);
-
-          if (jwt) {
-            const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30d
-
-            const cookieStore = await cookies();
-
-            cookieStore.set('jwt', jwt, {
-              expires,
-              httpOnly: true,
-              secure: true,
-              sameSite: 'lax',
-              path: '/', // Ensure the cookie is available site-wide
-            });
-
-            console.log('JWT Token:', jwt);
-
-            return new Response(
-              JSON.stringify({
-                success: true,
-                message: 'Login successful',
-                user: {
-                  _id: data._id,
-                  username: data.username,
-                  email: data.email,
-                  isAdmin: data.isAdmin,
-                },
-              }),
-              {
-                status: 200,
-                headers: { 'Content-Type': 'application/json' },
-              }
-            );
-          } else {
-            console.error('JWT not found in the cookie header');
-            return new Response(
-              JSON.stringify({ message: 'JWT not found in response' }),
-              { status: 401 }
-            );
-          }
-        } else {
-          console.error('Cookie header not found');
-          return new Response(
-            JSON.stringify({ message: 'Cookie header not found' }),
-            { status: 401 }
-          );
-        }
-      }
-    } catch (error) {
-      console.log('Login failed:', error);
-      return new Response(
-        JSON.stringify({ message: 'Login failed', error: (error as Error).message }),
-        { status: 500 }
-      );
-    }
-  } catch (error) {
-    return new Response(`Server error: ${(error as Error).message}`, {
-      status: 400,
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-  }
 
-  return new Response('Success!', {
-    status: 200,
-  });
+    // First check if response is OK
+    if (!res.ok) {
+      const errorData = await res.text().catch(() => 'Unknown error');
+      throw new Error(`Backend error: ${errorData}`);
+    }
+
+    // Try to parse JSON only if content-type is application/json
+    const contentType = res.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      throw new Error('Invalid response format from backend');
+    }
+
+    const data = await res.json();
+
+    // Handle cookie setting
+    const cookieHeader = res.headers.get('set-cookie');
+    if (cookieHeader) {
+      const jwt = extractJwt(cookieHeader);
+      if (jwt) {
+        
+        const cookieStore = await cookies();
+        cookieStore.set('jwt', jwt, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+        });
+      }
+    }
+
+    return Response.json({
+      success: true,
+      user: {
+        _id: data._id,
+        username: data.username,
+        email: data.email,
+        isAdmin: data.isAdmin,
+      }
+    });
+
+  } catch (error) {
+    console.error('Signup error:', error);
+    return Response.json(
+      { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Signup failed' 
+      },
+      { status: 500 }
+    );
+  }
 }

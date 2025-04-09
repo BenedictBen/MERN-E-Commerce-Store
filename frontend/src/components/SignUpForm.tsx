@@ -37,7 +37,7 @@ const SignUpForm = () => {
     dispatch(registerStart());
     setIsLoading(true); // Start loading
     try {
-      const response = await fetch(`/api/auth/signup`, {
+      const response = await fetch('/api/auth/signup', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const SignUpForm = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || "Login failed");
+        throw new Error(result.error || result.message || 'Sign up failed');
       }
 
       dispatch(registerSuccess(result)); // Store all user data including isAdmin
