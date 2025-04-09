@@ -13,6 +13,8 @@ import { logout } from "@/redux/slices/authSlice";
 import { ReactElement, useState } from "react";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
+import { clearCart } from "@/redux/slices/cartSlice";
+import { clearWishlist } from "@/redux/slices/wishlistSlice";
 
 type MenuItem = {
   icon: ReactElement;
@@ -58,7 +60,9 @@ const UserMenu = () => {
         "jwt=; Max-Age=0; path=/; secure; HttpOnly; sameSite=Lax";
 
       // Dispatch the logout action
-      dispatch(logout());
+      dispatch(clearCart());      // Clear cart items
+      dispatch(clearWishlist());  // Clear wishlist items
+      dispatch(logout());         // Clear auth state
 
       // Refresh the page or navigate to the login page
       router.refresh();

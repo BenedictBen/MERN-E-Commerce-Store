@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { clearCart } from './cartSlice';
+import { clearWishlist } from "./wishlistSlice";
 
 interface User {
   _id: string;
@@ -65,6 +67,12 @@ const authSlice = createSlice({
     },
   },
 });
+// Create a thunk action that combines logout with clearing cart/wishlist
+export const logoutUser = () => (dispatch: any) => {
+  dispatch(authSlice.actions.logout());
+  dispatch(clearCart());
+  dispatch(clearWishlist());
+};
 
 export const {
   loginStart,

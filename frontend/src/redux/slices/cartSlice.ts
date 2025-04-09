@@ -137,6 +137,7 @@ const cartSlice = createSlice({
     loadCartFromStorage(state, action: PayloadAction<CartState>) {
       return action.payload;
     },
+   
     updateProductDetails(state, action: PayloadAction<Product>) {
       const updatedProduct = action.payload;
       const cartItemId = getCartItemId(updatedProduct);

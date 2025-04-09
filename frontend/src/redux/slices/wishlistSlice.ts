@@ -38,6 +38,7 @@ const wishlistSlice = createSlice({
     clearWishlist(state) {
       state.items = [];
     },
+    
   },
 });
 
