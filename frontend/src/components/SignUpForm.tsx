@@ -51,12 +51,12 @@ const SignUpForm = () => {
         throw new Error(result.error || result.message || 'Sign up failed');
       }
 
-      dispatch(registerSuccess(result)); // Store all user data including isAdmin
+      dispatch(registerSuccess(result.user)); // Store all user data including isAdmin
       console.log("Sign Up successful", result);
       // Success toast with smooth redirect
       toast.success(
         `Welcome, ${
-          result.name || result.email
+          result.user.username || result.user.email
         }! Account created successfully.`,
         {
           position: "top-right",
