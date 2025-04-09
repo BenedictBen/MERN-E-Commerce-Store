@@ -162,9 +162,9 @@ console.log('Props being passed to Shopping:', {
     console.error("Error in CategoryPage:", error);
     return (
       <div className="text-center py-10">
-        <h3 className="text-lg font-medium">Error loading products</h3>
-        <p className="text-gray-600 mt-2">
-          {error instanceof Error ? error.message : "Please try again later"}
+        <h3 className="text-lg font-medium">Sign up or Login to continue shopping</h3>
+        <p className=" my-4 border-2 bg-blue-800 text-white">
+          <a href="/signin">Login</a>
         </p>
       </div>
     );

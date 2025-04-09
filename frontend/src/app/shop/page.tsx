@@ -1,61 +1,4 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "next/navigation";
-// import ShopHero from "@/components/ShopHero";
-// import Shopping from "@/components/Shopping";
 
-// const CategoryPage = () => {
-//   const { category } = useParams(); // Get category from URL
-//   const [products, setProducts] = useState<any[]>([]);
-
-
-//   useEffect(() => {
-//     if (!category) return;
-//     fetch(`/api/auth/categories/${category}`)
-
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setProducts(data);
-    
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching category products:", error);
-
-//       });
-//   }, [category]);
-
-
-
-//   return (
-//     <div>
-//       <ShopHero category="Shop" />
-//       <Shopping products={products} />
-//     </div>
-//   );
-// };
-
-// export default CategoryPage;
-
-// "use client";
-// import React from "react";
-// import ShopHero from "@/components/ShopHero";
-// import Shopping from "@/components/Shopping";
-
-// interface CategoryPageProps {
-//   products: any[];
-// }
-
-// const CategoryPage = ({ products }: CategoryPageProps) => {
-//   return (
-//     <div>
-//       <ShopHero category="Shop" />
-//       <Shopping initialProducts={products}  />
-
-//     </div>
-//   );
-// };
-
-// export default CategoryPage;
 
 
 "use client";
@@ -126,8 +69,10 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
   if (error) {
     return (
       <div className="text-center py-10">
-        <h3 className="text-lg font-medium">Error loading products</h3>
-        <p className="text-gray-600 mt-2">{error}</p>
+        <h3 className="text-lg font-medium">Sign up or Login to continue shopping</h3>
+        <p className=" my-4 border-2 bg-blue-800 text-white">
+          <a href="/signin">Login</a>
+        </p>
       </div>
     );
   }
