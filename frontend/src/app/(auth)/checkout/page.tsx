@@ -54,8 +54,7 @@ const allItems = [...cartItems];
         <p className="text-[#1ebf9b] !text-sm">
           <>
           {item.name}
-          {/* {wishlistItems.some(wishItem => wishItem.productId === item.id) && 
-                  <span className="text-xs text-gray-500 ml-2">(from wishlist)</span>} */}
+          
           </>
 
         </p>

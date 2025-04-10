@@ -21,10 +21,14 @@ import { toast } from 'react-toastify';
 const FlashDeals = () => {
   const [deals, setDeals] = useState<Deals[]>([]);
   const dispatch = useDispatch();
-  const wishlist = useSelector((state: RootState) => state.cart.wishlist);
+  // In all components, use:
+const wishlist = useSelector((state: RootState) => state.cart.wishlist || []);
 
+  // const isWishlisted = (productId: number) => {
+  //   return wishlist.some(item => item.id === productId);
+  // };
   const isWishlisted = (productId: number) => {
-    return wishlist.some(item => item.id === productId);
+    return Array.isArray(wishlist) && wishlist.some(item => item?.id === productId);
   };
 
   const handleWishlistToggle = (product: any) => {

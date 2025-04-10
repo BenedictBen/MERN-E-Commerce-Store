@@ -179,7 +179,8 @@ useEffect(() => {
   });
 
   const dispatch = useDispatch();
-    const wishlist = useSelector((state: RootState) => state.cart.wishlist);
+    // In all components, use:
+const wishlist = useSelector((state: RootState) => state.cart.wishlist || []);
   
 
 
@@ -337,10 +338,12 @@ useEffect(() => {
     return [{ url: '/shop/vr000.webp' }];
   };
 
+  // const isWishlisted = (productId: number) => {
+  //     return wishlist.some(item => item.id === productId);
+  //   };
   const isWishlisted = (productId: number) => {
-      return wishlist.some(item => item.id === productId);
-    };
-  
+    return Array.isArray(wishlist) && wishlist.some(item => item?.id === productId);
+  };
     const handleWishlistToggle = (product: any) => {
       dispatch(toggleWishlist({
         ...product,
