@@ -15,7 +15,7 @@ const HeroSwiper = () => {
       top: "new arrivals",
       title: "Hot Right Now",
       sub: "Retro Remixed for The Future Starting at $110",
-      button: "/shop/Fashion",
+      button: "/shop/67e15b625bd89abe6b2d344f",
     }, 
     {
       id: 2,
@@ -23,7 +23,7 @@ const HeroSwiper = () => {
       top: "editorials",
       title: "Natural Air Purifier",
       sub: "It brings light and happiness to your house, like a sun beam after the rain",
-      button: "/shop/Home%20%26%20Garden",
+      button: "/shop/67e15a9ad833777bdbaebc05",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const HeroSwiper = () => {
       top: "featured",
       title: "Bring it Anywhere",
       sub: "The perfect portable speaker for home and away",
-      button: "/shop/Electronics",
+      button: "/shop/67e1310089993f6a246c12b1",
     },
   ];
 
