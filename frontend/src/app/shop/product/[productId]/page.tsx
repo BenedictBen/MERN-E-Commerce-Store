@@ -19,11 +19,12 @@ import Color from "colorjs.io";
 import { useDispatch } from "react-redux";
 import { addToCart, updateQuantity } from "@/redux/slices/cartSlice";
 import { toast } from "react-toastify";
-
+import { useRouter, useSearchParams } from 'next/navigation';
 
   
 
 const ProductDetailPage = () => {
+  const router = useRouter();
   const { productId } = useParams(); 
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,8 @@ const ProductDetailPage = () => {
   const [number, setNumber] = useState<number>(1);
   const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useDispatch();
-
+  const searchParams = useSearchParams();
+  const fromWishlist = searchParams.get('fromWishlist') === 'true';
   // ✅ Create a reference for the product section
   const productRef = useRef<HTMLDivElement>(null);
 
@@ -51,6 +53,9 @@ const ProductDetailPage = () => {
       setQuantity(value);
     }
   };
+
+  
+  
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -541,8 +546,12 @@ const ProductDetailPage = () => {
                 <BsCart3 />
                 Add to cart
               </button>
-              <Link href="/checkout">
-                <button className="!bg-white !border-2 !border-[#6e2eff] hover:!bg-[#439edb] !text-[#6e2eff] hover:!text-white !w-44 !px-8 !py-4 !font-medium cursor-pointer">
+              <Link 
+              href="/checkout"
+           
+              >
+                <button 
+                className="!bg-white !border-2 !border-[#6e2eff] hover:!bg-[#439edb] !text-[#6e2eff] hover:!text-white !w-44 !px-8 !py-4 !font-medium cursor-pointer">
                   Buy Now
                 </button>
               </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Box, IconButton,Table } from "@chakra-ui/react";
+import { Box, IconButton,Spinner,Table } from "@chakra-ui/react";
 import { FaEye } from "react-icons/fa";
 import Image from "next/image";
 import { Order } from "@/lib/types";
@@ -81,6 +81,9 @@ const AdminOrder = () => {
 
   return (
     <Box p={6}>
+      {loading ? (
+        <Spinner size="lg" color="#6e2eff"/>
+      ): (
       <Table.Root size="lg">
         <Table.Header>
           <Table.Row className="!px-6">
@@ -132,6 +135,8 @@ const AdminOrder = () => {
           ))}
         </Table.Body>
       </Table.Root>
+
+      )}
     </Box>
   );
 };

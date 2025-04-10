@@ -1,3 +1,152 @@
+// "use client";
+// import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+// import { Icon } from "@chakra-ui/react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { RootState } from "@/redux/store";
+// import { removeFromWishlist } from "@/redux/slices/wishlistSlice";
+// import { addToCart } from "@/redux/slices/cartSlice";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { getProductImageUrl } from "@/lib/imageUtils";
+// import { AiOutlineDelete } from "react-icons/ai";
+
+// const WishList = () => {
+//   const dispatch = useDispatch();
+//   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+//   const cartItems = useSelector((state: RootState) => state.cart.items);
+
+
+
+//   const handleRemoveFromWishlist = (productId: string) => {
+//     dispatch(removeFromWishlist(productId));
+//   };
+  
+
+//   const handleAddToCart = (product: any) => {
+//     dispatch(
+//       addToCart({
+//         ...product,
+//         quantity: 1, // Default quantity when adding to cart
+//       })
+//     );
+//   };
+
+//   const isInStock = (product: any) => {
+//     return true; // Assuming all items are in stock for this example
+//   };
+
+//   // Helper function to get the first available image
+//   return (
+//     <div className="container !mx-auto !px-4 !py-8">
+//       <div className="flex flex-col items-center !my-8">
+//         <h1 className="!text-2xl md:!text-4xl !font-bold !my-4">WISHLIST</h1>
+//         <Icon
+//           as={wishlistItems.length > 0 ? AiFillHeart : AiOutlineHeart}
+//           boxSize="60px"
+//           color={wishlistItems.length > 0 ? "red.500" : "gray.400"}
+//         />
+//       </div>
+
+//       {wishlistItems.length === 0 ? (
+//         <div className="text-center !py-12">
+//           <h3 className="!text-xl md:!text-2xl text-gray-600">
+//             Looks like you don't have anything saved
+//           </h3>
+//           <Link
+//             href="/shop"
+//             className="!my-4 inline-block !px-6 !py-2 !bg-[#6e2eff] !text-white rounded hover:!bg-[#9171db] transition"
+//           >
+//             Browse Products
+//           </Link>
+//         </div>
+//       ) : (
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+//           {wishlistItems.map((item) => {
+//             const isItemInCart = cartItems.some(
+//               (cartItem) => cartItem.id === Number(item.productId)
+//             );
+
+//             return (
+//               <div
+//                 key={item.productId}
+//                 className="!border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+//               >
+//                 <Link
+//                   // href={`/shop/product/${item.productId}`}
+                  
+//   href={`/shop/product/${item.productId}?fromWishlist=true`}
+//                   prefetch={false}
+//                   className="block"
+//                 >
+//                   <div className="relative aspect-square">
+//                     <Image
+//                       src={getProductImageUrl(item.images?.[0]?.url)}
+                      
+//                       alt={item.name}
+//                       fill
+//                       className="object-cover"
+//                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+//                     />
+//                   </div>
+//                 </Link>
+
+//                 <div className="!p-4">
+//                   <Link href={`/shop/product/${item.productId}`} prefetch={false}>
+//                     <h3 className="!font-semibold !text-lg !mb-1 hover:!text-blue-600 line-clamp-2">
+//                       {item.name}
+//                     </h3>
+//                   </Link>
+
+//                   <div className="flex justify-between items-center !my-3">
+//                     <span className="!text-lg !font-bold">
+//                       ${item.price.toFixed(2)}
+//                     </span>
+//                     <span
+//                       className={`!text-sm !px-2 !py-1 rounded ${
+//                         isInStock(item)
+//                           ? "!bg-green-100 !text-green-800"
+//                           : "!bg-red-100 !text-red-800"
+//                       }`}
+//                     >
+//                       {isInStock(item) ? "In Stock" : "Out of Stock"}
+//                     </span>
+//                   </div>
+
+//                   <div className="flex gap-2">
+//                     <button
+//                       onClick={() => handleAddToCart(item)}
+//                       disabled={isItemInCart || !isInStock(item)}
+//                       className={`flex-1 !py-2 rounded ${
+//                         isItemInCart
+//                           ? "!bg-[#6e2eff]  !text-white cursor-not-allowed"
+//                           : isInStock(item)
+//                           ? "bg-black !text-white hover:bg-gray-800"
+//                           : "bg-gray-200 text-gray-500 cursor-not-allowed"
+//                       }`}
+//                     >
+//                       {isItemInCart ? "Added to Cart" : "Add to Cart"}
+//                     </button>
+
+//                     <button
+//                        onClick={() => handleRemoveFromWishlist(item.productId)}
+//                       className="Qp-2 text-gray-500 hover:text-red-500 transition cursor-pointer"
+//                       aria-label="Remove from wishlist"
+//                     >
+//                       <AiOutlineDelete className="!text-red-500" size={30} />
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default WishList;
+
 "use client";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
@@ -9,35 +158,83 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProductImageUrl } from "@/lib/imageUtils";
 import { AiOutlineDelete } from "react-icons/ai";
+import { toast } from "react-toastify";
+
 
 const WishList = () => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  // const handleRemoveFromWishlist = (id: number) => {
-  //   dispatch(removeFromWishlist(id));
-  // };
-
   const handleRemoveFromWishlist = (productId: string) => {
     dispatch(removeFromWishlist(productId));
+    toast.success("Removed from wishlist", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
   
+  // const handleAddToCart = (product: any) => {
+  //   dispatch(
+  //     addToCart({
+  //       ...product,
+  //       quantity: 1, // Default quantity when adding to cart
+  //     })
+  //   );
+  //   toast.success(`${product.name} added to cart`, {
+  //     position: "top-right",
+  //     autoClose: 3000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   });
+  // };
 
   const handleAddToCart = (product: any) => {
-    dispatch(
-      addToCart({
-        ...product,
-        quantity: 1, // Default quantity when adding to cart
-      })
-    );
+    console.log("Product being added:", product);
+    // Ensure we have a valid ID - use productId if id is null/undefined
+    const productId = product.id || product.productId;
+  
+  if (!productId) {
+    console.error("Invalid product ID", product);
+    toast.error("Failed to add product to cart");
+    return;
+  }
+
+    // Transform wishlist item to match cart item structure
+    const cartItem = {
+      id: productId, 
+      name: product.name,
+      price: product.price,
+      quantity: 1, // Default quantity
+      image: product.images?.[0]?.url || product.image || "", // Handle both image formats
+      slug: product.slug,
+      category: product.category,
+      variants: product.variants || [], // Default to empty array if not provided
+      details: product.details || "", // Default to empty string if not provided
+      _wishlistAdded: Date.now()
+    };
+
+    dispatch(addToCart(cartItem));
+    toast.success(`${product.name} added to cart`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   const isInStock = (product: any) => {
     return true; // Assuming all items are in stock for this example
   };
 
-  // Helper function to get the first available image
   return (
     <div className="container !mx-auto !px-4 !py-8">
       <div className="flex flex-col items-center !my-8">
@@ -73,28 +270,20 @@ const WishList = () => {
                 key={item.productId}
                 className="!border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                <Link
-                  href={`/shop/product/${item.productId}`}
-                  prefetch={false}
-                  className="block"
-                >
-                  <div className="relative aspect-square">
-                    <Image
-                      src={getProductImageUrl(item.images?.[0]?.url)}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-                </Link>
+                <div className="relative aspect-square">
+                  <Image
+                    src={getProductImageUrl(item.images?.[0]?.url)}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
 
                 <div className="!p-4">
-                  <Link href={`/shop/product/${item.productId}`} prefetch={false}>
-                    <h3 className="!font-semibold !text-lg !mb-1 hover:!text-blue-600 line-clamp-2">
-                      {item.name}
-                    </h3>
-                  </Link>
+                  <h3 className="!font-semibold !text-lg !mb-1 line-clamp-2">
+                    {item.name}
+                  </h3>
 
                   <div className="flex justify-between items-center !my-3">
                     <span className="!text-lg !font-bold">
@@ -112,23 +301,24 @@ const WishList = () => {
                   </div>
 
                   <div className="flex gap-2">
+                    
+<button
+style={{ border: "1px solid red" }} // Temporary debug style
+  onClick={() => handleAddToCart(item)}
+  disabled={isItemInCart || !isInStock(item)}
+  className={`flex-1 !py-3 rounded cursor-pointer ${
+    isItemInCart
+      ? "!bg-[#6e2eff] text-white cursor-not-allowed"
+      : isInStock(item)
+      ? "!bg-blue text-white hover:bg-gray-800"
+      : "bg-gray-200 text-gray-500 cursor-not-allowed"
+  }`}
+>
+  {isItemInCart ? "Added to Cart" : "Add to Cart"}
+</button>
                     <button
-                      onClick={() => handleAddToCart(item)}
-                      disabled={isItemInCart || !isInStock(item)}
-                      className={`flex-1 !py-2 rounded ${
-                        isItemInCart
-                          ? "!bg-[#6e2eff]  !text-white cursor-not-allowed"
-                          : isInStock(item)
-                          ? "bg-black !text-white hover:bg-gray-800"
-                          : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      }`}
-                    >
-                      {isItemInCart ? "Added to Cart" : "Add to Cart"}
-                    </button>
-
-                    <button
-                       onClick={() => handleRemoveFromWishlist(item.productId)}
-                      className="Qp-2 text-gray-500 hover:text-red-500 transition cursor-pointer"
+                      onClick={() => handleRemoveFromWishlist(item.productId)}
+                      className="p-2 text-gray-500 hover:text-red-500 transition cursor-pointer"
                       aria-label="Remove from wishlist"
                     >
                       <AiOutlineDelete className="!text-red-500" size={30} />

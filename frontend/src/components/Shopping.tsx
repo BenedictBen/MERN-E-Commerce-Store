@@ -346,36 +346,6 @@ useEffect(() => {
     return [{ url: '/shop/vr000.webp' }];
   };
 
-  const getIdForWishlist = (product: Product): string => {
-    // Use _id if available, otherwise fall back to id
-    return product._id || String(product.id || '');
-  };
-
-  // const isWishlisted = (productId: string) => {
-  //   return wishlist.some(item => item.id.toString() === productId);
-  // };
-
-  // const handleWishlistToggle = (product: Product) => {
-  //   const productId = getIdForWishlist(product);
-    
-  //   if (isWishlisted(productId)) {
-  //     dispatch(removeFromWishlist(Number(productId))); // Maintain number type for Redux
-  //     toast.success(`${product.name} removed from wishlist`);
-  //   } else {
-  //     // Prepare wishlist item that matches both Product interface and WishlistItem requirements
-  //     const wishlistItem = {
-  //       id: Number(productId) || 0, // Convert to number for Redux compatibility
-  //       name: product.name,
-  //       price: product.price,
-  //       images: product.images || [], // Align with Product interface
-  //       // Include any other required fields
-  //     };
-      
-  //     dispatch(addToWishlist(wishlistItem));
-  //     toast.success(`${product.name} added to wishlist`);
-  //   }
-  // };
-
   const isWishlisted = (productId: string) => {
     return wishlist.some(item => item.productId === productId);
   };
@@ -912,6 +882,7 @@ return productsToFilter.filter((product) => {
                   <Icon
                     as={AiOutlineHeart}
                     size="md"
+                    // color={isWishlisted(product._id) ? "red" : "white"}
                     color={isWishlisted(product._id) ? "red" : "white"}
                     className="rounded-full h-6 w-6 cursor-pointer"
                     onClick={(e) => {

@@ -186,7 +186,7 @@ useEffect(() => {
                 <Icon 
                   as={AiOutlineHeart}
                   size="md"
-                  color={isWishlisted(deal.id) ? "red" : "white"}
+                  color={isWishlisted(deal.id) ? "white" : "red"}
                   className="rounded-full h-6 w-6 cursor-pointer"
                   onClick={(e) => handleWishlistToggle(deal)}
                 />
