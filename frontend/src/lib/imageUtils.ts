@@ -2,7 +2,7 @@
 export const getProductImageUrl = (url: string | undefined) => {
   // Primary fallback
   if (!url) return '/shop/vr000.webp';
-  
+   
   // Handle different URL types
   if (url.startsWith('data:image')) {
     return '/shop/vr000.webp'; // Replace base64 placeholders

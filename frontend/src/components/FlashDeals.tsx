@@ -62,7 +62,7 @@ const wishlist = useSelector((state: RootState) => state.cart.wishlist || []);
           console.error("Unexpected data format:", data);
           return;
         }
-        const filtered = products.slice(0, 8);
+        const filtered = products.slice(9, 16);
         const shuffled = [...filtered].sort(() => Math.random() - 0.5);
         setDeals(shuffled.map(transformFlashDealData));
       })
