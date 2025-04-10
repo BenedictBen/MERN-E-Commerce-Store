@@ -3,6 +3,7 @@ import { Flex, Image, Text, Box, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "@/redux/slices/cartSlice";
 import type { Product, ProductVariant  } from "@/redux/slices/cartSlice";
+import { getProductImageUrl } from "@/lib/imageUtils";
 
 interface CartItemProps {
   item: Product;
@@ -103,7 +104,7 @@ const CartItem = ({ item }: CartItemProps) => {
     >
       <Flex gap={4}>
         <Image
-          src={item.image || "/placeholder-product.jpg"}
+          src={getProductImageUrl(item.image)}
           alt={item.name}
           boxSize="80px"
           objectFit="cover"

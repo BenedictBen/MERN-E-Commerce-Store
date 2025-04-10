@@ -15,9 +15,14 @@ const WishList = () => {
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const handleRemoveFromWishlist = (id: number) => {
-    dispatch(removeFromWishlist(id));
+  // const handleRemoveFromWishlist = (id: number) => {
+  //   dispatch(removeFromWishlist(id));
+  // };
+
+  const handleRemoveFromWishlist = (productId: string) => {
+    dispatch(removeFromWishlist(productId));
   };
+  
 
   const handleAddToCart = (product: any) => {
     dispatch(
@@ -29,18 +34,10 @@ const WishList = () => {
   };
 
   const isInStock = (product: any) => {
-    // You might want to replace this with actual stock check logic
     return true; // Assuming all items are in stock for this example
   };
 
   // Helper function to get the first available image
-  const getFirstImage = (item: any) => {
-    if (item.images && item.images.length > 0) {
-      return item.images[0].url;
-    }
-    return item.image || "/shop/vr000.webp"; // Fallback to single image or default
-  };
-
   return (
     <div className="container !mx-auto !px-4 !py-8">
       <div className="flex flex-col items-center !my-8">
@@ -68,16 +65,16 @@ const WishList = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {wishlistItems.map((item) => {
             const isItemInCart = cartItems.some(
-              (cartItem) => cartItem.id === item.id
+              (cartItem) => cartItem.id === Number(item.productId)
             );
 
             return (
               <div
-                key={item.id}
+                key={item.productId}
                 className="!border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <Link
-                  href={`/shop/product/${item.id}`}
+                  href={`/shop/product/${item.productId}`}
                   prefetch={false}
                   className="block"
                 >
@@ -93,7 +90,7 @@ const WishList = () => {
                 </Link>
 
                 <div className="!p-4">
-                  <Link href={`/shop/product/${item.id}`} prefetch={false}>
+                  <Link href={`/shop/product/${item.productId}`} prefetch={false}>
                     <h3 className="!font-semibold !text-lg !mb-1 hover:!text-blue-600 line-clamp-2">
                       {item.name}
                     </h3>
@@ -130,7 +127,7 @@ const WishList = () => {
                     </button>
 
                     <button
-                      onClick={() => handleRemoveFromWishlist(item.id)}
+                       onClick={() => handleRemoveFromWishlist(item.productId)}
                       className="Qp-2 text-gray-500 hover:text-red-500 transition cursor-pointer"
                       aria-label="Remove from wishlist"
                     >

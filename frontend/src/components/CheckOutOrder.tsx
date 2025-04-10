@@ -201,7 +201,6 @@ const [loading, setLoading] = useState(false);
                 <div className="flex items-center gap-4">
                   {item.image && (
                     <Image
-                      // src={item.image}
                       src={getImageUrl(item.image)}
                       width={40}
                       height={40}

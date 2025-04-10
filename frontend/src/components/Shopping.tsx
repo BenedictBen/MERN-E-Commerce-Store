@@ -38,6 +38,25 @@ const getProductCategoryId = (product: Product) => {
     : product.category?._id;
 };
 
+// Add these utility functions
+const getStableProductId = (product: Product): string => {
+  // Prefer _id if available, fall back to id, then generate a fallback
+  return product._id || String(product.id || `temp-${Math.random().toString(36).substring(2, 9)}`);
+};
+
+const getNumericId = (productId: string): number => {
+  // Create a consistent numeric ID from the string ID
+  let hash = 0;
+  for (let i = 0; i < productId.length; i++) {
+    const char = productId.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};
+
+
+
 interface Product {
   _id: string;
   id?: number | string;
@@ -171,43 +190,6 @@ useEffect(() => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state: RootState) => state.wishlist.items);
 
-  // Only fetch client-side if search query changes
-  // useEffect(() => {
-  //   if (!searchQuery) {
-  //     setProducts(initialProducts);
-  //     return;
-  //   }
-
-  //   const fetchSearchResults = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const res = await fetch(`/api/auth/product?search=${encodeURIComponent(searchQuery)}`);
-  //       if (!res.ok) throw new Error('Failed to fetch search results');
-        
-  //       const data = await res.json();
-  //       const rawProducts = Array.isArray(data) ? data : data.products || [];
-        
-  //       const transformedProducts = rawProducts.map((product: any) => ({
-  //         ...transformFlashDealData(product),
-  //         _id: product._id || transformFlashDealData(product).id,
-  //         category: product.category,
-  //         details: product.details,
-  //         variants: product.variants,
-  //         ratings: product.ratings
-  //       }));
-        
-  //       setProducts(transformedProducts);
-  //     } catch (error) {
-  //       console.error("Search fetch error:", error);
-  //       toast.error("Failed to load search results");
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   const debounceTimer = setTimeout(fetchSearchResults, 300);
-  //   return () => clearTimeout(debounceTimer);
-  // }, [searchQuery]);
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -355,62 +337,66 @@ useEffect(() => {
 }, [categoryId, products.length]);
 
   // Wishlist functions
-  // Helper function to convert string _id to numeric id
-  const getIdForWishlist = (id: string | undefined): number => {
-    // Return 0 if id is undefined or empty
-    if (!id) return 0;
+  const getProductImages = (product: Product): Array<{ url: string }> => {
+    // If product has images array with items, use that
+    if (product.images?.length) {
+      return product.images.map(img => ({ url: img.url }));
+    }
+    // Otherwise use fallback image
+    return [{ url: '/shop/vr000.webp' }];
+  };
+
+  const getIdForWishlist = (product: Product): string => {
+    // Use _id if available, otherwise fall back to id
+    return product._id || String(product.id || '');
+  };
+
+  // const isWishlisted = (productId: string) => {
+  //   return wishlist.some(item => item.id.toString() === productId);
+  // };
+
+  // const handleWishlistToggle = (product: Product) => {
+  //   const productId = getIdForWishlist(product);
     
-    try {
-      // Use the entire string for more reliable hashing
-      let hash = 0;
-      for (let i = 0; i < id.length; i++) {
-        const char = id.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash |= 0; // Convert to 32bit integer
-      }
-      return Math.abs(hash);
-    } catch (error) {
-      console.error('Error converting ID to number:', error);
-      return 0; // Fallback value
+  //   if (isWishlisted(productId)) {
+  //     dispatch(removeFromWishlist(Number(productId))); // Maintain number type for Redux
+  //     toast.success(`${product.name} removed from wishlist`);
+  //   } else {
+  //     // Prepare wishlist item that matches both Product interface and WishlistItem requirements
+  //     const wishlistItem = {
+  //       id: Number(productId) || 0, // Convert to number for Redux compatibility
+  //       name: product.name,
+  //       price: product.price,
+  //       images: product.images || [], // Align with Product interface
+  //       // Include any other required fields
+  //     };
+      
+  //     dispatch(addToWishlist(wishlistItem));
+  //     toast.success(`${product.name} added to wishlist`);
+  //   }
+  // };
+
+  const isWishlisted = (productId: string) => {
+    return wishlist.some(item => item.productId === productId);
+  };
+  
+  const handleWishlistToggle = (product: Product) => {
+    const productId = getStableProductId(product);
+    
+    if (isWishlisted(productId)) {
+      dispatch(removeFromWishlist(productId));
+      toast.success(`${product.name} removed from wishlist`);
+    } else {
+      dispatch(addToWishlist({
+        productId,
+        name: product.name,
+        price: product.price,
+        images: getProductImages(product),
+      }));
+      toast.success(`${product.name} added to wishlist`);
     }
   };
 
-const isWishlisted = (productId: string) => {
-  const numericId = getIdForWishlist(productId);
-  return wishlist.some(item => item.id === numericId);
-};
-
-const handleWishlistToggle = (product: Product) => {
-  const numericId = getIdForWishlist(product._id);
-  
-  if (isWishlisted(product._id)) {
-    dispatch(removeFromWishlist(numericId));
-    toast.success(`${product.name} removed from wishlist`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  } else {
-    dispatch(addToWishlist({
-      id: numericId,
-      name: product.name,
-      price: product.price,
-      images: product.images,
-      
-    }));
-    toast.success(`${product.name} added to wishlist`, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  }
-};
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOption(event.target.value);

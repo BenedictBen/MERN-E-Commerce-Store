@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { clearCart } from '@/redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 
 export default function PaymentPage() {
@@ -10,7 +12,7 @@ export default function PaymentPage() {
   const [loading, setLoading] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState<'pending' | 'success' | 'failed'>('pending');
   
-
+  const dispatch = useDispatch();
   const reference = searchParams.get('reference');
   const orderId = searchParams.get('order_id');
 
@@ -41,6 +43,7 @@ export default function PaymentPage() {
 
         if (data.success) {
           setPaymentStatus('success');
+          dispatch(clearCart());
           toast.success('Payment successful!');
         } else {
           setPaymentStatus('failed');

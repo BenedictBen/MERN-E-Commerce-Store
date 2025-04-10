@@ -6,6 +6,7 @@ import { Spinner } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/redux/store'
 import Image from 'next/image'
+import { getProductImageUrl } from '@/lib/imageUtils'
 
 interface OrderItem {
   name: string
@@ -279,7 +280,7 @@ useEffect(() => {
                     >
                       {item.image && (
                         <Image
-                          src={item.image}
+                          src={getProductImageUrl(item.image)}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded !mr-4"
                         />

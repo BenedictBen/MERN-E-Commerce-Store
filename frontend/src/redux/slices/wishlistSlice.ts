@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface WishlistItem {
-  id: number;
+  productId: string; 
   name: string;
   price: number;
   image?: string;
-  images?: Array<{ url: string }>; // New array format for multiple images
+  images?: Array<{ url: string }>;  // New array format for multiple images
   slug?: string;
 }
 
@@ -25,15 +25,21 @@ const wishlistSlice = createSlice({
       const newItem = action.payload;
 
       // Check if item already exists in the wishlist
-      const existingItem = state.items.find(item => item.id === newItem.id);
+      // Only check by productId
+      const existingItem = state.items.find(item => 
+        item.productId === newItem.productId
+      );
 
       if (!existingItem) {
         state.items.push(newItem);
       }
     },
-    removeFromWishlist(state, action: PayloadAction<number>) {
-      const id = action.payload;
-      state.items = state.items.filter(item => item.id !== id);
+    removeFromWishlist(state, action: PayloadAction<string>) {
+      const productId  = action.payload;
+      // Only remove by productId
+      state.items = state.items.filter(item => 
+        item.productId !== productId
+      );
     },
     clearWishlist(state) {
       state.items = [];

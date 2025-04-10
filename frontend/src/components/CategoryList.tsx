@@ -5,6 +5,7 @@ import { CategoryItem } from "./categoryData";
 import Link from "next/link";
 import Image from "next/image";
 import { GoChevronRight } from "react-icons/go";
+import { getProductImageUrl } from "@/lib/imageUtils";
 
 interface HoverInfoProps {
   items: CategoryItem[];
