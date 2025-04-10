@@ -139,7 +139,7 @@ const calculateTotalWithShipping = () => {
                           src={item.image}
                           alt={item.name}
                           width={1200}
-                    height={400}
+                          height={400}
                           className="!w-full !h-full !object-contain"
                         />
                       ) : (

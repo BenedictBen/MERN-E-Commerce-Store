@@ -13,9 +13,12 @@ import { Circle } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
+import { selectWishlistCount } from "@/redux/slices/cartSlice"; 
 
 const Navbar = () => {
-  const wishlist = useSelector((state: RootState) => state.wishlist.items);
+  // const wishlist = useSelector((state: RootState) => state.cart.wishlist);
+  const wishlistCount = useSelector(selectWishlistCount);
+
   return (
     <div className="lg:px-12">
       <div className="bg-[var(--navbarBg)] w-full h-44 lg:h-36">
@@ -68,9 +71,9 @@ const Navbar = () => {
             </div>
             <Link href="/wishlist">
               <button className="relative flex items-center justify-center cursor-pointer">
-                {wishlist.length > 0 && (
+                {wishlistCount > 0 && (
                   <div className="absolute -top-2 -right-2 bg-[#6e2eff] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                    {wishlist.length}
+                    {wishlistCount}
                   </div>
                 )}
                 <AiOutlineHeart className="text-white text-2xl" size={20} />

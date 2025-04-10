@@ -8,7 +8,7 @@ import AddToCartDialog from "./AddToCartDialog";
 import QuickViewDialog from "./QuickViewDialog";
 import AddToCartDialogTablet from "./AddToCartDialogTablet";
 import QuickViewDialogTablet from "./QuickViewDialogTablet";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Icon, Spinner } from "@chakra-ui/react";
 import Image from "next/image";
 import SwiperImage from "./SwiperImage";
@@ -29,6 +29,8 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import Link from "next/link";
+import { toggleWishlist } from "@/redux/slices/cartSlice";
+
 import { toast } from "react-toastify";
 
 // Add this helper function near the top of your component
@@ -42,17 +44,6 @@ const getProductCategoryId = (product: Product) => {
 const getStableProductId = (product: Product): string => {
   // Prefer _id if available, fall back to id, then generate a fallback
   return product._id || String(product.id || `temp-${Math.random().toString(36).substring(2, 9)}`);
-};
-
-const getNumericId = (productId: string): number => {
-  // Create a consistent numeric ID from the string ID
-  let hash = 0;
-  for (let i = 0; i < productId.length; i++) {
-    const char = productId.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash |= 0; // Convert to 32bit integer
-  }
-  return Math.abs(hash);
 };
 
 
@@ -188,7 +179,8 @@ useEffect(() => {
   });
 
   const dispatch = useDispatch();
-  const wishlist = useSelector((state: RootState) => state.wishlist.items);
+    const wishlist = useSelector((state: RootState) => state.cart.wishlist);
+  
 
 
   useEffect(() => {
@@ -210,7 +202,6 @@ useEffect(() => {
     }
   }, []);
 
-// Update the search effect
 // In your search effect, add these console.log statements:
 useEffect(() => {
   if (!searchQuery) {
@@ -346,26 +337,31 @@ useEffect(() => {
     return [{ url: '/shop/vr000.webp' }];
   };
 
-  const isWishlisted = (productId: string) => {
-    return wishlist.some(item => item.productId === productId);
-  };
+  const isWishlisted = (productId: number) => {
+      return wishlist.some(item => item.id === productId);
+    };
   
-  const handleWishlistToggle = (product: Product) => {
-    const productId = getStableProductId(product);
-    
-    if (isWishlisted(productId)) {
-      dispatch(removeFromWishlist(productId));
-      toast.success(`${product.name} removed from wishlist`);
-    } else {
-      dispatch(addToWishlist({
-        productId,
-        name: product.name,
-        price: product.price,
-        images: getProductImages(product),
+    const handleWishlistToggle = (product: any) => {
+      dispatch(toggleWishlist({
+        ...product,
+        // Ensure required Product fields are included
+        quantity: product.quantity || 1,
+        details: product.details || {},
+        ratings: product.ratings || { average: 0, count: 0 }
       }));
-      toast.success(`${product.name} added to wishlist`);
-    }
-  };
+      
+      toast.success(
+        `${product.name} ${isWishlisted(product.id) ? 'removed from' : 'added to'} wishlist`,
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+    };
 
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -413,222 +409,6 @@ useEffect(() => {
     router.push("/shop");
   };
 
-  // Filter products
-  // const filteredProducts = useMemo(() => {
-  //   return products.filter((product) => {
-  //     // If no filters are applied, show all products
-  //     const hasActiveFilters = Object.values(filters).some(filter => filter.length > 0);
-  //     if (!hasActiveFilters) return true;
-
-  //     // Category filter
-  //     if (filters.category.length > 0) {
-  //       const productCategoryId = typeof product.category === 'string' 
-  //         ? product.category 
-  //         : product.category?._id;
-  //       if (!productCategoryId || !filters.category.includes(productCategoryId)) {
-  //         return false;
-  //       }
-  //     }
-
-  //     // Other filters
-  //     return (
-  //       (filters.brand.length === 0 ||
-  //         (product.details?.manufacturer?.name &&
-  //           filters.brand.includes(product.details.manufacturer.name))) &&
-  //       (filters.color.length === 0 ||
-  //         (product.variants?.colors &&
-  //           product.variants.colors.some(
-  //             (c) => c.name && filters.color.includes(c.name)
-  //           ))) &&
-  //       (filters.storageCapacity.length === 0 ||
-  //         (product.variants?.storage &&
-  //           product.variants.storage.some(
-  //             (s) => s.value && filters.storageCapacity.includes(s.value)
-  //           ))) &&
-  //       (filters.processorType.length === 0 ||
-  //         (product.details?.specs?.processor &&
-  //           filters.processorType.includes(product.details.specs.processor))) &&
-  //       (filters.size.length === 0 ||
-  //         (product.variants?.sizes &&
-  //           product.variants.sizes.some((s) =>
-  //             typeof s === "object"
-  //               ? s.name && filters.size.includes(s.name)
-  //               : filters.size.includes(s)
-  //           ))) &&
-  //       (filters.priceRange.length === 0 ||
-  //         filters.priceRange.some((range) => {
-  //           if (!product.price) return false;
-  //           switch (range) {
-  //             case "0-50":
-  //               return product.price <= 50;
-  //             case "50-100":
-  //               return product.price > 50 && product.price <= 100;
-  //             case "100-200":
-  //               return product.price > 100 && product.price <= 200;
-  //             case "200-500":
-  //               return product.price > 200 && product.price <= 500;
-  //             case "500-1000":
-  //               return product.price > 500 && product.price <= 1000;
-  //             case "1000+":
-  //               return product.price > 1000;
-  //             default:
-  //               return true;
-  //           }
-  //         })) &&
-  //       (filters.customerRating.length === 0 ||
-  //         (product.ratings?.average &&
-  //           filters.customerRating.some(
-  //             (rating) =>
-  //               product.ratings?.average &&
-  //               product.ratings.average >= parseFloat(rating)
-  //           ))
-  //     ));
-  //   });
-  // }, [products, filters]);
-
-  // const filteredProducts = useMemo(() => {
-  //   // If we're searching and have search results, filter those
-  //   if (searchQuery && searchResults.length > 0) {
-  //     return searchResults.filter((product) => {
-  //       // If no filters are applied, show all search results
-  //       const hasActiveFilters = Object.values(filters).some(filter => filter.length > 0);
-  //       if (!hasActiveFilters) return true;
-  
-  //       // Category filter (same as original)
-  //       if (filters.category.length > 0) {
-  //         const productCategoryId = typeof product.category === 'string' 
-  //           ? product.category 
-  //           : product.category?._id;
-  //         if (!productCategoryId || !filters.category.includes(productCategoryId)) {
-  //           return false;
-  //         }
-  //       }
-  
-  //       // Other filters (same as original)
-  //       return (
-  //         (filters.brand.length === 0 ||
-  //           (product.details?.manufacturer?.name &&
-  //             filters.brand.includes(product.details.manufacturer.name))) &&
-  //         (filters.color.length === 0 ||
-  //           (product.variants?.colors &&
-  //             product.variants.colors.some(
-  //               (c) => c.name && filters.color.includes(c.name)
-  //             ))) &&
-  //         (filters.storageCapacity.length === 0 ||
-  //           (product.variants?.storage &&
-  //             product.variants.storage.some(
-  //               (s) => s.value && filters.storageCapacity.includes(s.value)
-  //             ))) &&
-  //         (filters.processorType.length === 0 ||
-  //           (product.details?.specs?.processor &&
-  //             filters.processorType.includes(product.details.specs.processor))) &&
-  //         (filters.size.length === 0 ||
-  //           (product.variants?.sizes &&
-  //             product.variants.sizes.some((s) =>
-  //               typeof s === "object"
-  //                 ? s.name && filters.size.includes(s.name)
-  //                 : filters.size.includes(s)
-  //             ))) &&
-  //         (filters.priceRange.length === 0 ||
-  //           filters.priceRange.some((range) => {
-  //             if (!product.price) return false;
-  //             switch (range) {
-  //               case "0-50":
-  //                 return product.price <= 50;
-  //               case "50-100":
-  //                 return product.price > 50 && product.price <= 100;
-  //               case "100-200":
-  //                 return product.price > 100 && product.price <= 200;
-  //               case "200-500":
-  //                 return product.price > 200 && product.price <= 500;
-  //               case "500-1000":
-  //                 return product.price > 500 && product.price <= 1000;
-  //               case "1000+":
-  //                 return product.price > 1000;
-  //               default:
-  //                 return true;
-  //             }
-  //           })) &&
-  //         (filters.customerRating.length === 0 ||
-  //           (product.ratings?.average &&
-  //             filters.customerRating.some(
-  //               (rating) =>
-  //                 product.ratings?.average &&
-  //                 product.ratings.average >= parseFloat(rating)
-  //             ))
-  //       ));
-  //     });
-  //   }
-    
-  //   // Otherwise, use the original products filtering logic (unchanged)
-  //   return products.filter((product) => {
-  //     const hasActiveFilters = Object.values(filters).some(filter => filter.length > 0);
-  //     if (!hasActiveFilters) return true;
-  
-  //     if (filters.category.length > 0) {
-  //       const productCategoryId = typeof product.category === 'string' 
-  //         ? product.category 
-  //         : product.category?._id;
-  //       if (!productCategoryId || !filters.category.includes(productCategoryId)) {
-  //         return false;
-  //       }
-  //     }
-  
-  //     return (
-  //       (filters.brand.length === 0 ||
-  //         (product.details?.manufacturer?.name &&
-  //           filters.brand.includes(product.details.manufacturer.name))) &&
-  //       (filters.color.length === 0 ||
-  //         (product.variants?.colors &&
-  //           product.variants.colors.some(
-  //             (c) => c.name && filters.color.includes(c.name)
-  //           ))) &&
-  //       (filters.storageCapacity.length === 0 ||
-  //         (product.variants?.storage &&
-  //           product.variants.storage.some(
-  //             (s) => s.value && filters.storageCapacity.includes(s.value)
-  //           ))) &&
-  //       (filters.processorType.length === 0 ||
-  //         (product.details?.specs?.processor &&
-  //           filters.processorType.includes(product.details.specs.processor))) &&
-  //       (filters.size.length === 0 ||
-  //         (product.variants?.sizes &&
-  //           product.variants.sizes.some((s) =>
-  //             typeof s === "object"
-  //               ? s.name && filters.size.includes(s.name)
-  //               : filters.size.includes(s)
-  //           ))) &&
-  //       (filters.priceRange.length === 0 ||
-  //         filters.priceRange.some((range) => {
-  //           if (!product.price) return false;
-  //           switch (range) {
-  //             case "0-50":
-  //               return product.price <= 50;
-  //             case "50-100":
-  //               return product.price > 50 && product.price <= 100;
-  //             case "100-200":
-  //               return product.price > 100 && product.price <= 200;
-  //             case "200-500":
-  //               return product.price > 200 && product.price <= 500;
-  //             case "500-1000":
-  //               return product.price > 500 && product.price <= 1000;
-  //             case "1000+":
-  //               return product.price > 1000;
-  //             default:
-  //               return true;
-  //           }
-  //         })) &&
-  //       (filters.customerRating.length === 0 ||
-  //         (product.ratings?.average &&
-  //           filters.customerRating.some(
-  //             (rating) =>
-  //               product.ratings?.average &&
-  //               product.ratings.average >= parseFloat(rating)
-  //           ))
-  //     ));
-  //   });
-  // }, [products, filters, searchQuery, searchResults]);
- 
   useEffect(() => {
     console.log('Search results updated:', searchResults);
   }, [searchResults]);
@@ -880,10 +660,9 @@ return productsToFilter.filter((product) => {
               <div className="absolute top-44 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 w-full flex justify-center z-10">
                 <div className="bg-gray-400 flex flex-row gap-3 items-center justify-center rounded-full h-6 w-24 lg:w-12 p-2">
                   <Icon
-                    as={AiOutlineHeart}
+                     as={isWishlisted(transformedProduct.id) ? AiFillHeart : AiOutlineHeart}
                     size="md"
-                    // color={isWishlisted(product._id) ? "red" : "white"}
-                    color={isWishlisted(product._id) ? "red" : "white"}
+                    color={isWishlisted(transformedProduct.id) ? "red" : "white"}
                     className="rounded-full h-6 w-6 cursor-pointer"
                     onClick={(e) => {
                       e.stopPropagation();

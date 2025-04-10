@@ -152,75 +152,54 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
-import { removeFromWishlist } from "@/redux/slices/wishlistSlice";
-import { addToCart } from "@/redux/slices/cartSlice";
+import { toggleWishlist, addToCart } from "@/redux/slices/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { getProductImageUrl } from "@/lib/imageUtils";
-import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
-
+import { AiOutlineDelete } from "react-icons/ai";
+import { selectWishlistItems } from "@/redux/slices/cartSlice"; // Import the new selector
 
 const WishList = () => {
   const dispatch = useDispatch();
-  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+
+  const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const handleRemoveFromWishlist = (productId: string) => {
-    dispatch(removeFromWishlist(productId));
-    toast.success("Removed from wishlist", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
+
+  const handleRemoveFromWishlist = (productId: number) => {
+    // Find the product in wishlist to get full data if needed
+    const product = wishlistItems.find(item => item.id === productId);
+    if (product) {
+      dispatch(toggleWishlist({
+        id: productId,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        variants: product.variants,
+        // Add required Product fields with defaults
+        quantity: 1,
+        details: {},
+        ratings: { average: 0, count: 0 }
+      }));
+      toast.success("Removed from wishlist");
+    }
   };
-  
-  // const handleAddToCart = (product: any) => {
-  //   dispatch(
-  //     addToCart({
-  //       ...product,
-  //       quantity: 1, // Default quantity when adding to cart
-  //     })
-  //   );
-  //   toast.success(`${product.name} added to cart`, {
-  //     position: "top-right",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //   });
-  // };
 
   const handleAddToCart = (product: any) => {
-    console.log("Product being added:", product);
-    // Ensure we have a valid ID - use productId if id is null/undefined
-    const productId = product.id || product.productId;
-  
-  if (!productId) {
-    console.error("Invalid product ID", product);
-    toast.error("Failed to add product to cart");
-    return;
-  }
-
-    // Transform wishlist item to match cart item structure
-    const cartItem = {
-      id: productId, 
-      name: product.name,
-      price: product.price,
-      quantity: 1, // Default quantity
-      image: product.images?.[0]?.url || product.image || "", // Handle both image formats
-      slug: product.slug,
-      category: product.category,
-      variants: product.variants || [], // Default to empty array if not provided
-      details: product.details || "", // Default to empty string if not provided
-      _wishlistAdded: Date.now()
-    };
-
-    dispatch(addToCart(cartItem));
+    const existingCartItem = cartItems.find(item => item.id === product.id);
+    
+    dispatch(
+      addToCart({
+        ...product,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: existingCartItem ? existingCartItem.quantity + 1 : 1,
+        image: product.image || product.images?.[0]?.url || "",
+        variants: product.variants || {},
+      })
+    );
+    
     toast.success(`${product.name} added to cart`, {
       position: "top-right",
       autoClose: 3000,
@@ -232,7 +211,7 @@ const WishList = () => {
   };
 
   const isInStock = (product: any) => {
-    return true; // Assuming all items are in stock for this example
+    return true; // Implement your actual stock check logic
   };
 
   return (
@@ -248,12 +227,12 @@ const WishList = () => {
 
       {wishlistItems.length === 0 ? (
         <div className="text-center !py-12">
-          <h3 className="!text-xl md:!text-2xl text-gray-600">
-            Looks like you don't have anything saved
+          <h3 className="!text-xl md:!text-2xl !text-gray-600">
+            Your wishlist is empty
           </h3>
           <Link
             href="/shop"
-            className="!my-4 inline-block !px-6 !py-2 !bg-[#6e2eff] !text-white rounded hover:!bg-[#9171db] transition"
+            className="!my-4 inline-block !px-6 !py-2 bg-[#6e2eff] !text-white rounded hover:!bg-[#9171db] transition"
           >
             Browse Products
           </Link>
@@ -261,18 +240,13 @@ const WishList = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {wishlistItems.map((item) => {
-            const isItemInCart = cartItems.some(
-              (cartItem) => cartItem.id === Number(item.productId)
-            );
+            const isItemInCart = cartItems.some(cartItem => cartItem.id === item.id);
 
             return (
-              <div
-                key={item.productId}
-                className="!border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
+              <div key={item.id} className="!border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <div className="relative aspect-square">
                   <Image
-                    src={getProductImageUrl(item.images?.[0]?.url)}
+                    src={item.image || "/placeholder-product.png"}
                     alt={item.name}
                     fill
                     className="object-cover"
@@ -285,43 +259,37 @@ const WishList = () => {
                     {item.name}
                   </h3>
 
-                  <div className="flex justify-between items-center !my-3">
-                    <span className="!text-lg !font-bold">
+                  <div className="flex justify-between items-center !my-6">
+                    <span className="text-lg font-bold">
                       ${item.price.toFixed(2)}
                     </span>
-                    <span
-                      className={`!text-sm !px-2 !py-1 rounded ${
-                        isInStock(item)
-                          ? "!bg-green-100 !text-green-800"
-                          : "!bg-red-100 !text-red-800"
-                      }`}
-                    >
+                    <span className={`!text-sm !px-2 !py-1 rounded ${
+                      isInStock(item) ? "!bg-green-100 !text-green-800" : "!bg-red-100 !text-red-800"
+                    }`}>
                       {isInStock(item) ? "In Stock" : "Out of Stock"}
                     </span>
                   </div>
 
                   <div className="flex gap-2">
-                    
-<button
-style={{ border: "1px solid red" }} // Temporary debug style
-  onClick={() => handleAddToCart(item)}
-  disabled={isItemInCart || !isInStock(item)}
-  className={`flex-1 !py-3 rounded cursor-pointer ${
-    isItemInCart
-      ? "!bg-[#6e2eff] text-white cursor-not-allowed"
-      : isInStock(item)
-      ? "!bg-blue text-white hover:bg-gray-800"
-      : "bg-gray-200 text-gray-500 cursor-not-allowed"
-  }`}
->
-  {isItemInCart ? "Added to Cart" : "Add to Cart"}
-</button>
                     <button
-                      onClick={() => handleRemoveFromWishlist(item.productId)}
+                      onClick={() => handleAddToCart(item)}
+                      disabled={isItemInCart || !isInStock(item)}
+                      className={`flex-1 !py-3 rounded cursor-pointer ${
+                        isItemInCart
+                          ? "!bg-[#6e2eff] !text-white cursor-not-allowed"
+                          : isInStock(item)
+                          ? "!bg-blue-500 !text-white hover:!bg-blue-600"
+                          : "!bg-gray-200 !text-gray-500 cursor-not-allowed"
+                      }`}
+                    >
+                      {isItemInCart ? "Added to Cart" : "Add to Cart"}
+                    </button>
+                    <button
+                      onClick={() => handleRemoveFromWishlist(item.id)}
                       className="p-2 text-gray-500 hover:text-red-500 transition cursor-pointer"
                       aria-label="Remove from wishlist"
                     >
-                      <AiOutlineDelete className="!text-red-500" size={30} />
+                      <AiOutlineDelete className="text-red-500" size={24} />
                     </button>
                   </div>
                 </div>

@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useEffect, useState } from "react";
 import CountdownTimer from "./CountDownTimer";
@@ -8,95 +9,61 @@ import Image from "next/image";
 import SwiperImage from "./SwiperImage";
 import AddToCartDialog from "./AddToCartDialog";
 import QuickViewDialog from "./QuickViewDialog";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Icon } from "@chakra-ui/react";
 import AddToCartDialogTablet from "./AddToCartDialogTablet";
 import QuickViewDialogTablet from "./QuickViewDialogTablet";
-import { addToWishlist, removeFromWishlist } from "@/redux/slices/wishlistSlice"
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
+import { toggleWishlist } from "@/redux/slices/cartSlice";
 import { toast } from 'react-toastify';
-
-
-// Define types for the API response
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  oldPrice?: number;
-  images: Array<{
-    url: string;
-    alt?: string;
-  }>;
-  details: {
-    manufacturer: {
-      name: string;
-    };
-  };
-  ratings: {
-    average: number;
-    count: number;
-  };
-  // Add other product properties as needed
-};
-
-type ApiResponse = 
-  | Product[] // Case 1: Direct array of products
-  | { products: Product[] } // Case 2: Object with products array
-  | { success: boolean; products?: Product[]; error?: string }; 
 
 const FlashDeals = () => {
   const [deals, setDeals] = useState<Deals[]>([]);
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state: RootState) => state.cart.wishlist);
 
-const dispatch = useDispatch();
-  const wishlist = useSelector((state: RootState) => state.wishlist.items);
-
-  const isWishlisted = (productId: number) =>
-    wishlist.some((item: any) => item.id === productId);
-
-  const handleWishlistToggle = (product: any) => {
-    if (isWishlisted(product.id)) {
-      dispatch(removeFromWishlist(product.id));
-      toast.success(`${product.name} removed from wishlist`, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    } else {
-      dispatch(addToWishlist(product));
-      toast.success(`${product.name} added to wishlist`, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    }
+  const isWishlisted = (productId: number) => {
+    return wishlist.some(item => item.id === productId);
   };
 
-useEffect(() => {
-  fetch("/api/auth/product")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Fetched product data:", data); // Debugging
-      // Handle both cases: API returns an object with products or an array directly.
-      const products = Array.isArray(data) ? data : data.products;
-      if (!Array.isArray(products)) {
-        console.error("Unexpected data format:", data);
-        return;
+  const handleWishlistToggle = (product: any) => {
+    dispatch(toggleWishlist({
+      ...product,
+      // Ensure required Product fields are included
+      quantity: product.quantity || 1,
+      details: product.details || {},
+      ratings: product.ratings || { average: 0, count: 0 }
+    }));
+    
+    toast.success(
+      `${product.name} ${isWishlisted(product.id) ? 'removed from' : 'added to'} wishlist`,
+      {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
       }
-  const filtered = products.slice(0, 8);
-// Shuffle the filtered products
-  const shuffled = [...filtered].sort(() => Math.random() - 0.5);
-  setDeals(shuffled.map(transformFlashDealData));
-    })
-    .catch((error) => console.error("Error fetching product data:", error));
-}, []);
+    );
+  };
 
+  useEffect(() => {
+    fetch("/api/auth/product")
+      .then((res) => res.json())
+      .then((data) => {
+        const products = Array.isArray(data) ? data : data.products;
+        if (!Array.isArray(products)) {
+          console.error("Unexpected data format:", data);
+          return;
+        }
+        const filtered = products.slice(0, 8);
+        const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+        setDeals(shuffled.map(transformFlashDealData));
+      })
+      .catch((error) => console.error("Error fetching product data:", error));
+  }, []);
 
   return (
     <div className="!my-16 !px-6">
@@ -107,15 +74,14 @@ useEffect(() => {
             <CountdownTimer />
           </div>
           <Link href="/shop">
-            <button className="font-bold underline cursor-pointer text-md">
+            <button className="!font-bold underline cursor-pointer !text-md">
               See All Products
             </button>
           </Link>
         </span>
       </div>
 
-
-<SwiperSlider
+      <SwiperSlider
         data={deals}
         slidesPerView={1}
         renderSlide={(deal: Deals) => (
@@ -144,18 +110,18 @@ useEffect(() => {
               </div>
 
               <div className="flex flex-col items-start text-left gap-2 w-full">
-                <h1 className="text-md">{deal.name}</h1>
+                <h1 className="!text-md">{deal.name}</h1>
                 <span className="flex gap-2">
-                  <p className="text-sm">${deal.price}</p>
-                  <p className="text-xs line-through">${deal.oldPrice}</p>
+                  <p className="!text-sm">${deal.price}</p>
+                  <p className="!text-xs line-through">${deal.oldPrice}</p>
                 </span>
-                <p className="text-xs">{deal.details.manufacturer.name}</p>
+                <p className="!text-xs">{deal.details.manufacturer.name}</p>
               </div>
 
-              <div className="flex items-center justify-start gap-2 !mt-1 w-full">
+              <div className="flex items-center justify-start gap-2 mt-1 w-full">
                 <div className="flex items-center justify-start gap-0.5">
                   {[...Array(5)].map((_, index) => {
-                    const rating = deal.ratings.average || 0;
+                    const rating = deal.ratings?.average || 0;
                     return (
                       <svg
                         key={index}
@@ -175,20 +141,22 @@ useEffect(() => {
                   })}
                 </div>
                 <span className="text-xs text-gray-600 text-left">
-                  ({deal.ratings.count || 0})
+                  ({deal.ratings?.count || 0})
                 </span>
               </div>
             </Link>
 
-            {/* Wishlist and mobile buttons */}
             <div className="absolute top-44 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 w-full flex justify-center z-10">
               <div className="bg-gray-400 flex flex-row gap-3 items-center justify-center rounded-full h-6 w-24 lg:w-12 p-2">
                 <Icon 
-                  as={AiOutlineHeart}
+                  as={isWishlisted(deal.id) ? AiFillHeart : AiOutlineHeart}
                   size="md"
-                  color={isWishlisted(deal.id) ? "white" : "red"}
+                  color={isWishlisted(deal.id) ? "red" : "white"}
                   className="rounded-full h-6 w-6 cursor-pointer"
-                  onClick={(e) => handleWishlistToggle(deal)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleWishlistToggle(deal);
+                  }}
                 />
 
                 <div className="block lg:hidden">
@@ -200,7 +168,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Desktop dialogs - outside of Link */}
             <div className="!mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-full">
               <div className="flex flex-col gap-4 items-center justify-center w-full">
                 <AddToCartDialog product={deal} />
