@@ -112,12 +112,38 @@ const [imagePreviews, setImagePreviews] = useState<string[]>([]);
     });
   };
 
+  // const removeExistingImage = (index: number) => {
+  //   if (!formData.images || !formData.images[index]) return;
+    
+  //   const imageToDelete = formData.images[index];
+  //   let imageUrl = '';
+    
+  //   if (typeof imageToDelete === 'object' && imageToDelete.url) {
+  //     imageUrl = imageToDelete.url;
+  //   } else if (typeof imageToDelete === 'string') {
+  //     imageUrl = imageToDelete;
+  //   }
+  
+  //   if (imageUrl) {
+  //     // Remove protocol and domain if present (handles both full URLs and relative paths)
+  //     const cleanUrl = imageUrl.replace(/^https?:\/\/[^/]+/, '');
+  //     setDeletedImages(prev => [...prev, cleanUrl]);
+      
+  //     // Update form data
+  //     setFormData(prev => ({
+  //       ...prev,
+  //       images: prev.images?.filter((_, i) => i !== index)
+  //     }));
+  //   }
+  // };
+
   const removeExistingImage = (index: number) => {
     if (!formData.images || !formData.images[index]) return;
     
     const imageToDelete = formData.images[index];
     let imageUrl = '';
     
+    // Handle both string and object formats
     if (typeof imageToDelete === 'object' && imageToDelete.url) {
       imageUrl = imageToDelete.url;
     } else if (typeof imageToDelete === 'string') {
@@ -350,7 +376,7 @@ const [imagePreviews, setImagePreviews] = useState<string[]>([]);
               </div>
 
               {/* Current Images Preview */}
-              {formData.images && formData.images.length > 0 && (
+              {/* {formData.images && formData.images.length > 0 && (
                 <div className="col-span-2">
                   <label className="block !text-sm !font-medium text-gray-700 !mb-1">
                     Current Images (Click × to remove)
@@ -378,8 +404,45 @@ const [imagePreviews, setImagePreviews] = useState<string[]>([]);
                     ))}
                   </div>
                 </div>
-              )}
-
+              )} */}
+{/* Current Images Preview */}
+{formData.images && formData.images.length > 0 && (
+  <div className="col-span-2">
+    <label className="block !text-sm !font-medium text-gray-700 !mb-1">
+      Current Images (Click × to remove)
+    </label>
+    <div className="flex flex-wrap gap-2">
+      {formData.images.map((img, index) => {
+        // Handle both string and object image formats
+        const imageUrl = typeof img === 'string' ? img : img?.url;
+        return (
+          <div key={index} className="relative group">
+            <Image
+              src={getProductImageUrl(imageUrl)}
+              width={120}
+              height={120}
+              alt={`Product preview ${index}`}
+              className="w-20 h-20 object-cover rounded-md"
+              unoptimized={!imageUrl?.includes('res.cloudinary.com')}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/shop/vr000.webp';
+                target.onerror = null;
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => removeExistingImage(index)}
+              className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              ×
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+)}
               {/* New Images Preview */}
               {imageFiles.length > 0 && (
                 <div className="col-span-2">

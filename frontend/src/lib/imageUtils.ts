@@ -1,36 +1,51 @@
 // utils/imageUtils.ts
-export const getProductImageUrl = (url: string | undefined) => {
-  // Primary fallback
+export const getProductImage = (url: string | undefined) => {
   if (!url) return '/shop/vr000.webp';
-   
-  // Handle different URL types
-  if (url.startsWith('data:image')) {
-    return '/shop/vr000.webp'; // Replace base64 placeholders
-  }
   
-  if (url.includes('res.cloudinary.com')) {
-    // Ensure proper Cloudinary URL format
-    return url.replace(
-      /\/upload\/v\d+\//, 
-      '/upload/c_limit,w_800,h_800,q_auto,f_auto/'
-    );
-  }
+  // Already a full URL (Cloudinary or other external)
+  if (url.startsWith('http') || url.startsWith('https')) return url;
   
-  // Local development handling
+  // Handle local development paths
   if (process.env.NODE_ENV === 'development') {
-    if (url.startsWith('/uploads/')) {
-      return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
-    }
-    if (url.startsWith('/')) {
-      return url;
-    }
+    if (url.startsWith('/uploads/')) return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+    if (url.startsWith('public/')) return `${process.env.NEXT_PUBLIC_API_URL}/${url}`;
   }
   
-  // Production handling for local paths
-  if (url.startsWith('/uploads/')) {
-    return `${process.env.NEXT_PUBLIC_BASE_URL || 'http://${process.env.NEXT_PUBLIC_API_URL}'}${url}`;
+  // Handle production paths
+  if (url.startsWith('/uploads/') || url.startsWith('/public/')) {
+    return `${process.env.NEXT_PUBLIC_API_URL || ''}${url}`;
   }
   
-  // Final fallback
-  return '/shop/vr000.webp';
+  // Default case - assume it's a relative path from public folder
+  return url;
+};
+
+
+
+// utils/imageUtils.ts
+export const getProductImageUrl = (url: string | undefined) => {
+  if (!url) return '/shop/vr000.webp';
+  
+  // Already a full URL (Cloudinary or other external)
+  if (url.startsWith('http') || url.startsWith('https')) {
+    // For Cloudinary URLs, you might want to add optimization parameters
+    if (url.includes('res.cloudinary.com')) {
+      return url.replace('/upload/', '/upload/q_auto,f_auto/');
+    }
+    return url;
+  }
+  
+  // Handle local development paths
+  if (process.env.NODE_ENV === 'development') {
+    if (url.startsWith('/uploads/')) return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+    if (url.startsWith('public/')) return `${process.env.NEXT_PUBLIC_API_URL}/${url}`;
+  }
+  
+  // Handle production paths
+  if (url.startsWith('/uploads/') || url.startsWith('/public/')) {
+    return `${process.env.NEXT_PUBLIC_API_URL || ''}${url}`;
+  }
+  
+  // Default case - assume it's a relative path from public folder
+  return url;
 };
