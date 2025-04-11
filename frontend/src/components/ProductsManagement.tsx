@@ -492,7 +492,7 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
             >
               <div className=" bg-gray-200 overflow-hidden">
                 <Image
-                 src={getImageUrl(product.images?.[0]?.url)}
+                 src={getImageUrl(product.image)}
                   alt={product.name}
                   width={300}
                   height={300}

@@ -62,8 +62,7 @@ const allItems = [...cartItems];
     ))}
   </div>
     <Link href="/cart">
-        <button className="text-[#1ebf9b]! !border-2  !px-2 !py-3 text-sm! cursor-pointer">View cart</button>
-        
+        <button className="text-[#1ebf9b]! !border-2  !px-2 !py-3 text-sm! cursor-pointer">View cart</button>       
         </Link>
       </div>
 
