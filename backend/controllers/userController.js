@@ -65,29 +65,31 @@ const createUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  // Validate input
+  // Basic validation
   if (!email || !password) {
     res.status(400);
     throw new Error("Please provide both email and password");
   }
 
   const existingUser = await User.findOne({ email });
-
+  
+  // If user doesn't exist
   if (!existingUser) {
     res.status(401);
-    throw new Error("Invalid email or password");
+    throw new Error("Invalid credentials");
   }
 
+  // Check password
   const isPasswordValid = await bcrypt.compare(password, existingUser.password);
-
+  
   if (!isPasswordValid) {
     res.status(401);
-    throw new Error("Invalid email or password");
+    throw new Error("Invalid credentials");
   }
 
+  // Create token and send success response
   createToken(res, existingUser._id);
 
-  // Maintain your original response structure
   res.status(200).json({
     _id: existingUser._id,
     username: existingUser.username,
