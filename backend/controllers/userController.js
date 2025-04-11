@@ -67,50 +67,33 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // Validate input
   if (!email || !password) {
-    return res.status(400).json({
-      success: false,
-      message: "Please provide both email and password"
-    });
+    res.status(400);
+    throw new Error("Please provide both email and password");
   }
 
   const existingUser = await User.findOne({ email });
 
   if (!existingUser) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid email or password" // Generic message for security
-    });
+    res.status(401);
+    throw new Error("Invalid email or password");
   }
 
   const isPasswordValid = await bcrypt.compare(password, existingUser.password);
 
   if (!isPasswordValid) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid email or password" // Same message as above for security
-    });
+    res.status(401);
+    throw new Error("Invalid email or password");
   }
 
   createToken(res, existingUser._id);
 
-  return res.status(200).json({
-    success: true,
-    user: {
-      _id: existingUser._id,
-      username: existingUser.username,
-      email: existingUser.email,
-      isAdmin: existingUser.isAdmin,
-    }
+  // Maintain your original response structure
+  res.status(200).json({
+    _id: existingUser._id,
+    username: existingUser.username,
+    email: existingUser.email,
+    isAdmin: existingUser.isAdmin,
   });
-});
-
-const logoutCurrentUser = asyncHandler(async (req, res) => {
-  res.cookie("jwt", "", {
-    httyOnly: true,
-    expires: new Date(0),
-  });
-
-  res.status(200).json({ message: "Logged out successfully" });
 });
 
 const getAllUsers = asyncHandler(async (req, res) => {
