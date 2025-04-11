@@ -33,72 +33,72 @@ const LoginForm = () => {
     watch,
   } = useForm<FormValues>();
 
-  const handleLogin = async (data: FormValues) => {
-    dispatch(loginStart());
-    setIsLoading(true); // Start loading
-    try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Required for cookies
-        body: JSON.stringify(data),
-      });
+  // const handleLogin = async (data: FormValues) => {
+  //   dispatch(loginStart());
+  //   setIsLoading(true); // Start loading
+  //   try {
+  //     const response = await fetch("/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include", // Required for cookies
+  //       body: JSON.stringify(data),
+  //     });
 
-      const result = await response.json();
+  //     const result = await response.json();
 
-      if (!response.ok) {
-        // Use the error message from the backend if available
-        const errorMessage = result.message || 
-                           (response.status === 401 ? 'Invalid email or password' : 'Login failed');
-        throw new Error(errorMessage);
-      }
+  //     if (!response.ok) {
+  //       // Use the error message from the backend if available
+  //       const errorMessage = result.message || 
+  //                          (response.status === 401 ? 'Invalid email or password' : 'Login failed');
+  //       throw new Error(errorMessage);
+  //     }
 
-      dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
-      console.log("Login successful", result);
-      // Success toast with smooth redirect
-      toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      // Redirect based on admin status
-      if (result) {
-        router.push("/");
-      }
-    } catch (error) {
-      // const message = error instanceof Error ? error.message : "Login failed";
+  //     dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
+  //     console.log("Login successful", result);
+  //     // Success toast with smooth redirect
+  //     toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+  //       position: "top-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     // Redirect based on admin status
+  //     if (result) {
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     // const message = error instanceof Error ? error.message : "Login failed";
 
-      let errorMessage = "Invalid email or password";
+  //     let errorMessage = "Invalid email or password";
     
-    if (error instanceof Error) {
-      errorMessage = error.message;
+  //   if (error instanceof Error) {
+  //     errorMessage = error.message;
       
-      // Special handling for common error cases
-      if (error.message.includes('credentials') || error.message.includes('Invalid')) {
-        errorMessage = "Invalid email or password";
-      }
-    }
+  //     // Special handling for common error cases
+  //     if (error.message.includes('credentials') || error.message.includes('Invalid')) {
+  //       errorMessage = "Invalid email or password";
+  //     }
+  //   }
 
-      dispatch(loginFailure(errorMessage));
-      // Error toast with helpful message
-      toast.error(errorMessage, {
-        position: "top-right",
-        autoClose: 5000, // Longer display for errors
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      console.error("Error logging in:", error);
-    } finally {
-      setIsLoading(false); // Stop loading
-    }
-  };
+  //     dispatch(loginFailure(errorMessage));
+  //     // Error toast with helpful message
+  //     toast.error(errorMessage, {
+  //       position: "top-right",
+  //       autoClose: 5000, // Longer display for errors
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     console.error("Error logging in:", error);
+  //   } finally {
+  //     setIsLoading(false); // Stop loading
+  //   }
+  // };
 
   // const handleLogin = async (data: FormValues) => {
   //   dispatch(loginStart());
@@ -188,6 +188,43 @@ const LoginForm = () => {
   //     setIsLoading(false);
   //   }
   // };
+  
+  const handleLogin = async (data: FormValues) => {
+    dispatch(loginStart());
+    setIsLoading(true); // Start loading
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include" ,// Required for cookies
+        body: JSON.stringify(data),
+      });
+  
+      const result = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(result.message || "Login failed");
+      }
+  
+      dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
+        console.log("Login successful", result);
+        
+        // Redirect based on admin status
+        if (result) {
+          router.push("/");
+        } 
+  
+    } catch (error) {
+     const message = error instanceof Error ? error.message : "Login failed";
+        dispatch(loginFailure(message));
+        console.error("Error logging in:", error);
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
+  };
+  
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
