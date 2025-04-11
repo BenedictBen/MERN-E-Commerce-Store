@@ -114,7 +114,18 @@ const LoginForm = () => {
         body: JSON.stringify(data),
       });
   
-      const result = await response.json();
+      // First try to read response as text
+      const responseText = await response.text();
+      let result;
+      
+      try {
+        result = JSON.parse(responseText);
+      } catch (e) {
+        // If response isn't JSON, create error object
+        result = { 
+          message: responseText || 'Invalid response from server' 
+        };
+      }
   
       if (!response.ok) {
         throw new Error(result.message || "Invalid email or password");
@@ -140,8 +151,10 @@ const LoginForm = () => {
       if (error instanceof Error) {
         errorMessage = error.message;
         
-        // Special handling for network errors
-        if (error.message.includes("Failed to fetch")) {
+        // Special handling for specific error types
+        if (error.message.includes("timeout")) {
+          errorMessage = "Request timeout. Please try again.";
+        } else if (error.message.includes("Failed to fetch")) {
           errorMessage = "Network error. Please check your connection.";
         }
       }
@@ -155,7 +168,7 @@ const LoginForm = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        toastId: 'login-error', // Prevent duplicate toasts
+        toastId: 'login-error',
       });
       
       console.error("Login error:", error);

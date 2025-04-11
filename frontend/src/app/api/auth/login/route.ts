@@ -117,58 +117,75 @@ export async function POST(request: Request) {
     const reqBody = await request.json();
     const loginEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/api/users/auth`;
 
-    const res = await fetch(loginEndpoint, {
-      method: 'POST',
-      body: JSON.stringify(reqBody),
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    // Add timeout to prevent hanging
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
-    // First check if the response is not OK
-    if (!res.ok) {
-      let errorMessage = 'Invalid email or password';
-      try {
-        const errorData = await res.json();
-        errorMessage = errorData.message || errorMessage;
-      } catch (e) {
-        console.error('Failed to parse error response:', e);
-      }
-      
-      return new Response(
-        JSON.stringify({ 
-          message: errorMessage 
-        }),
-        { 
-          status: res.status,
-          headers: { 'Content-Type': 'application/json' } 
+    try {
+      const res = await fetch(loginEndpoint, {
+        method: 'POST',
+        body: JSON.stringify(reqBody),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      // First check if the response is not OK
+      if (!res.ok) {
+        let errorMessage = 'Invalid email or password';
+        
+        try {
+          // Try to read response as text first
+          const responseText = await res.text();
+          
+          // Try to parse as JSON if possible
+          try {
+            const errorData = JSON.parse(responseText);
+            errorMessage = errorData.message || errorMessage;
+          } catch {
+            // If not JSON, use the text directly
+            errorMessage = responseText || errorMessage;
+          }
+        } catch (e) {
+          console.error('Error reading error response:', e);
         }
-      );
-    }
 
-    // Handle successful login
-    const data = await res.json();
-    const cookieHeader = res.headers.get('set-cookie');
+        return new Response(
+          JSON.stringify({ 
+            message: errorMessage 
+          }),
+          { 
+            status: res.status,
+            headers: { 'Content-Type': 'application/json' } 
+          }
+        );
+      }
 
-    if (!cookieHeader) {
-      return new Response(
-        JSON.stringify({ message: 'Authentication error' }),
-        { status: 401 }
-      );
-    }
+      // Handle successful login
+      const data = await res.json();
+      const cookieHeader = res.headers.get('set-cookie');
 
-    const jwt = extractJwt(cookieHeader);
-    if (!jwt) {
-      return new Response(
-        JSON.stringify({ message: 'Authentication error' }),
-        { status: 401 }
-      );
-    }
+      if (!cookieHeader) {
+        return new Response(
+          JSON.stringify({ message: 'Authentication error' }),
+          { status: 401 }
+        );
+      }
 
-    // Set cookie
-    const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
-    const cookieStore = await cookies();
+      const jwt = extractJwt(cookieHeader);
+      if (!jwt) {
+        return new Response(
+          JSON.stringify({ message: 'Authentication error' }),
+          { status: 401 }
+        );
+      }
+
+      // Set cookie
+      const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+      const cookieStore = await cookies();
 
             cookieStore.set('jwt', jwt, {
               expires,
@@ -178,20 +195,23 @@ export async function POST(request: Request) {
               path: '/', // Ensure the cookie is available site-wide
             });
 
-            console.log('JWT Token:', jwt);
+      return new Response(
+        JSON.stringify({
+          _id: data._id,
+          username: data.username,
+          email: data.email,
+          isAdmin: data.isAdmin,
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
 
-    return new Response(
-      JSON.stringify({
-        _id: data._id,
-        username: data.username,
-        email: data.email,
-        isAdmin: data.isAdmin,
-      }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    } catch (error) {
+      clearTimeout(timeoutId);
+      throw error;
+    }
 
   } catch (error) {
     console.error('Server error:', error);
