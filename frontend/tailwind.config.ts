@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import "@/app/globals.css";
 
 const config: Config = {
-//   darkMode: ["class"],
+  darkMode: false,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -19,14 +19,6 @@ const config: Config = {
         casbBlueHover: '#014273',
         casbSeaBlueLight: '#28ACE2',
         casbSuccess: '#77C053',
-        casbError: '#A61D24',
-        casbPaid: '#77C053',
-        casbYellowWarning: '#D89614',
-        casbGreyPrimary: '#E6E6E6',
-        casbGrayHover: '#CCCCCC',
-        casbGreyBorder: "#F5F5F5",
-        casbDisabled: '#999999',
-        casbAction: '#01589A',
       },
     },
   },

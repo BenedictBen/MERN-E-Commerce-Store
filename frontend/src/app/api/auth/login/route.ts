@@ -58,6 +58,10 @@ export async function POST(request: Request) {
 
             console.log('JWT Token:', jwt);
 
+
+            // First check if the response is not OK (status not in 200-299 range)
+   
+
             return new Response(
               JSON.stringify({
                 success: true,
@@ -106,3 +110,6 @@ export async function POST(request: Request) {
     status: 200,
   });
 }
+
+
+

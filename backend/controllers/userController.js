@@ -33,32 +33,75 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
+// const loginUser = asyncHandler(async (req, res) => {
+
+//   const { email, password } = req.body;
+
+//   console.log(email);
+//   console.log(password);
+
+//   const existingUser = await User.findOne({ email });
+
+//   if (existingUser) {
+//     const isPasswordValid = await bcrypt.compare(
+//       password,
+//       existingUser.password
+//     );
+
+//     if (isPasswordValid) {
+//       createToken(res, existingUser._id);
+
+//       res.status(201).json({
+//         _id: existingUser._id,
+//         username: existingUser.username,
+//         email: existingUser.email,
+//         isAdmin: existingUser.isAdmin,
+//       });
+//       return;
+//     }
+//   }
+// });
+
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(email);
-  console.log(password);
+  // Validate input
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide both email and password"
+    });
+  }
 
   const existingUser = await User.findOne({ email });
 
-  if (existingUser) {
-    const isPasswordValid = await bcrypt.compare(
-      password,
-      existingUser.password
-    );
-
-    if (isPasswordValid) {
-      createToken(res, existingUser._id);
-
-      res.status(201).json({
-        _id: existingUser._id,
-        username: existingUser.username,
-        email: existingUser.email,
-        isAdmin: existingUser.isAdmin,
-      });
-      return;
-    }
+  if (!existingUser) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid email or password" // Generic message for security
+    });
   }
+
+  const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+
+  if (!isPasswordValid) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid email or password" // Same message as above for security
+    });
+  }
+
+  createToken(res, existingUser._id);
+
+  return res.status(200).json({
+    success: true,
+    user: {
+      _id: existingUser._id,
+      username: existingUser.username,
+      email: existingUser.email,
+      isAdmin: existingUser.isAdmin,
+    }
+  });
 });
 
 const logoutCurrentUser = asyncHandler(async (req, res) => {

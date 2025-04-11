@@ -33,55 +33,166 @@ const LoginForm = () => {
     watch,
   } = useForm<FormValues>();
 
+  // const handleLogin = async (data: FormValues) => {
+  //   dispatch(loginStart());
+  //   setIsLoading(true); // Start loading
+  //   try {
+  //     const response = await fetch("/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include", // Required for cookies
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (!response.ok) {
+  //       // Use the error message from the backend if available
+  //       const errorMessage = result.message || 
+  //                          (response.status === 401 ? 'Invalid email or password' : 'Login failed');
+  //       throw new Error(errorMessage);
+  //     }
+
+  //     dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
+  //     console.log("Login successful", result);
+  //     // Success toast with smooth redirect
+  //     toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+  //       position: "top-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     // Redirect based on admin status
+  //     if (result) {
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     // const message = error instanceof Error ? error.message : "Login failed";
+
+  //     let errorMessage = "Login failed";
+    
+  //   if (error instanceof Error) {
+  //     errorMessage = error.message;
+      
+  //     // Special handling for common error cases
+  //     if (error.message.includes('credentials') || error.message.includes('Invalid')) {
+  //       errorMessage = "Invalid email or password";
+  //     }
+  //   }
+
+  //     dispatch(loginFailure(errorMessage));
+  //     // Error toast with helpful message
+  //     toast.error(errorMessage, {
+  //       position: "top-right",
+  //       autoClose: 5000, // Longer display for errors
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     console.error("Error logging in:", error);
+  //   } finally {
+  //     setIsLoading(false); // Stop loading
+  //   }
+  // };
+
   const handleLogin = async (data: FormValues) => {
     dispatch(loginStart());
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
+    
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Required for cookies
+        credentials: "include",
         body: JSON.stringify(data),
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Login failed");
-      }
-
-      dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
-      console.log("Login successful", result);
-      // Success toast with smooth redirect
-      toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      // Redirect based on admin status
-      if (result) {
+  
+      // First check if response is OK (200-299)
+      if (response.ok) {
+        const result = await response.json();
+        
+        // Validate the response structure
+        if (!result.user) {
+          throw new Error("Invalid response from server");
+        }
+  
+        dispatch(loginSuccess(result.user));
+        
+        toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+  
         router.push("/");
+        return;
       }
+  
+      // Handle error responses
+      let errorMessage = "Login failed";
+      let result;
+  
+      try {
+        // Try to parse error response as JSON
+        result = await response.json();
+        errorMessage = result.message || errorMessage;
+        
+        // Special handling for status codes
+        if (response.status === 401) {
+          errorMessage = "Invalid email or password";
+        } else if (response.status === 400) {
+          errorMessage = "Please check your input and try again";
+        } else if (response.status === 500) {
+          errorMessage = "Server error. Please try again later";
+        } else if (response.status === 504) {
+          errorMessage = "Request timeout. Please check your connection";
+        }
+      } catch (e) {
+        // If response isn't JSON, use status text
+        errorMessage = response.statusText || errorMessage;
+      }
+  
+      throw new Error(errorMessage);
+  
     } catch (error) {
-      const message = error instanceof Error ? error.message : "Login failed";
-      dispatch(loginFailure(message));
-      // Error toast with helpful message
-      toast.error(message, {
+      // Handle network errors and other exceptions
+      let displayMessage = "Login failed. Please try again.";
+      
+      if (error instanceof Error) {
+        console.error("Login error:", error.message);
+        
+        // Special handling for specific error types
+        if (error.message.includes("Failed to fetch")) {
+          displayMessage = "Network error. Please check your connection.";
+        } else if (error.message) {
+          displayMessage = error.message;
+        }
+      }
+  
+      dispatch(loginFailure(displayMessage));
+      
+      toast.error(displayMessage, {
         position: "top-right",
-        autoClose: 5000, // Longer display for errors
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+        toastId: 'login-error', // Prevent duplicate toasts
       });
-      console.error("Error logging in:", error);
+  
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
