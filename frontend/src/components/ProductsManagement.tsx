@@ -17,9 +17,9 @@ import { toast } from "react-toastify";
 
 
 const getImageUrl = (url: string | undefined): string => {
-  if (!url) return '/shop/vr000.webp'; // Default fallback image
+  if (!url) return '/shop/vr000.webp';
   
-  // Handle absolute URLs
+  // Already a full URL (Cloudinary or other external)
   if (url.startsWith('http') || url.startsWith('https')) return url;
   
   // Handle local development paths
@@ -33,6 +33,7 @@ const getImageUrl = (url: string | undefined): string => {
     return `${process.env.NEXT_PUBLIC_API_URL || ''}${url}`;
   }
   
+  // Default case - assume it's a relative path from public folder
   return url;
 };
 
@@ -411,7 +412,7 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
 
   if (loading) {
     return (
-      <div className="container !mx-auto !px-4 !py-8">
+      <div className="!container !mx-auto !px-4 !py-8">
         <div className="flex justify-between items-center !my-8">
           <h1 className="!text-2xl font-bold text-gray-800">Products</h1>
           <button
@@ -483,7 +484,7 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
       )}
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center mx-auto max-w-7xl">
         {products.length > 0 ? (
           products.map((product) => (
             <div
@@ -492,7 +493,8 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
             >
               <div className=" bg-gray-200 overflow-hidden">
                 <Image
-                 src={getImageUrl(product.image)}
+                //  src={getImageUrl(product.image)}
+                src={getImageUrl(product.images?.[0]?.url) || '/shop/vr000.webp'}
                   alt={product.name}
                   width={300}
                   height={300}

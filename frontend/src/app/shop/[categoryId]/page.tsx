@@ -161,11 +161,13 @@ console.log('Props being passed to Shopping:', {
   } catch (error) {
     console.error("Error in CategoryPage:", error);
     return (
-      <div className="text-center py-10">
+      <div className="text-center w-full h-full py-10">
         <h3 className="text-lg font-medium">Sign up or Login to continue shopping</h3>
-        <p className=" my-4 border-2 bg-blue-800 text-white">
-          <a href="/signin">Login</a>
-        </p>
+        <div className=" my-4 border-2 bg-blue-800 text-white mx-auto flex items-center justify-center">
+          <a href="/signin">
+          <button className="px-3 py-2">Login</button>
+          </a>
+        </div>
       </div>
     );
   }

@@ -94,7 +94,7 @@ const UserMenu = () => {
     );
   } else {
     menuItems.push(
-      { icon: <BsPerson />, label: "My Account" },
+      // { icon: <BsPerson />, label: "My Account" },
       { icon: <AiOutlineHeart />, label: "Wishlist", href: "/wishlist" },
       { icon: <BsBox2 />, label: "Track Orders", href: "/track-order" }
     );
