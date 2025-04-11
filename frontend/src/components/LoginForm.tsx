@@ -114,21 +114,32 @@ const LoginForm = () => {
         body: JSON.stringify(data),
       });
   
-      // First try to read response as text
+      // First read response as text
       const responseText = await response.text();
       let result;
       
       try {
         result = JSON.parse(responseText);
-      } catch (e) {
+      } catch {
         // If response isn't JSON, create error object
-        result = { 
-          message: responseText || 'Invalid response from server' 
-        };
+        result = { message: responseText };
       }
   
       if (!response.ok) {
-        throw new Error(result.message || "Invalid email or password");
+        // Clean up error message from server
+        let errorMessage = result.message || 'Invalid email or password';
+        
+        // Remove technical details from error message
+        errorMessage = errorMessage
+          .replace(/FUNCTION_INVOCATION_FAILED/g, '')
+          .replace(/cdg1::.*?\n/g, '')
+          .trim();
+        
+        if (!errorMessage) {
+          errorMessage = 'Invalid email or password';
+        }
+  
+        throw new Error(errorMessage);
       }
   
       // Handle successful login
@@ -149,13 +160,14 @@ const LoginForm = () => {
       let errorMessage = "Invalid email or password";
       
       if (error instanceof Error) {
-        errorMessage = error.message;
+        // Clean up any remaining technical details
+        errorMessage = error.message
+          .replace(/FUNCTION_INVOCATION_FAILED/g, '')
+          .replace(/cdg1::.*?\n/g, '')
+          .trim();
         
-        // Special handling for specific error types
-        if (error.message.includes("timeout")) {
-          errorMessage = "Request timeout. Please try again.";
-        } else if (error.message.includes("Failed to fetch")) {
-          errorMessage = "Network error. Please check your connection.";
+        if (!errorMessage) {
+          errorMessage = "Invalid email or password";
         }
       }
   
@@ -176,7 +188,6 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">

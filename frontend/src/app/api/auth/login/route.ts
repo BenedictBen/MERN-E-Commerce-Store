@@ -117,10 +117,6 @@ export async function POST(request: Request) {
     const reqBody = await request.json();
     const loginEndpoint = `${process.env.NEXT_PUBLIC_API_URL}/api/users/auth`;
 
-    // Add timeout to prevent hanging
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-
     try {
       const res = await fetch(loginEndpoint, {
         method: 'POST',
@@ -129,45 +125,34 @@ export async function POST(request: Request) {
         headers: {
           'Content-Type': 'application/json',
         },
-        signal: controller.signal,
       });
-      clearTimeout(timeoutId);
 
-      // First check if the response is not OK
+      // First read the response as text
+      const responseText = await res.text();
+      
+      // Try to parse as JSON, but fall back to text if it fails
+      let responseData;
+      try {
+        responseData = JSON.parse(responseText);
+      } catch {
+        responseData = { message: responseText };
+      }
+
+      // If response is not OK, handle errors
       if (!res.ok) {
-        let errorMessage = 'Invalid email or password';
-        
-        try {
-          // Try to read response as text first
-          const responseText = await res.text();
-          
-          // Try to parse as JSON if possible
-          try {
-            const errorData = JSON.parse(responseText);
-            errorMessage = errorData.message || errorMessage;
-          } catch {
-            // If not JSON, use the text directly
-            errorMessage = responseText || errorMessage;
-          }
-        } catch (e) {
-          console.error('Error reading error response:', e);
-        }
-
         return new Response(
-          JSON.stringify({ 
-            message: errorMessage 
+          JSON.stringify({
+            message: responseData.message || 'Invalid email or password'
           }),
-          { 
+          {
             status: res.status,
-            headers: { 'Content-Type': 'application/json' } 
+            headers: { 'Content-Type': 'application/json' }
           }
         );
       }
 
       // Handle successful login
-      const data = await res.json();
       const cookieHeader = res.headers.get('set-cookie');
-
       if (!cookieHeader) {
         return new Response(
           JSON.stringify({ message: 'Authentication error' }),
@@ -187,20 +172,21 @@ export async function POST(request: Request) {
       const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
       const cookieStore = await cookies();
 
-            cookieStore.set('jwt', jwt, {
-              expires,
-              httpOnly: true,
-              secure: true,
-              sameSite: 'lax',
-              path: '/', // Ensure the cookie is available site-wide
-            });
+                  cookieStore.set('jwt', jwt, {
+                    expires,
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'lax',
+                    path: '/', // Ensure the cookie is available site-wide
+                  });
+      
 
       return new Response(
         JSON.stringify({
-          _id: data._id,
-          username: data.username,
-          email: data.email,
-          isAdmin: data.isAdmin,
+          _id: responseData._id,
+          username: responseData.username,
+          email: responseData.email,
+          isAdmin: responseData.isAdmin,
         }),
         {
           status: 200,
@@ -209,14 +195,20 @@ export async function POST(request: Request) {
       );
 
     } catch (error) {
-      clearTimeout(timeoutId);
-      throw error;
+      console.error('API request failed:', error);
+      return new Response(
+        JSON.stringify({
+          message: 'Authentication service unavailable',
+          error: error instanceof Error ? error.message : 'Unknown error'
+        }),
+        { status: 503 }
+      );
     }
 
   } catch (error) {
     console.error('Server error:', error);
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         message: 'Internal server error',
         error: error instanceof Error ? error.message : 'Unknown error'
       }),
