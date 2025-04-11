@@ -94,9 +94,9 @@ export async function POST(request: Request) {
         }
       }
     } catch (error) {
-      console.log('Login failed:', error);
+      console.log('Invalid email or password', error);
       return new Response(
-        JSON.stringify({ message: 'Login failed', error: (error as Error).message }),
+        JSON.stringify({ message: 'Invalid email or password', error: (error as Error).message }),
         { status: 500 }
       );
     }
