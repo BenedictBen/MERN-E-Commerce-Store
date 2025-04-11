@@ -33,32 +33,97 @@ const LoginForm = () => {
     watch,
   } = useForm<FormValues>();
 
+  // const handleLogin = async (data: FormValues) => {
+  //   dispatch(loginStart());
+  //   setIsLoading(true); // Start loading
+  //   try {
+  //     const response = await fetch("/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include", // Required for cookies
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (!response.ok) {
+  //       // Use the error message from the backend if available
+  //       const errorMessage = result.message || 
+  //                          (response.status === 401 ? 'Invalid email or password' : 'Login failed');
+  //       throw new Error(errorMessage);
+  //     }
+
+  //     dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
+  //     console.log("Login successful", result);
+  //     // Success toast with smooth redirect
+  //     toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+  //       position: "top-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     // Redirect based on admin status
+  //     if (result) {
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     // const message = error instanceof Error ? error.message : "Login failed";
+
+  //     let errorMessage = "Invalid email or password";
+    
+  //   if (error instanceof Error) {
+  //     errorMessage = error.message;
+      
+  //     // Special handling for common error cases
+  //     if (error.message.includes('credentials') || error.message.includes('Invalid')) {
+  //       errorMessage = "Invalid email or password";
+  //     }
+  //   }
+
+  //     dispatch(loginFailure(errorMessage));
+  //     // Error toast with helpful message
+  //     toast.error(errorMessage, {
+  //       position: "top-right",
+  //       autoClose: 5000, // Longer display for errors
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     console.error("Error logging in:", error);
+  //   } finally {
+  //     setIsLoading(false); // Stop loading
+  //   }
+  // };
+
   const handleLogin = async (data: FormValues) => {
     dispatch(loginStart());
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
+    
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Required for cookies
+        credentials: "include",
         body: JSON.stringify(data),
       });
-
+  
       const result = await response.json();
-
+  
       if (!response.ok) {
-        // Use the error message from the backend if available
-        const errorMessage = result.message || 
-                           (response.status === 401 ? 'Invalid email or password' : 'Login failed');
-        throw new Error(errorMessage);
+        throw new Error(result.message || "Invalid email or password");
       }
-
-      dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
-      console.log("Login successful", result);
-      // Success toast with smooth redirect
-      toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+  
+      // Handle successful login
+      dispatch(loginSuccess(result));
+      
+      toast.success(`Welcome back, ${result.username || result.email}!`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -66,41 +131,38 @@ const LoginForm = () => {
         pauseOnHover: true,
         draggable: true,
       });
-      // Redirect based on admin status
-      if (result) {
-        router.push("/");
-      }
+  
+      router.push("/");
+  
     } catch (error) {
-      // const message = error instanceof Error ? error.message : "Login failed";
-
       let errorMessage = "Invalid email or password";
-    
-    if (error instanceof Error) {
-      errorMessage = error.message;
       
-      // Special handling for common error cases
-      if (error.message.includes('credentials') || error.message.includes('Invalid')) {
-        errorMessage = "Invalid email or password";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        
+        // Special handling for network errors
+        if (error.message.includes("Failed to fetch")) {
+          errorMessage = "Network error. Please check your connection.";
+        }
       }
-    }
-
+  
       dispatch(loginFailure(errorMessage));
-      // Error toast with helpful message
+      
       toast.error(errorMessage, {
         position: "top-right",
-        autoClose: 5000, // Longer display for errors
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
+        toastId: 'login-error', // Prevent duplicate toasts
       });
-      console.error("Error logging in:", error);
+      
+      console.error("Login error:", error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
-
-
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
