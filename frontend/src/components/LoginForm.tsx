@@ -73,7 +73,7 @@ const LoginForm = () => {
     } catch (error) {
       // const message = error instanceof Error ? error.message : "Login failed";
 
-      let errorMessage = "Login failed";
+      let errorMessage = "Invalid email or password";
     
     if (error instanceof Error) {
       errorMessage = error.message;
