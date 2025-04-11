@@ -24,9 +24,6 @@ const FlashDeals = () => {
   // In all components, use:
 const wishlist = useSelector((state: RootState) => state.cart.wishlist || []);
 
-  // const isWishlisted = (productId: number) => {
-  //   return wishlist.some(item => item.id === productId);
-  // };
   const isWishlisted = (productId: number) => {
     return Array.isArray(wishlist) && wishlist.some(item => item?.id === productId);
   };
@@ -116,8 +113,8 @@ const wishlist = useSelector((state: RootState) => state.cart.wishlist || []);
               <div className="flex flex-col items-start text-left gap-2 w-full">
                 <h1 className="!text-md">{deal.name}</h1>
                 <span className="flex gap-2">
-                  <p className="!text-sm">${deal.price}</p>
-                  <p className="!text-xs line-through">${deal.oldPrice}</p>
+                  <p className="!text-sm">₵{deal.price}</p>
+                  <p className="!text-xs line-through">₵{deal.oldPrice}</p>
                 </span>
                 <p className="!text-xs">{deal.details.manufacturer.name}</p>
               </div>

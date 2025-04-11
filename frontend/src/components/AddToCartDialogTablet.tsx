@@ -100,7 +100,7 @@ const AddToCartDialogTablet: React.FC<AddToCartDialogTabletProps> = ({ product }
                                         <p>{product.details.manufacturer.name}</p>
                                       </div>
                                       <div className="flex flex-col items-start gap-1">
-                                        <p className="!font-bold">${product.price}</p>
+                                        <p className="!font-bold">₵{product.price}</p>
                                         <div className="flex gap-2">
                                           <p>QTY:</p>
                                            <p>{quantity}</p> 
@@ -116,7 +116,7 @@ const AddToCartDialogTablet: React.FC<AddToCartDialogTabletProps> = ({ product }
                                       <p>({cart.totalQuantity} items)</p>
                                     </div>
                                     <div>
-                                    <p>${subtotal.toFixed(2)}</p>
+                                    <p>₵{subtotal.toFixed(2)}</p>
                                     </div>
                                   </div>
                                   <div className="flex flex-col items-center gap-3">
@@ -155,7 +155,7 @@ const AddToCartDialogTablet: React.FC<AddToCartDialogTabletProps> = ({ product }
                                       <h1 className="text-left !w-[180px] text-lg font-bold">
                                         {similar.name}
                                       </h1>
-                                      <p className="text-left text-lg !font-bold">${similar.price}</p>
+                                      <p className="text-left text-lg !font-bold">₵{similar.price}</p>
                                       </Link>
                                     </div>
                                   ))}

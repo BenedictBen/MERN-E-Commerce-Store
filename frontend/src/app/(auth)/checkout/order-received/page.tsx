@@ -8,6 +8,27 @@ import type { RootState } from '@/redux/store'
 import Image from 'next/image'
 import { getProductImageUrl } from '@/lib/imageUtils'
 
+
+const getImageUrl = (url: string | undefined): string => {
+  if (!url) return '/shop/vr000.webp'; // Default fallback image
+  
+  // Handle absolute URLs
+  if (url.startsWith('http') || url.startsWith('https')) return url;
+  
+  // Handle local development paths
+  if (process.env.NODE_ENV === 'development') {
+    if (url.startsWith('/uploads/')) return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+    if (url.startsWith('public/')) return `${process.env.NEXT_PUBLIC_API_URL}/${url}`;
+  }
+  
+  // Handle production paths
+  if (url.startsWith('/uploads/') || url.startsWith('/public/')) {
+    return `${process.env.NEXT_PUBLIC_API_URL || ''}${url}`;
+  }
+  
+  return url;
+};
+
 interface OrderItem {
   name: string
   qty: number
@@ -280,7 +301,7 @@ useEffect(() => {
                     >
                       {item.image && (
                         <Image
-                          src={getProductImageUrl(item.image)}
+                          src={getImageUrl(item.image)}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded !mr-4"
                         />

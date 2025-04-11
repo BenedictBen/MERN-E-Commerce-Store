@@ -18,7 +18,6 @@ const WishList = () => {
   const wishlistItems = useSelector(selectWishlistItems);
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-
   const handleRemoveFromWishlist = (productId: number) => {
     // Find the product in wishlist to get full data if needed
     const product = wishlistItems.find(item => item.id === productId);
@@ -114,7 +113,7 @@ const WishList = () => {
 
                   <div className="flex justify-between items-center !my-6">
                     <span className="text-lg font-bold">
-                      ${item.price.toFixed(2)}
+                      ₵{item.price.toFixed(2)}
                     </span>
                     <span className={`!text-sm !px-2 !py-1 rounded ${
                       isInStock(item) ? "!bg-green-100 !text-green-800" : "!bg-red-100 !text-red-800"

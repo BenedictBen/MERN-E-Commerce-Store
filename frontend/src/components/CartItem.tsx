@@ -3,7 +3,6 @@ import { Flex, Image, Text, Box, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "@/redux/slices/cartSlice";
 import type { Product, ProductVariant  } from "@/redux/slices/cartSlice";
-import { getProductImageUrl } from "@/lib/imageUtils";
 
 
 const getImageUrl = (url: string | undefined): string => {
@@ -132,7 +131,7 @@ const CartItem = ({ item }: CartItemProps) => {
         />
         <Box>
           <Text fontWeight="bold">{item.name}</Text>
-          <Text color="gray.600">${item.price.toFixed(2)}</Text>
+          <Text color="gray.600">₵{item.price.toFixed(2)}</Text>
           
           {/* Clean variant display */}
           {item.variants && (

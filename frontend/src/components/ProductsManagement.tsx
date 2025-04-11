@@ -13,8 +13,28 @@ import { AiOutlineEdit } from "react-icons/ai";
 import EditProductModal from "./EditProductModal";
 import { Spinner } from "@chakra-ui/react";
 import "react-toastify/dist/ReactToastify.css";
-import { getProductImageUrl } from "@/lib/imageUtils";
 import { toast } from "react-toastify";
+
+
+const getImageUrl = (url: string | undefined): string => {
+  if (!url) return '/shop/vr000.webp'; // Default fallback image
+  
+  // Handle absolute URLs
+  if (url.startsWith('http') || url.startsWith('https')) return url;
+  
+  // Handle local development paths
+  if (process.env.NODE_ENV === 'development') {
+    if (url.startsWith('/uploads/')) return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+    if (url.startsWith('public/')) return `${process.env.NEXT_PUBLIC_API_URL}/${url}`;
+  }
+  
+  // Handle production paths
+  if (url.startsWith('/uploads/') || url.startsWith('/public/')) {
+    return `${process.env.NEXT_PUBLIC_API_URL || ''}${url}`;
+  }
+  
+  return url;
+};
 
 const ProductsManagement = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -245,82 +265,6 @@ const ProductsManagement = () => {
     }
   };
 
-  // const handleCreateProduct = async (formData: CreateProductFormData) => {
-  //   try {
-  //     setIsSubmitting(true);
-  //     setError(null);
-
-  //     // Basic validation
-  //     if (!formData.name?.trim()) {
-  //       throw new Error("Product name is required");
-  //     }
-
-  //     const formDataToSend = new FormData();
-  //     formDataToSend.append("name", formData.name.trim());
-  //     formDataToSend.append("description", formData.description?.trim() || "");
-  //     formDataToSend.append("price", formData.price.toString());
-  //     formDataToSend.append("category", formData.category);
-  //     formDataToSend.append("quantity", formData.quantity.toString());
-  //     formDataToSend.append("brand", formData.brand?.trim() || "Unbranded");
-
-  //     // Append images
-  //     formData.images.forEach((image) => {
-  //       if (typeof image === "string") {
-  //         formDataToSend.append("images", image);
-  //       } else {
-  //         formDataToSend.append("images", image);
-  //       }
-  //     });
-
-  //     const toastId = toast.loading("Creating new product...", {
-  //       position: "top-right",
-  //     });
-
-  //     const response = await fetch("/api/auth/product/create", {
-  //       method: "POST",
-  //       credentials: "include",
-  //       body: formDataToSend,
-  //     });
-
-  //     const result = await response.json();
-
-  //     if (!response.ok) {
-  //       if (result.error === "Slug conflict") {
-  //         throw new Error(
-  //           result.details +
-  //             ". " +
-  //             (result.suggestion || "Please try a different name.")
-  //         );
-  //       }
-  //       throw new Error(
-  //         result.error || result.message || "Failed to create product"
-  //       );
-  //     }
-
-  //     setProducts((prev) => [result.product, ...prev]);
-  //     setIsCreateModalOpen(false);
-  //     // Update toast to success
-  //     toast.update(toastId, {
-  //       render: result.message || "Product created successfully!",
-  //       type: "success",
-  //       isLoading: false,
-  //       autoClose: 3000,
-  //       closeButton: true,
-  //     });
-  //   } catch (err) {
-  //     console.error("Creation error:", err);
-  //     const errorMessage =
-  //       err instanceof Error ? err.message : "Failed to create product";
-  //     setError(errorMessage);
-  //     toast.error(errorMessage, {
-  //       position: "top-right",
-  //       autoClose: 5000,
-  //       closeButton: true,
-  //     });
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
 // Update the handleCreateProduct function
 const handleCreateProduct = async (formData: CreateProductFormData) => {
@@ -548,7 +492,7 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
             >
               <div className=" bg-gray-200 overflow-hidden">
                 <Image
-                 src={getProductImageUrl(product.images?.[0]?.url)}
+                 src={getImageUrl(product.images?.[0]?.url)}
                   alt={product.name}
                   width={300}
                   height={300}
@@ -567,7 +511,7 @@ const handleCreateProduct = async (formData: CreateProductFormData) => {
                   {product.name}
                 </h3>
                 <p className="!text-gray-600 !mb-2">
-                  ${product.price?.toFixed(2) || "0.00"}
+                  ₵{product.price?.toFixed(2) || "0.00"}
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-gray-500">

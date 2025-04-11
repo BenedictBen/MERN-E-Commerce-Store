@@ -196,13 +196,13 @@ const QuickViewDialog: React.FC<QuickViewDialogProps> = ({ product }) => {
                     </span>
                   </div>
                   <div className="divider-y ">
-                    <h3 className="!text-lg font-bold">${product.price}</h3>
+                    <h3 className="!text-lg font-bold">₵{product.price}</h3>
                     <div className="flex flex-row gap-2 items-center justify-between">
                       <div className="flex flex-row gap-2 items-center">
                         <p className="!text-xs line-through">
-                          ${product.oldPrice}
+                          ₵{product.oldPrice}
                         </p>
-                        <p className="!text-red-500">Save: $5.00(11%)</p>
+                        <p className="!text-red-500">Save: ₵5.00(11%)</p>
                       </div>
                       <p className="text-[#18bd98]">Available in Stock</p>
                     </div>

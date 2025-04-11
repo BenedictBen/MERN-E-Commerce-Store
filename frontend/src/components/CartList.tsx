@@ -68,7 +68,7 @@ const CartList: React.FC<CartListProps> = ({ onAction }) => {
       >
         <Flex justify="space-between" mb={2}>
           <Text fontWeight="bold">Subtotal:</Text>
-          <Text>${Math.max(totalAmount, calculatedSubtotal).toFixed(2)}</Text>
+          <Text>₵{Math.max(totalAmount, calculatedSubtotal).toFixed(2)}</Text>
         </Flex>
         <Flex justify="space-between" mb={4}>
           <Text fontWeight="bold">Total Items:</Text>

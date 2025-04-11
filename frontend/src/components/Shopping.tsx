@@ -616,11 +616,11 @@ return productsToFilter.filter((product) => {
                   <h1 className="text-md">{transformedProduct.name}</h1>
                   <span className="flex gap-2">
                     <p className="text-sm">
-                      ${transformedProduct.price}
+                      ₵{transformedProduct.price}
                     </p>
                     {transformedProduct.oldPrice && (
                       <p className="text-xs line-through">
-                        ${transformedProduct.oldPrice}
+                        ₵{transformedProduct.oldPrice}
                       </p>
                     )}
                   </span>
