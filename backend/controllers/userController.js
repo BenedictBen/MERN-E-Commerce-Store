@@ -34,7 +34,6 @@ const createUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-
   const { email, password } = req.body;
 
   console.log(email);
@@ -105,7 +104,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 const logoutCurrentUser = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
-    httpOnly: true,
+    httyOnly: true,
     expires: new Date(0),
   });
 
