@@ -1,6 +1,6 @@
 # MERN E-Commerce Store 🌟  
 
-**Live Demo:** [mern-e-commerce-store-sage.vercel.app](https://casb-e-commerce.vercel.app/)  
+**Live Demo:** [mern-e-commerce.vercel.app](https://casb-e-commerce.vercel.app/)  
 
 A full-stack e-commerce platform built with the **MERN stack (MongoDB, Express.js, Next.js, Node.js)**. This project includes user authentication, product management, cart functionality, payment processing, and order tracking.  
 
