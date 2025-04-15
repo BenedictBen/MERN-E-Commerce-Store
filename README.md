@@ -24,7 +24,8 @@ A full-stack e-commerce platform built with the **MERN stack (MongoDB, Express.j
 
 ## 📸 Screenshots  
 
-![Homepage](https://mern-e-commerce-store-sage.vercel.app/screenshot-home.png)  
+![Homepage](./e-commerce1.png)  
+![Shop](./e-commerce2.png)  
 *(Check the live demo for more visuals!)*  
 
 ## 🔧 Installation  
