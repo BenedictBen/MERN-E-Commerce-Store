@@ -17,7 +17,7 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import Color from "colorjs.io";
 import { useDispatch } from "react-redux";
-import { addToCart, updateQuantity } from "@/redux/slices/cartSlice";
+import { addToCart, clearCart, updateQuantity } from "@/redux/slices/cartSlice";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -55,7 +55,31 @@ const ProductDetailPage = () => {
   };
 
   
-  
+  const handleBuyNow = () => {
+  if (!product) return;
+
+  const cartItem = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    quantity: quantity,
+    image: product.images?.[0]?.url || "",
+    slug: product.slug,
+    category: product.category,
+    variants: product.variants,
+    details: product.details,
+    isBuyNow: true // Add this flag to identify buy-now items
+  };
+
+  // Clear existing cart items and add only this product
+  dispatch(clearCart());
+  dispatch(addToCart(cartItem));
+
+  // Navigate to checkout
+  router.push('/checkout');
+};
+
+// Replace your Link with this butto
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -551,6 +575,7 @@ const ProductDetailPage = () => {
            
               >
                 <button 
+                onClick={handleBuyNow}
                 className="!bg-white !border-2 !border-[#6e2eff] hover:!bg-[#439edb] !text-[#6e2eff] hover:!text-white !w-44 !px-8 !py-4 !font-medium cursor-pointer">
                   Buy Now
                 </button>

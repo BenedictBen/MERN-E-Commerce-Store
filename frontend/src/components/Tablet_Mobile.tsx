@@ -73,7 +73,7 @@ const Tablet_Mobile = () => {
       document.cookie =
         "jwt=; Max-Age=0; path=/; secure; HttpOnly; sameSite=Lax";
 
-      // Dispatch the logout action
+ 
       dispatch(clearCart());      // Clear cart items
       dispatch(clearWishlist());  // Clear wishlist items
       dispatch(logout());         // Clear auth state
