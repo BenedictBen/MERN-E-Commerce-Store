@@ -33,74 +33,159 @@ const LoginForm = () => {
     watch,
   } = useForm<FormValues>();
 
+  // const handleLogin = async (data: FormValues) => {
+  //   dispatch(loginStart());
+  //   setIsLoading(true); // Start loading
+  //   try {
+  //     const response = await fetch("/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include", // Required for cookies
+  //       body: JSON.stringify(data),
+  //     });
+
+  //     const result = await response.json();
+
+  //     if (!response.ok) {
+  //       // Use the error message from the backend if available
+  //       const errorMessage = result.message || 
+  //                          (response.status === 401 ? 'Invalid email or password' : 'Login failed');
+  //       throw new Error(errorMessage);
+  //     }
+
+  //     dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
+  //     console.log("Login successful", result);
+  //     // Success toast with smooth redirect
+  //     toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
+  //       position: "top-right",
+  //       autoClose: 2000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     // Redirect based on admin status
+  //     if (result) {
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     // const message = error instanceof Error ? error.message : "Login failed";
+
+  //     let errorMessage = "Invalid email or password";
+    
+  //   if (error instanceof Error) {
+  //     errorMessage = error.message;
+      
+  //     // Special handling for common error cases
+  //     if (error.message.includes('credentials') || error.message.includes('Invalid')) {
+  //       errorMessage = "Invalid email or password";
+  //     }
+  //   }
+
+  //     dispatch(loginFailure(errorMessage));
+  //     // Error toast with helpful message
+  //     toast.error(errorMessage, {
+  //       position: "top-right",
+  //       autoClose: 5000, // Longer display for errors
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //     });
+  //     console.error("Error logging in:", error);
+  //   } finally {
+  //     setIsLoading(false); // Stop loading
+  //   }
+  // };
+
   const handleLogin = async (data: FormValues) => {
     dispatch(loginStart());
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
+    
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Required for cookies
+        credentials: "include",
         body: JSON.stringify(data),
       });
-
-      const result = await response.json();
-
+  
+      const responseText = await response.text();
+  
+      // Handle case where API returns plain text
+      if (responseText.trim() === "Success!") {
+        throw new Error("Invalid email or password");
+      }
+  
+      // Parse response as JSON
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch (e) {
+        throw new Error("We're having trouble processing your login");
+      }
+  
+      // Handle HTTP errors
       if (!response.ok) {
-        // Use the error message from the backend if available
-        const errorMessage = result.message || 
-                           (response.status === 401 ? 'Invalid email or password' : 'Login failed');
-        throw new Error(errorMessage);
+        throw new Error(
+          result?.message || 
+          (response.status === 400 ? "Invalid email or password" : "Login failed")
+        );
       }
-
-      dispatch(loginSuccess(result.user)); // Store all user data including isAdmin
-      console.log("Login successful", result);
-      // Success toast with smooth redirect
-      toast.success(`Welcome back, ${result.user.name || result.user.email}!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      // Redirect based on admin status
-      if (result) {
+  
+      // Handle successful login
+      if (result.success && result.user) {
+        dispatch(loginSuccess(result.user));
+        
+        toast.success(`Welcome back, ${result.user.username || result.user.email}!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+  
         router.push("/");
+      } else {
+        throw new Error(result?.message || "Authentication failed");
       }
-    } catch (error) {
-      // const message = error instanceof Error ? error.message : "Login failed";
-
-      let errorMessage = "Invalid email or password";
-    
-    if (error instanceof Error) {
-      errorMessage = error.message;
+  
+    } catch (error: any) {
+      let errorMessage = "Login failed. Please try again.";
       
-      // Special handling for common error cases
-      if (error.message.includes('credentials') || error.message.includes('Invalid')) {
-        errorMessage = "Invalid email or password";
+      if (error instanceof Error) {
+        // Handle specific error patterns
+        if (error.message.includes('credentials') || 
+            error.message.includes('Invalid') || 
+            error.message.includes('email') || 
+            error.message.includes('password')) {
+          errorMessage = "Invalid email or password";
+        } else {
+          errorMessage = error.message;
+        }
       }
-    }
-
+  
       dispatch(loginFailure(errorMessage));
-      // Error toast with helpful message
+      
       toast.error(errorMessage, {
         position: "top-right",
-        autoClose: 5000, // Longer display for errors
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
       });
-      console.error("Error logging in:", error);
+      
+      console.error("Login error:", error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
-
-
   
 
   
